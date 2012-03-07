@@ -1,0 +1,25 @@
+<fieldset data-collapsible-fieldset="{{group.name}}">
+	<ul class="nav nav-tabs">
+		<li class="dropdown">
+			<a class="dropdown-toggle"
+			data-toggle="dropdown"
+			href="#">
+			{{#legend}}{{legend}}{{/legend}}
+			{{^legend}}{{label}}{{/legend}}
+			<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+			  {{#fields}}
+				<li><a data-formloader-showfield="{{name_with_dots}}" href="#">{{name}}</a></li>
+			  {{/fields}}
+				<li class="divider"></li>
+				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
+			</ul>
+		</li>
+	</ul>
+
+  <div data-formloader-fieldset="{{group}}.{{name}}" class="formloader-fieldset-hide">
+  {{#fields}}
+    {{{view_html}}}
+  {{/fields}}
+</fieldset>

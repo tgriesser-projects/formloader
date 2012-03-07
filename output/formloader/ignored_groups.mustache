@@ -1,0 +1,30 @@
+<form id="ignored_groups" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
+<input name="api_action" value="formloader.ignored_groups" type="hidden" id="form_api_action" />
+
+	{{#__hidden_vars}}
+		<input type="hidden" value="{{value}}" name="{{name}}" />
+	{{/__hidden_vars}}
+
+		<div class="control-group{{wrapper_class.ignored_groups}}" data-formloader-wrapper="ignored_groups">
+	<label for="ignored_groups" class="control-label">Ignored Groups:</label>
+	<div class="controls">
+		 {{#ignored_groups}}
+<label class="checkbox">
+	<input type="checkbox" name="ignored_groups[{{name}}]" value="yes" {{#checked}}checked="checked"{{/checked}}>
+	{{label}}
+</label>
+{{/ignored_groups}}
+	   {{#error.ignored_groups}}
+	   <p class="help-block">
+		   {{{error.ignored_groups.message}}}
+	   </p>
+	   {{/error.ignored_groups}}
+	</div>
+</div>
+
+
+		<div data-formloader-actions="formloader.ignored_groups" class="form-actions">
+				<button type="submit" class="btn" value="Set">Set</button>
+		</div>
+
+</form>

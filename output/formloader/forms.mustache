@@ -1,0 +1,351 @@
+<form id="form" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
+<input name="api_action" value="formloader.forms" type="hidden" id="form_api_action" />
+
+	{{#__hidden_vars}}
+		<input type="hidden" value="{{value}}" name="{{name}}" />
+	{{/__hidden_vars}}
+
+		<div class="control-group{{wrapper_class.group}}" data-formloader-wrapper="group">
+	<label for="group" class="control-label">Group:</label>
+	<div class="controls">
+		 <input id="group" name="group" value="{{group}}" type="text" />
+	   {{#error.group}}
+	   <p class="help-block">
+		   {{{error.group.message}}}
+	   </p>
+	   {{/error.group}}
+		 {{^error.group}}
+	   <span class="help-block">Used mainly to namespace the forms/child items</span>
+		 {{/error.group}}
+	</div>
+</div>
+		<div class="control-group{{wrapper_class.name}}" data-formloader-wrapper="name">
+	<label for="form_name" class="control-label">Form Name:</label>
+	<div class="controls">
+		 <input id="form_name" name="name" value="{{name}}" type="text" />
+	   {{#error.name}}
+	   <p class="help-block">
+		   {{{error.name.message}}}
+	   </p>
+	   {{/error.name}}
+		 {{^error.name}}
+	   <span class="help-block">Name for the form, must be unique to the group</span>
+		 {{/error.name}}
+	</div>
+</div>
+		<div class="control-group{{wrapper_class.fieldsets}}" data-formloader-wrapper="fieldsets">
+	<label for="fieldsets" class="control-label">Fieldsets:</label>
+	<div class="controls">
+		 <div id="fieldsets" class="row">
+	<div class="span7">
+		<ul data-tagit-name="fieldsets"></ul>
+	</div>
+	<div class="span1">
+		<a class="btn btn-info small" href="#" style="display:none" data-formloader-add="fieldsets">+</a>
+	</div>
+</div>
+	   {{#error.fieldsets}}
+	   <p class="help-block">
+		   {{{error.fieldsets.message}}}
+	   </p>
+	   {{/error.fieldsets}}
+		 {{^error.fieldsets}}
+	   <span class="help-block">Start typing the name of a fieldset you have already created, or click the "+" to create a new one</span>
+		 {{/error.fieldsets}}
+	</div>
+</div>
+		<div class="control-group{{wrapper_class.fields}}" data-formloader-wrapper="fields">
+	<label for="fields" class="control-label">Fields:</label>
+	<div class="controls">
+		 <div id="fields" class="row">
+	<div class="span7">
+		<ul data-tagit-name="fields"></ul>
+	</div>
+	<div class="span1">
+		<a class="btn btn-info small" href="#" style="display:none" data-formloader-add="fields">+</a>
+	</div>
+</div>
+	   {{#error.fields}}
+	   <p class="help-block">
+		   {{{error.fields.message}}}
+	   </p>
+	   {{/error.fields}}
+		 {{^error.fields}}
+	   <span class="help-block">Start typing the name of a field you have already created, or click the "+" to create a new one</span>
+		 {{/error.fields}}
+	</div>
+</div>
+		<div class="control-group{{wrapper_class.actions}}" data-formloader-wrapper="actions">
+	<label for="actions" class="control-label">Actions:</label>
+	<div class="controls">
+		 <div id="actions" class="row">
+	<div class="span7">
+		<ul data-tagit-name="actions"></ul>
+	</div>
+	<div class="span1">
+		<a class="btn btn-info small" href="#" style="display:none" data-formloader-add="actions">+</a>
+	</div>
+</div>
+	   {{#error.actions}}
+	   <p class="help-block">
+		   {{{error.actions.message}}}
+	   </p>
+	   {{/error.actions}}
+		 {{^error.actions}}
+	   <span class="help-block">Start typing the name of an action you have already created, or click the "+" to create a new one</span>
+		 {{/error.actions}}
+	</div>
+</div>
+		<fieldset data-collapsible-fieldset="">
+
+	<ul class="nav nav-tabs">
+		<li class="dropdown">
+			<a class="dropdown-toggle"
+			data-toggle="dropdown"
+			href="#">
+			Form Attributes			<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a data-formloader-showfield="attributes.id" href="#">id</a></li>
+				<li><a data-formloader-showfield="attributes.class" href="#">class</a></li>
+				<li><a data-formloader-showfield="attributes.name" href="#">name</a></li>
+				<li><a data-formloader-showfield="attributes.form_action" href="#">form_action</a></li>
+				<li><a data-formloader-showfield="attributes.form_method" href="#">form_method</a></li>
+				<li><a data-formloader-showfield="attributes.data" href="#">data</a></li>
+				<li class="divider"></li>
+				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
+			</ul>
+		</li>
+	</ul>
+
+  <div data-formloader-fieldset="formloader.attributes_form" class="formloader-fieldset-hide">
+    <div class="control-group{{wrapper_class.attributes.id}}" data-formloader-wrapper="attributes.id">
+	<label for="id" class="control-label">Id:</label>
+	<div class="controls">
+		 <input id="id" name="attributes[id]" value="{{attributes.id}}" type="text" />
+	   {{#error.attributes.id}}
+	   <p class="help-block">
+		   {{{error.attributes.id.message}}}
+	   </p>
+	   {{/error.attributes.id}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.class}}" data-formloader-wrapper="attributes.class">
+	<label for="class" class="control-label">Class:</label>
+	<div class="controls">
+		 <input id="class" name="attributes[class]" value="{{attributes.class}}" type="text" />
+	   {{#error.attributes.class}}
+	   <p class="help-block">
+		   {{{error.attributes.class.message}}}
+	   </p>
+	   {{/error.attributes.class}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.name}}" data-formloader-wrapper="attributes.name">
+	<label for="name" class="control-label">Name:</label>
+	<div class="controls">
+		 <input id="name" name="attributes[name]" value="{{attributes.name}}" type="text" />
+	   {{#error.attributes.name}}
+	   <p class="help-block">
+		   {{{error.attributes.name.message}}}
+	   </p>
+	   {{/error.attributes.name}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.form_action}}" data-formloader-wrapper="attributes.form_action">
+	<label for="form_action" class="control-label">Form Action:</label>
+	<div class="controls">
+		 <input id="form_action" name="attributes[form_action]" value="{{attributes.form_action}}" type="text" placeholder="Full URL or relative (/page/location)" />
+	   {{#error.attributes.form_action}}
+	   <p class="help-block">
+		   {{{error.attributes.form_action.message}}}
+	   </p>
+	   {{/error.attributes.form_action}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.form_method}}" data-formloader-wrapper="attributes.form_method">
+	<label for="form_method" class="control-label">Form Method:</label>
+	<div class="controls">
+		 <select id="form_method" name="attributes[form_method]" value="{{attributes.form_method}}" type="dropdown">		<option value="">post</option>
+		<option {{#__selected.attributes.form_method.get}}selected="selected" {{/__selected.attributes.form_method.get}}value="get">get</option>
+</select>
+	   {{#error.attributes.form_method}}
+	   <p class="help-block">
+		   {{{error.attributes.form_method.message}}}
+	   </p>
+	   {{/error.attributes.form_method}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.data}}" data-formloader-wrapper="attributes.data">
+	<label for="data" class="control-label">Data Attributes</label>
+	<div class="controls">
+		 <div data-option-sgroup="attributes[data]">
+	<div class="optionRow">
+		<div>
+			 <input type="text" class="inline span2" name="attributes[data][key][]" placeholder="Label" />
+			 <input type="text" class="inline span2" name="attributes[data][value][]" placeholder="name or value" />
+			 <a href="#" data-formloader-action="add_option_row" class="btn btn-primary">+</a>
+			 <span class="btn small disabled optionSortHandle">Sort</span>
+		</div>
+		<br>
+	</div>
+</div>
+<script type="text/javascript">
+var Formloader = Formloader || {};
+		Formloader.Forms = Formloader.Forms || {};
+		Formloader.Forms["attributes[data]"] = {{#attributes.data}}{{{attributes.data}}}{{/attributes.data}}{{^attributes.data}}[]{{/attributes.data}};
+</script>
+	   {{#error.attributes.data}}
+	   <p class="help-block">
+		   {{{error.attributes.data.message}}}
+	   </p>
+	   {{/error.attributes.data}}
+		 {{^error.attributes.data}}
+	   <span class="help-block">Each of the Key=>Val pairs will be added as data attribues to this item</span>
+		 {{/error.attributes.data}}
+	</div>
+</div>
+</fieldset>
+
+   <fieldset id="form_settings" name="form_settings" data-collapsible-fieldset="">
+
+	<ul class="nav nav-tabs">
+		<li class="dropdown">
+			<a class="dropdown-toggle"
+			data-toggle="dropdown"
+			href="#">
+Form Settings						<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a data-formloader-showfield="title" href="#">title</a></li>
+				<li><a data-formloader-showfield="route_success" href="#">route_success</a></li>
+				<li><a data-formloader-showfield="route_error" href="#">route_error</a></li>
+				<li class="divider"></li>
+				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
+			</ul>
+		</li>
+	</ul>
+
+  <div data-formloader-fieldset="formloader.form_settings" class="formloader-fieldset-hide">
+    <div class="control-group{{wrapper_class.title}}" data-formloader-wrapper="title">
+	<label for="title" class="control-label">Title</label>
+	<div class="controls">
+		 <input id="title" name="title" value="{{title}}" type="text" />
+	   {{#error.title}}
+	   <p class="help-block">
+		   {{{error.title.message}}}
+	   </p>
+	   {{/error.title}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.route_success}}" data-formloader-wrapper="route_success">
+	<label for="route_success" class="control-label">Route Success:</label>
+	<div class="controls">
+		 <input id="route_success" name="route_success" class="span6" value="{{route_success}}" type="text" placeholder="HMVC::path/to/controller or Static::public_method" />
+	   {{#error.route_success}}
+	   <p class="help-block">
+		   {{{error.route_success.message}}}
+	   </p>
+	   {{/error.route_success}}
+		 {{^error.route_success}}
+	   <span class="help-block">When the form validates correctly, this is called as either a static method or HMVC request...</span>
+		 {{/error.route_success}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.route_error}}" data-formloader-wrapper="route_error">
+	<label for="route_error" class="control-label">Route Error:</label>
+	<div class="controls">
+		 <input id="route_error" name="route_error" class="span6" value="{{route_error}}" type="text" placeholder="HMVC::path/to/controller or Static::public_method" />
+	   {{#error.route_error}}
+	   <p class="help-block">
+		   {{{error.route_error.message}}}
+	   </p>
+	   {{/error.route_error}}
+		 {{^error.route_error}}
+	   <span class="help-block">When the form fails validation, this is called as either a static method or HMVC request...</span>
+		 {{/error.route_error}}
+	</div>
+</div>
+</fieldset>
+   <fieldset id="view_info" name="view_info" data-collapsible-fieldset="">
+
+	<ul class="nav nav-tabs">
+		<li class="dropdown">
+			<a class="dropdown-toggle"
+			data-toggle="dropdown"
+			href="#">
+View Path Info						<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a data-formloader-showfield="view" href="#">view</a></li>
+				<li><a data-formloader-showfield="view_dir" href="#">view_directory</a></li>
+				<li><a data-formloader-showfield="view_path" href="#">view_path</a></li>
+				<li><a data-formloader-showfield="view_html" href="#">view_html</a></li>
+				<li class="divider"></li>
+				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
+			</ul>
+		</li>
+	</ul>
+
+  <div data-formloader-fieldset="formloader.view_info" class="formloader-fieldset-hide">
+    <div class="control-group{{wrapper_class.view}}" data-formloader-wrapper="view">
+	<label for="view" class="control-label">Mustache View:</label>
+	<div class="controls">
+		 <input id="view" name="view" value="{{view}}" type="text" placeholder="default.mustache" />
+	   {{#error.view}}
+	   <p class="help-block">
+		   {{{error.view.message}}}
+	   </p>
+	   {{/error.view}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.view_dir}}" data-formloader-wrapper="view_dir">
+	<label for="view_directory" class="control-label">View Directory:</label>
+	<div class="controls">
+		 <input id="view_directory" name="view_dir" value="{{view_dir}}" type="text" placeholder="/path/to/mustache/view" />
+	   {{#error.view_dir}}
+	   <p class="help-block">
+		   {{{error.view_dir.message}}}
+	   </p>
+	   {{/error.view_dir}}
+		 {{^error.view_dir}}
+	   <span class="help-block">Directory that the template is in (within the formloader/views)</span>
+		 {{/error.view_dir}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.view_path}}" data-formloader-wrapper="view_path">
+	<label for="view_path" class="control-label">View Path:</label>
+	<div class="controls">
+		 <input id="view_path" name="view_path" value="{{view_path}}" type="text" placeholder="/path/to/view/view.mustache" />
+	   {{#error.view_path}}
+	   <p class="help-block">
+		   {{{error.view_path.message}}}
+	   </p>
+	   {{/error.view_path}}
+		 {{^error.view_path}}
+	   <span class="help-block">Full path - combined view director and view path</span>
+		 {{/error.view_path}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.view_html}}" data-formloader-wrapper="view_html">
+	<label for="view_html" class="control-label">View Html:</label>
+	<div class="controls">
+		 <textarea id="view_html" name="view_html" type="textarea">{{view_html}}</textarea>
+	   {{#error.view_html}}
+	   <p class="help-block">
+		   {{{error.view_html.message}}}
+	   </p>
+	   {{/error.view_html}}
+		 {{^error.view_html}}
+	   <span class="help-block">We can specify the raw HTML for an item here... completely overriding every other setting</span>
+		 {{/error.view_html}}
+	</div>
+</div>
+</fieldset>
+
+		<div data-formloader-actions="formloader.form" class="form-actions">
+				<button type="submit" class="btn-primary btn" value="Compile">Compile</button>
+				<button type="button" class="pull-right small btn" name="submit" value="Preview" id="preview_item">Preview</button>
+		</div>
+
+</form>
