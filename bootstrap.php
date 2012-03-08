@@ -8,7 +8,7 @@
  * @author    Tim Griesser
  * @license   MIT License
  * @copyright 2012 Tim Griesser
- * @link      http://tgriesser.com
+ * @link      http://formloader.tgriesser.com
  */
 Config::load('formloader', true);
 
@@ -38,6 +38,8 @@ $whitelist[] = 'Formloader\\Formloader';
 Config::set('security.whitelisted_classes', $whitelist);
 
 // Determine whether the backend module is enabled
-Config::get('formloader.builder.enabled');
-
+if (Uri::segment(1) === 'formloader')
+{
+	Config::get('formloader.builder.enabled');	
+}
 /* End of file bootstrap.php */

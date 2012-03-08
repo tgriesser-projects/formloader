@@ -10,7 +10,7 @@ namespace Fuel\Tasks;
  * @author    Tim Griesser <tim@tgriesser.com>
  * @license   MIT License
  * @copyright 2012 Tim Griesser
- * @link      http://tgriesser.com
+ * @link      http://formloader.tgriesser.com
  */
 class Formloader
 {
@@ -25,6 +25,7 @@ class Formloader
 		$asset_destination = DOCROOT.$public_path.DS.\Config::get('formloader.builder.asset_destination');
 
 		$writable_paths = array(
+			APPPATH.''
 			PKGPATH.'formloader'.DS.'output',
 			PKGPATH.'formloader'.DS.'forms',
 			PKGPATH.'formloader'.DS.'config'

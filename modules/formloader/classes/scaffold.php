@@ -11,7 +11,7 @@ namespace Formloader;
  * @author    Tim Griesser
  * @license   MIT License
  * @copyright 2012 Tim Griesser
- * @link      http://tgriesser.com
+ * @link      http://formloader.tgriesser.com
  */
 class Formloader_Scaffold
 {
@@ -45,7 +45,7 @@ class Formloader_Scaffold
 	public function render()
 	{
 		// Ensure it's only rendered once...
-		if ($this->html !== false)
+		if ( $this->html !== false)
 		{
 			return $this->html;
 		}
@@ -98,14 +98,14 @@ class Formloader_Scaffold
 						{
 							$_id  = 'fs-'.$group_name.'-'.$form_name;
 							$uri  = \Uri::create('formloader/'.strtolower($this->type).'/'.$_id);
-							$html .= <<<HTML
+							$html .= <<<ROW
 <tr>
 	<td>$group_name</td>
 	<td>$form_name</td>
-	<td><a href="$uri">Edit</a></td>
+	<td><a class="btn" href="$uri">Edit</a></td>
 	<!--<td><a class="btn btn-danger" data-formloader-delete="delete">Delete</a></td>-->
 </tr>
-HTML;
+ROW;
 						}
 					}
 				}
