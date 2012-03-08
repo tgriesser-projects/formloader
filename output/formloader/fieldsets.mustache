@@ -209,9 +209,9 @@ View Path Info						<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a data-formloader-showfield="view" href="#">view</a></li>
-				<li><a data-formloader-showfield="view_dir" href="#">template_directory</a></li>
-				<li><a data-formloader-showfield="view_path" href="#">view_path</a></li>
-				<li><a data-formloader-showfield="view_html" href="#">view_html</a></li>
+				<li><a data-formloader-showfield="template_dir" href="#">template_directory</a></li>
+				<li><a data-formloader-showfield="template_path" href="#">template_path</a></li>
+				<li><a data-formloader-showfield="template_html" href="#">template_html</a></li>
 				<li class="divider"></li>
 				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
 			</ul>
@@ -230,46 +230,46 @@ View Path Info						<b class="caret"></b>
 	   {{/error.view}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.view_dir}}" data-formloader-wrapper="view_dir">
+    <div class="control-group{{wrapper_class.template_dir}}" data-formloader-wrapper="template_dir">
 	<label for="template_directory" class="control-label">View Directory:</label>
 	<div class="controls">
-		 <input id="template_directory" name="view_dir" value="{{view_dir}}" type="text" placeholder="/path/to/mustache/view" />
-	   {{#error.view_dir}}
+		 <input id="template_directory" name="template_dir" value="{{template_dir}}" type="text" placeholder="/path/to/mustache/view" />
+	   {{#error.template_dir}}
 	   <p class="help-block">
-		   {{{error.view_dir.message}}}
+		   {{{error.template_dir.message}}}
 	   </p>
-	   {{/error.view_dir}}
-		 {{^error.view_dir}}
+	   {{/error.template_dir}}
+		 {{^error.template_dir}}
 	   <span class="help-block">Directory that the template is in (within the modules/formloader/templates)</span>
-		 {{/error.view_dir}}
+		 {{/error.template_dir}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.view_path}}" data-formloader-wrapper="view_path">
-	<label for="view_path" class="control-label">View Path:</label>
+    <div class="control-group{{wrapper_class.template_path}}" data-formloader-wrapper="template_path">
+	<label for="template_path" class="control-label">View Path:</label>
 	<div class="controls">
-		 <input id="view_path" name="view_path" value="{{view_path}}" type="text" placeholder="/path/to/view/view.mustache" />
-	   {{#error.view_path}}
+		 <input id="template_path" name="template_path" value="{{template_path}}" type="text" placeholder="/path/to/view/view.mustache" />
+	   {{#error.template_path}}
 	   <p class="help-block">
-		   {{{error.view_path.message}}}
+		   {{{error.template_path.message}}}
 	   </p>
-	   {{/error.view_path}}
-		 {{^error.view_path}}
+	   {{/error.template_path}}
+		 {{^error.template_path}}
 	   <span class="help-block">Full path - combined view director and view path</span>
-		 {{/error.view_path}}
+		 {{/error.template_path}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.view_html}}" data-formloader-wrapper="view_html">
-	<label for="view_html" class="control-label">View Html:</label>
+    <div class="control-group{{wrapper_class.template_html}}" data-formloader-wrapper="template_html">
+	<label for="template_html" class="control-label">View Html:</label>
 	<div class="controls">
-		 <textarea id="view_html" name="view_html" type="textarea">{{view_html}}</textarea>
-	   {{#error.view_html}}
+		 <textarea id="template_html" name="template_html" type="textarea">{{template_html}}</textarea>
+	   {{#error.template_html}}
 	   <p class="help-block">
-		   {{{error.view_html.message}}}
+		   {{{error.template_html.message}}}
 	   </p>
-	   {{/error.view_html}}
-		 {{^error.view_html}}
+	   {{/error.template_html}}
+		 {{^error.template_html}}
 	   <span class="help-block">We can specify the raw HTML for an item here... completely overriding every other setting</span>
-		 {{/error.view_html}}
+		 {{/error.template_html}}
 	</div>
 </div>
 </fieldset>

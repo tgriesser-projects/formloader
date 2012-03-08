@@ -5,17 +5,17 @@
 	{%/__hidden_vars%}
 
 	{{#fields}}
-		{{{view_html}}}
+		{{{template_html}}}
 	{{/fields}}
 
   {{#fieldsets}}
-   {{{view_html}}}
+   {{{template_html}}}
   {{/fieldsets}}
 
 	{{#has_actions}}
 		<div data-formloader-actions="{{api_action}}" class="form-actions">
 			{{#actions}}
-				{{{view_html}}}
+				{{{template_html}}}
 			{{/actions}}
 		</div>
 	{{/has_actions}}

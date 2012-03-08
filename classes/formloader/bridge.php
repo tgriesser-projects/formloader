@@ -227,7 +227,7 @@ class Formloader_Bridge extends \Loopforge
 	 */
 	public static function template_directory($f)
 	{
-		$path         = \Config::get('formloader.output').DS.'templates'.DS;
+		$path        = \Config::get('formloader.output').DS.'templates'.DS;
 		$group_dir   = $path.DS.$f['group'].DS.$f['object_type'];
 		$regular_dir = $path.\Config::get('formloader.template_dir').DS.$f['object_type'];
 		return (is_dir($group_dir) and file_exists($group_dir.DS.$f['template'])) ? $group_dir : $regular_dir;

@@ -308,7 +308,7 @@ class Formloader_Fields extends Formloader_Bridge
 			},
 
 			/**
-			 * Resolves the view directory for the field
+			 * Resolves the template directory for the field
 			 * @param  array $f - current action array
 			 * @return string
 			 */
@@ -318,7 +318,7 @@ class Formloader_Fields extends Formloader_Bridge
 			},
 
 			/**
-			 * Path to the view relative to the "modules/formloader/templates" directory
+			 * Path to the template relative to the "modules/formloader/templates" directory
 			 * @param  array $f - current action field
 			 * @return string
 			 */

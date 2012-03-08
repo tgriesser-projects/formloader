@@ -371,7 +371,7 @@ class Formloader
 	 */
 	protected static function fetch_files($group, $name)
 	{
-		$output_path = PKGPATH.'formloader'.DS.'output'.DS.$group.DS;
+		$output_path = \Config::get('formloader.output_path').DS.$group.DS;
 		$view_path  = $output_path . $name . '.mustache';
 		$attr_path  = $output_path . $name . '_attr.php';
 		
