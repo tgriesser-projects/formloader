@@ -24,7 +24,7 @@ return array(
 	 * Location of the template scaffolding to be moved for form creation
 	 * @var
 	 */
-	'template_source' => __DIR__ . '../templates/',
+	'template_source' => __DIR__ . '/../templates/',
 	
 	/** 
 	 * Absolute path to Mustache, only needed in the preview

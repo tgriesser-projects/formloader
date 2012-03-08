@@ -14,6 +14,12 @@ namespace Fuel\Tasks;
  */
 class Formloader
 {
+	/**
+	 * Installation script... does the following
+	 * 1. Creates/makes writable the output, forms, and config directories in the APPPATH.'modules/formloader'
+	 * 2. Makes the templates directory, and copies over the templates from the PKGPATH.'formloader/templates'
+	 * 3. Moves the assets to a publicly accessible location
+	 */
 	public static function run($public_path = 'public')
 	{
 		// Load the formloader config
@@ -45,7 +51,7 @@ class Formloader
 
 			else
 			{
-				\Cli::write("\t".'Failed to make writable: '.$path, 'red');
+				\Cli::write("\t".'Error: Failed to make writable: '.$path, 'red');
 			}
 		}
 		
@@ -58,29 +64,35 @@ class Formloader
 		{
 			mkdir(\Config::get('formloader.output_path').'/templates', 0755);
 		}
+		
+		/**
+		 * Move the templates...
+		 */
 		try
 		{
-			\File::copy_dir(\Config::get('formloader.builder.asset_source'), $asset_destination);
+			$template_dirs = \File::read_dir(\Config::get('formloader.template_source'), 1);
+			
+			foreach ($template_dirs as $tdir => $empty)
+			{
+				$template = \Config::get('formloader.template_source') . $tdir;
+				$destination = \Config::get('formloader.output_path') . 'templates';
+				\File::copy_dir($template, $destination);
+				\Cli::write("\t".'Copied templates from ' . $template, 'green');
+			}
 		}
 		catch (\FileAccessException $e)
 		{
-			$exception = $e->getMessage();
+			\Cli::write("\t".'Error moving templates: '.$e->getMessage(), 'red');
+			self::exit_script();
 		}
 
-		if ( ! empty($exception))
-		{
-			\Cli::write("\t".'Error moving templates: '.$exception, 'red');
-		}
-		else
-		{
-			\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
-		}
+		\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
 		
 		
 		if (is_dir($asset_destination . 'formloader'))
 		{
 			\Cli::write("\t".'Directory: '.$asset_destination.' already exists, please delete it and run "php oil r formloader" again to update', 'yellow');
-			exit;
+			self::exit_script();
 		}
 		else
 		{
@@ -97,21 +109,27 @@ class Formloader
 				catch (\FileAccessException $e)
 				{
 					$exception = $e->getMessage();
+					\Cli::write("\t".'Error moving assets: '.$exception, 'red');
+					self::exit_script();
 				}
 
-				if ( ! empty($exception))
-				{
-					\Cli::write("\t".'Error moving assets: '.$exception, 'red');
-				}
-				else
-				{
-					\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
-				}
+				\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
 			}
 			else
 			{
-				\Cli::write("\t".'Error: Failed to make writable: '.$asset_destination, 'red');				
+				\Cli::write("\t".'Error: Failed to make writable: '.$asset_destination, 'red');
+				self::exit_script();
 			}
 		}
 	}
+	
+	/**
+	 * Break on error
+	 */
+	public static function exit_script()
+	{
+		\Cli::write("\t".'Script failed, please fix the above errors', 'red');
+		exit;
+	}
+	
 }
