@@ -55,8 +55,6 @@ class Formloader
 			}
 		}
 		
-		// -----------
-		
 		/**
 		 * Make the templates path
 		 */
@@ -99,11 +97,11 @@ class Formloader
 			\Cli::write("\t".'Error moving '.$migrate_item.': '.$e->getMessage(), 'red');
 			if (isset($fullpath))
 			{
-				\Cli::write("\t".'Path: '.$fullpath.'red');
+				\Cli::write("\t".'Path: '.$fullpath, 'red');
 			}
 			if (isset($destination))
 			{
-				\Cli::write("\t".'Destination: '.$destination.'red');
+				\Cli::write("\t".'Destination: '.$destination, 'red');
 			}
 			self::exit_script();
 		}
