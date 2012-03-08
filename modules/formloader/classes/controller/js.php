@@ -61,7 +61,9 @@ class Controller_Js extends \Controller {
 					break;
 				}
 
-				$body = \View::forge('js.php.js');
+				$js_view = PKGPATH.'formloader/modules/formloader/views/js.php.js';
+
+				$body = \View::forge($js_view);
 				$data = '';
 
 				if ( ! empty($sets))

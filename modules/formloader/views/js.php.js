@@ -11,7 +11,7 @@ Formloader = _.defaults(Formloader || {}, {
     if (path.substr(-1) === '/') path = path.substr(0, path.length - 1);
     return path = path.split('/');
   })(),
-  UrlBase: "" + window.location.protocol + "//" + window.location.host + "/formloader",
+  UrlBase: "<?=\Uri::base()?>/formloader",
   Collections: {},
   Models: {},
   View: {},
