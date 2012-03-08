@@ -6,12 +6,10 @@ var Formloader;
 Formloader = _.defaults(Formloader || {}, {
   Uri: (function() {
     var path;
-    path = window.location.pathname;
-    path = path.substr(1);
-    if (path.substr(-1) === '/') path = path.substr(0, path.length - 1);
-    return path = path.split('/');
+    path = "<?= \Uri::string() ?>";
+    return path.split('/');
   })(),
-  UrlBase: "<?=\Uri::base()?>/formloader",
+  UrlBase: "<?=\Uri::base()?>formloader",
   Collections: {},
   Models: {},
   View: {},
