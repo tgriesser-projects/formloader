@@ -99,17 +99,9 @@ return array(
 					{
 						throw new FormloaderException("The Loopforge module is a dependency of this package/module. <br><br>
 						Please grab it from: <pre><code>git://github.com/tgriesser/loopforge.git</pre></code> and put it in the packages directory");
-					}				
-					try
-					{
-						Package::loaded('parser') or Package::load('parser');
-					}
-					catch (\PackageNotFoundException $e)
-					{
-						throw new FormloaderException("This module requires the Mustache/Parser package, please add it to the packages directory!");
 					}
 				}
-				catch (\FormloaderException $e)
+				catch (FormloaderException $e)
 				{
 					echo \View::forge('error', array(
 						'message'      => $e->getMessage()

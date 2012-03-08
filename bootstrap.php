@@ -24,7 +24,6 @@ Autoloader::add_classes(array(
 	// Formloader Components
 	'Formloader\\Formloader_Fs'       => __DIR__.'/classes/formloader/fs.php',
 	'Formloader\\Formloader_Bridge'   => __DIR__.'/classes/formloader/bridge.php',
-	'Formloader\\Formloader_Template' => __DIR__.'/classes/formloader/template.php',
 	'Formloader\\Formloader_Mustache' => __DIR__.'/classes/formloader/mustache.php',
 	
 	// Standard exception thrown by the class

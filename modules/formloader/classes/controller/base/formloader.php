@@ -55,9 +55,10 @@ class Controller_Base_Formloader extends \Controller_Template
 			die;
 		}
 		
-		$this->template = \View::forge('template.mustache');
+		$this->template = \View::forge('template');
 		$this->template->set(array(
 		  'header'  => \View::forge('includes/header'),
+		  'formloader_alert' => array(),
 		  'title'   => '',
 		  'content' => '',
 		  'navbar'  => (\Input::get('ref') === 'popup' ? '' : \ViewModel::forge('includes/navbar')),

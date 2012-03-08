@@ -55,7 +55,7 @@ If `$listen` is true, then the form will process automatically if submitted.
 		</tr>
 		<tr>
 			<th>Throws</th>
-			<td>\FormloaderException, when the form group/name combination is invalid.</td>
+			<td>FormloaderException, when the form group/name combination is invalid.</td>
 		</tr>
 		<tr>
 			<th>Example</th>
@@ -257,7 +257,7 @@ Initialized by default, but must be called manually if the third parameter of th
 		</tr>
 		<tr>
 			<th>Throws</th>
-			<td>\FormloaderException, when there isn't a callable form submission.<br/>
+			<td>FormloaderException, when there isn't a callable form submission.<br/>
 			\HttpNotFoundException, when the HMVC call is invalid.</td>
 		</tr>
 		<tr>

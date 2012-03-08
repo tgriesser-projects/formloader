@@ -41,7 +41,7 @@ class Formloader_Actions extends Formloader_Bridge
 			/**
 			 * Required name of the group (used to namespace the form items)
 			 * @var String
-			 * @throws \FormloaderException
+			 * @throws FormloaderException
 			 */
 			'group'  => function()
 			{
@@ -51,7 +51,7 @@ class Formloader_Actions extends Formloader_Bridge
 			/**
 			 * Required name of the action
 			 * @var String
-			 * @throws \FormloaderException
+			 * @throws FormloaderException
 			 */
 			'name'   => function()
 			{
@@ -201,7 +201,7 @@ class Formloader_Actions extends Formloader_Bridge
 			 */
 			'template_html' => function($f)
 			{
-				return Formloader_Template::forge($f['template_path'], $f, false)->render();
+				return Formloader_Mustache::forge($f['template_path'], $f, false)->render();
 			}
 		);
 	}

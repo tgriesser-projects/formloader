@@ -37,15 +37,6 @@ class Formloader_Bridge extends \Loopforge
 	protected static $option_calls = array();
 	
 	/**
-	 * Called by fuelPHP when the class is first initialized
-	 * ...almost like a static constructor
-	 */
-	public static function _init()
-	{
-		Finder::instance()->add_path(\Config::get('formloader.output_path'), -1);
-	}
-	
-	/**
 	 * Process items based on the previously called item...
 	 * @var array
 	 */
@@ -227,8 +218,8 @@ class Formloader_Bridge extends \Loopforge
 	 */
 	public static function template_directory($f)
 	{
-		$path        = \Config::get('formloader.output').'/templates/';
-		$group_dir   = $path.DS.$f['group'].DS.$f['object_type'];
+		$path        = \Config::get('formloader.output_path').'templates/';
+		$group_dir   = $path.$f['group'].DS.$f['object_type'];
 		$regular_dir = $path.\Config::get('formloader.template_dir').DS.$f['object_type'];
 		return (is_dir($group_dir) and file_exists($group_dir.DS.$f['template'])) ? $group_dir : $regular_dir;
 	}	

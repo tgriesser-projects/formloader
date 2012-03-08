@@ -8,7 +8,7 @@ Formloader = _.defaults(Formloader or {},
     if path.substr(-1) is '/' 
       path = path.substr(0, (path.length - 1))
     path = path.split('/')    
-  UrlBase : "#{window.location.protocol}//#{window.location.host}/formloader"
+  UrlBase : "<?=\Uri::base()?>/formloader"
   Collections : {}
   Models : {}
   View   : {}

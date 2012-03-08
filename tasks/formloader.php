@@ -151,5 +151,4 @@ class Formloader
 		\Cli::write("\t".'Script failed, please fix the above errors or initialize manually.', 'red');
 		exit;
 	}
-	
 }
