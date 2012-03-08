@@ -5,15 +5,11 @@
  */
 return array(
 		'validation' => array(
-				array(
-						'group',
-						'Group:',
-						array('fuel.required','fuel.valid_string[alpha]'),
-				),
+				array('group','Group','required|valid_string[alpha]'),
 				array(
 						'name',
-						'Action Name:',
-						array('fuel.required','fuel.valid_string[alpha,dashes]'),
+						'Action Name',
+						'required|valid_string[alpha,dashes]',
 				),
 		),
 		'route_success' => 'HMVC::formloader/api/save/actions',

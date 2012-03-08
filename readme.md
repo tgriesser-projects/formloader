@@ -1,3 +1,31 @@
+# Formloader Package &amp; Module
+
+Formloader is a Package &amp; Module combination which intends to abstract all form validation &amp; generation to a single location, providing a simple UI for managing forms.
+
+### Note:
+
+The version number matches with the FuelPHP install it requires, however it is an early alpha release and has many features which are planned or in progress. The main public methods should generally remain the same for the 1.x branch.
+
+---
+
+## Introduction
+
+When writing CRUD apps, much of the logic and views are built around handling/rendering user input. Most of this is very repetitive and scattered throughout an application. This package/module combination aims to simplify the form creation process, storing the structure for forms in a consistent fashion in the filesystem (or MongoDB database - under construction) and providing a simple user interface for managing the form logic, attributes, and views.
+
+## Installation
+
+Clone or download this repository into your "packages" directory
+
+Once you have downloaded the Formloader package, all you need to do is enable it in your config.
+
+	```
+	'packages' => array(
+		'formloader',
+	),
+	```
+
+By default, the Formloader module will only be enabled when `Fuel::$env === "development"`. You can modify this in the configuration, but do so at your own risk... you don't want a public facing interface to be able to edit forms in production mode without any security measures.
+
 # Formloader Class
 	
 This class contains the methods that will be accessed in the application's controller or view... the module has whitelisted itsself by default, so the Formloader methods can be passed to/used in the view without escaping by default.
@@ -46,7 +74,7 @@ If `$listen` is true, then the form will process automatically if submitted.
 						<td><pre><code>true</code></pre></td>
 						<td>Whether the submission listener is enabled automatically</td>
 					</tr>
-			</table>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -103,7 +131,7 @@ The arguments match \Validation::run()... any $inputs will override the POST val
 						<td><pre><code>false</code></pre></td>
 						<td>If true, this will skip validation of values it can't find or are null</td>
 					</tr>
-			</table>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -162,7 +190,7 @@ Sets any values we would like to populate the form with...
 						<td><pre><code>null</code></pre></td>
 						<td>If $item is a string, this will be the value of the item/value pair</td>
 					</tr>
-			</table>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -214,7 +242,7 @@ Allows us to dynamically add hidden inputs to the form at runtime...
 						<td><pre><code>null</code></pre></td>
 						<td>If $item is a string, this will be the value of the hidden field</td>
 					</tr>
-			</table>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -305,7 +333,7 @@ The _render_ is called by default by the __toString method. This method can also
 						<td><pre><code>false</code></pre></td>
 						<td>If true, the items in $this->values will override those in \Input::post()</td>
 					</tr>
-			</table>
+				</table>
 			</td>
 		</tr>
 		<tr>
@@ -373,3 +401,9 @@ $array = \Formloader::load_array('path/to/file');
 		</tr>
 	</tbody>
 </table>
+
+---
+
+## License:
+
+Formloader is released under the MIT license

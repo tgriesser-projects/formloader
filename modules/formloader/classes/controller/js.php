@@ -6,7 +6,7 @@ namespace Formloader;
  * Javascript Controller, for bootstrapping Backbone Models
  *
  * @package   Formloader
- * @version   1.0
+ * @version   1.1
  * @author    Tim Griesser
  * @license   MIT License
  * @copyright 2012 Tim Griesser
