@@ -271,7 +271,7 @@ class Formloader_Fields extends Formloader_Bridge
 			
 			/**
 			 * If we have a specific input html template, that is set here, while
-			 * still being wrapped by the regular view template...
+			 * still being wrapped by the regular template template...
 			 * @var string
 			 */
 			'input_template' => '',
@@ -283,26 +283,26 @@ class Formloader_Fields extends Formloader_Bridge
 			 */
 			'_input_template' => function(&$f)
 			{
-				$f['input_template'] = Formloader_Fields::view($f);
+				$f['input_template'] = Formloader_Fields::template($f);
 				return '__remove__';
 			},
 			
 			/**
-			 * The field's html, wrapped in the field's view
+			 * The field's html, wrapped in the field's template
 			 * @param array  - reference to the current field object
 			 * @return string __remove__
 			 */ 
 			'field_html'      => function(&$f)
 			{
 				$field = Formloader_Fields::forge_field($f);
-				return ( ! empty($f['input_template']) ? \View::forge($f['input_template'], $f, false) : $field);
+				return ( ! empty($f['input_template']) ? Formloader_Template::forge($f['input_template'], $f, false) : $field);
 			},
 	
 			/** 
-			 * Default view for the action
+			 * Default template for the action
 			 * @return string
 			 */
-			'view'       => function($f)
+			'template'       => function($f)
 			{
 				return $f['attributes']['type'] === 'nested' ? 'nested.mustache' : 'default.mustache';
 			},
@@ -312,19 +312,19 @@ class Formloader_Fields extends Formloader_Bridge
 			 * @param  array $f - current action array
 			 * @return string
 			 */
-			'view_dir'   => function($f)
+			'template_dir'   => function($f)
 			{
-				return Formloader_Bridge::view_directory($f);
+				return Formloader_Bridge::template_directory($f);
 			},
 
 			/**
-			 * Path to the view relative to the "formloader/views" directory
+			 * Path to the view relative to the "modules/formloader/templates" directory
 			 * @param  array $f - current action field
 			 * @return string
 			 */
-			'view_path'  => function($f)
+			'template_path'  => function($f)
 			{
-				return $f['view_dir'].DS.$f['view'];
+				return $f['template_dir'].DS.$f['template'];
 			},
 			
 			/**
@@ -332,9 +332,9 @@ class Formloader_Fields extends Formloader_Bridge
 			 * @param array
 			 * @return string  rendered \View object
 			 */
-			'view_html' => function($f)
+			'template_html' => function($f)
 			{
-				return \View::forge($f['view_path'], $f, false)->render();
+				return Formloader_Template::forge($f['template_path'], $f, false)->render();
 			}
 		);
 	}
@@ -452,7 +452,7 @@ class Formloader_Fields extends Formloader_Bridge
 	 * @param array      a loopforge array from the Formloader classes
 	 * @return string    the template name we're using
 	 */
-	public static function view($f)
+	public static function template($f)
 	{
 		if (strpos($f['input_template'], DS) !== false)
 		{
@@ -463,18 +463,18 @@ class Formloader_Fields extends Formloader_Bridge
 			// We can just add input.mustache as a custom field and have it relative to the group it's in...
 			$input = ! empty($f['input_template']) ? str_replace('.mustache', '', $f['input_template']) : $f['attributes']['type'];
 			
-			$viewpath = PKGPATH.'formloader'.DS.'views'.DS;
+			$path = \Config::get('output_path').DS.'templates'.DS;
 
-			// If the view_dir isn't a closure, we have a definite value for the view_dir, use that
-			if (($f['view_dir'] instanceof \Closure) === false)
+			// If the template_dir isn't a closure, we have a definite value for the template_dir, use that
+			if (($f['template_dir'] instanceof \Closure) === false)
 			{
-				$dirs = array($f['view_dir']);
+				$dirs = array($f['template_dir']);
 			}
 			else
 			{
 				$dirs = array(
-					'group_dir'   => $viewpath.$f['group'].DS.'input',
-					'regular_dir' => $viewpath.\Config::get('formloader.view_dir').DS.'input',
+					'group_dir'   => $path.$f['group'].DS.'input',
+					'regular_dir' => $path.\Config::get('formloader.template_dir').DS.'input',
 				);		
 			}
 		

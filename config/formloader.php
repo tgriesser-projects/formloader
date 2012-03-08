@@ -33,10 +33,10 @@ return array(
 	'mustache_path' => PKGPATH . 'parser/vendor/mustache/Mustache.php',
 	
 	/**
-	 * The default directory within "views" which houses form template skeletons
+	 * The default directory within "templates" which houses form template skeletons
 	 * @var string
 	 */
-	'view_dir'  => 'bootstrap2',
+	'template_dir'  => 'bootstrap2',
 	
 	/**
 	 * Whether we're redirecting the request on error (with form values persisted)

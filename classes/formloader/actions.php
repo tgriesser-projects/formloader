@@ -169,29 +169,29 @@ class Formloader_Actions extends Formloader_Bridge
 			},
 			
 			/**
-			 * Default view for the action
+			 * Default template for the action
 			 * @var string
 			 */
-			'view'       => 'default.mustache',
+			'template'       => 'default.mustache',
 
 			/**
-			 * Resolves the view directory for the action
+			 * Resolves the template directory for the action
 			 * @param  array $f - current action array
 			 * @return string
 			 */
-			'view_dir'   => function($f)
+			'template_dir'   => function($f)
 			{
-				return Formloader_Bridge::view_directory($f);
+				return Formloader_Bridge::template_directory($f);
 			},
 			
 			/**
-			 * Path to the view relative to the "formloader/views" directory
+			 * Path to the template relative to the "modules/formloader/templates" directory
 			 * @param  array $f - current action array
 			 * @return string
-			 */			
-			'view_path'  => function($f)
+			 */
+			'template_path'  => function($f)
 			{
-				return $f['view_dir'].DS.$f['view'];
+				return $f['template_dir'].DS.$f['template'];
 			},
 			
 			/**
@@ -199,9 +199,9 @@ class Formloader_Actions extends Formloader_Bridge
 			 * @param array
 			 * @return string  rendered \View object
 			 */
-			'view_html' => function($f)
+			'template_html' => function($f)
 			{
-				return \View::forge($f['view_path'], $f, false)->render();
+				return Formloader_Template::forge($f['template_path'], $f, false)->render();
 			}
 		);
 	}

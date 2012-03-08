@@ -65,7 +65,7 @@ class Controller_Api extends \Controller_Rest
 		if ($type === 'forms')
 		{
 			$output = $this->compile($type, 'process_arrays', $this->sort_tags($post));
-			Formloader_Fs::save_item('output', $post['group'], "{$post['name']}.mustache", $output['view_html']);
+			Formloader_Fs::save_item('output', $post['group'], "{$post['name']}.mustache", $output['template_html']);
 			
 			if ( ! empty($output['obj']['validation']))
 			{
@@ -122,16 +122,16 @@ class Controller_Api extends \Controller_Rest
 		}
 		catch (\Exception $e)
 		{
-			$obj['view_html'] = $e->getMessage();
+			$obj['template_html'] = $e->getMessage();
 		}
 
 		// So it looks good when we're rendering...
 		if ($type !== 'forms')
 		{
-			$obj['view_html'] = '<form>' . $obj['view_html'] . '</form>';
+			$obj['template_html'] = '<form>' . $obj['template_html'] . '</form>';
 		}
 
-		echo preg_replace("#<script(.*?)<\/script>#is", '', new \Mustache($obj['view_html'], null, null, null));
+		echo preg_replace("#<script(.*?)<\/script>#is", '', new \Mustache($obj['template_html'], null, null, null));
 		exit;		
 	}
 
@@ -274,10 +274,10 @@ class Controller_Api extends \Controller_Rest
 	{
 		$obj = call_user_func("Formloader_".ucfirst($type)."::$act", $arg);
 		return array(
-			'view_html' => str_replace(
+			'template_html' => str_replace(
 				array('{%%','%%}', '{%','%}'), 
 				array('{{{','}}}', '{{','}}'), 
-				$obj['view_html']
+				$obj['template_html']
 			),
 			'obj' => $obj
 		);

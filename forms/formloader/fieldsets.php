@@ -6,12 +6,12 @@
 return array(
 		'field_settings' => array(
 				'legend' => 'Field Settings',
-				'view' => 'dropdown.mustache',
+				'template' => 'dropdown.mustache',
 								'fields' => array('field_label','help_inline','tip','default','input_template','field_html'),
 		),
 		'fieldset_settings' => array(
 				'legend' => 'Fieldset Settings',
-				'view' => 'dropdown.mustache',
+				'template' => 'dropdown.mustache',
 								'fields' => array('legend','use_legend'),
 		),
 		'form_routing' => array(
@@ -21,7 +21,7 @@ return array(
 		'form_settings' => array(
 				'legend' => 'Form Settings',
 				'use_legend' => 'true',
-				'view' => 'dropdown.mustache',
+				'template' => 'dropdown.mustache',
 								'fields' => array('title','route_success','route_error'),
 		),
 		'options' => array(
@@ -35,7 +35,7 @@ return array(
 		),
 		'view_info' => array(
 				'legend' => 'View Path Info',
-				'view' => 'dropdown.mustache',
-								'fields' => array('view','view_directory','view_path','view_html'),
+				'template' => 'dropdown.mustache',
+								'fields' => array('template','template_directory','template_path','template_html'),
 		),
 );

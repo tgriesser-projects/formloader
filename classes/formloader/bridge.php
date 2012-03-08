@@ -37,6 +37,15 @@ class Formloader_Bridge extends \Loopforge
 	protected static $option_calls = array();
 	
 	/**
+	 * Called by fuelPHP when the class is first initialized
+	 * ...almost like a static constructor
+	 */
+	public static function _init()
+	{
+		Finder::instance()->add_path(\Config::get('formloader.output_path'), -1);
+	}
+	
+	/**
 	 * Process items based on the previously called item...
 	 * @var array
 	 */
@@ -211,17 +220,17 @@ class Formloader_Bridge extends \Loopforge
 	}
 
 	/**
-	 * Gets the appropriate view directory based on the naming
+	 * Gets the appropriate template directory based on the naming
 	 * and availability of templates in the directories
 	 * @param  array    a loopforge array from the Formloader classes
 	 * @return string   the directory we are using
 	 */
-	public static function view_directory($f)
+	public static function template_directory($f)
 	{
-		$viewpath    = PKGPATH.'formloader'.DS.'views'.DS;
-		$group_dir   = $viewpath.$f['group'].DS.$f['object_type'];
-		$regular_dir = $viewpath.\Config::get('formloader.view_dir').DS.$f['object_type'];
-		return (is_dir($group_dir) and file_exists($group_dir.DS.$f['view'])) ? $group_dir : $regular_dir;
+		$path         = \Config::get('formloader.output').DS.'templates'.DS;
+		$group_dir   = $path.DS.$f['group'].DS.$f['object_type'];
+		$regular_dir = $path.\Config::get('formloader.template_dir').DS.$f['object_type'];
+		return (is_dir($group_dir) and file_exists($group_dir.DS.$f['template'])) ? $group_dir : $regular_dir;
 	}	
 
 }

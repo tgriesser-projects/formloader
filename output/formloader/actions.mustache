@@ -192,7 +192,7 @@ View Path Info						<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a data-formloader-showfield="view" href="#">view</a></li>
-				<li><a data-formloader-showfield="view_dir" href="#">view_directory</a></li>
+				<li><a data-formloader-showfield="view_dir" href="#">template_directory</a></li>
 				<li><a data-formloader-showfield="view_path" href="#">view_path</a></li>
 				<li><a data-formloader-showfield="view_html" href="#">view_html</a></li>
 				<li class="divider"></li>
@@ -214,16 +214,16 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.view_dir}}" data-formloader-wrapper="view_dir">
-	<label for="field_view_directory" class="control-label">View Directory:</label>
+	<label for="field_template_directory" class="control-label">View Directory:</label>
 	<div class="controls">
-		 <input type="text" id="field_view_directory" name="view_dir" value="{{view_dir}}" placeholder="/path/to/mustache/view" />
+		 <input type="text" id="field_template_directory" name="view_dir" value="{{view_dir}}" placeholder="/path/to/mustache/view" />
 	   {{#error.view_dir}}
 	   <p class="help-block">
 		   {{{error.view_dir.message}}}
 	   </p>
 	   {{/error.view_dir}}
 		 {{^error.view_dir}}
-	   <span class="help-block">Directory that the template is in (within the formloader/views)</span>
+	   <span class="help-block">Directory that the template is in (within the modules/formloader/templates)</span>
 		 {{/error.view_dir}}
 	</div>
 </div>

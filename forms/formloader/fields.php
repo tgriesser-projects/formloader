@@ -21,7 +21,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Action Attributes',
-				'view_path' => 'formloader/fieldsets/dropdown.mustache',
+				'template_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','value','button_type','style','data'),
 		),
 		'attributes_field' => array(
@@ -29,7 +29,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Field Attributes',
-				'view_path' => 'formloader/fieldsets/dropdown.mustache',
+				'template_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('type','id','class','name','value','placeholder','style','data'),
 		),
 		'attributes_fieldset' => array(
@@ -37,7 +37,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Fieldset Attributes',
-				'view_path' => 'formloader/fieldsets/dropdown.mustache',
+				'template_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','data','style'),
 		),
 		'attributes_form' => array(
@@ -45,7 +45,7 @@ return array(
 				'attributes' => array(
 						'name' => 'attributes',
 				),
-				'view_path' => 'formloader/fieldsets/dropdown.mustache',
+				'template_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','form_action','form_method','data'),
 				'options' => array(),
 		),
@@ -240,27 +240,27 @@ return array(
 		'value' => array(
 				'options' => array(),
 		),
-		'view' => array(
+		'template' => array(
 				'label' => 'Mustache View:',
 				'attributes' => array(
 						'placeholder' => 'default.mustache',
 				),
 		),
-		'view_directory' => array(
+		'template_directory' => array(
 				'attributes' => array(
-						'name' => 'view_dir',
+						'name' => 'template_dir',
 						'placeholder' => '/path/to/mustache/view',
 				),
-				'tip' => 'Directory that the template is in (within the formloader/views)',
+				'tip' => 'Directory that the template is in (within the modules/formloader/templates)',
 				'options' => array(),
 		),
-		'view_html' => array(
+		'template_html' => array(
 				'tip' => 'We can specify the raw HTML for an item here... completely overriding every other setting',
 				'attributes' => array(
 						'type' => 'textarea',
 				),
 		),
-		'view_path' => array(
+		'template_path' => array(
 				'tip' => 'Full path - combined view director and view path',
 				'attributes' => array(
 						'placeholder' => '/path/to/view/view.mustache',
