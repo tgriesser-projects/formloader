@@ -70,15 +70,21 @@ class Formloader
 		 */
 		try
 		{
-			$template_dirs = \File::read_dir(\Config::get('formloader.template_source'), 1);
-			
-			foreach ($template_dirs as $tdir => $empty)
+			foreach (array('templates', 'forms', 'config') as $migrate_item)
 			{
-				$template = \Config::get('formloader.template_source') . $tdir;
-				$destination = \Config::get('formloader.output_path') . '/templates/' . $tdir;
-				\File::copy_dir($template, $destination);
-				\Cli::write("\t".'Copied templates from ' . $template, 'green');
+				$dir = \Config::get('formloader.bundle_source').DS.$migrate_item;
+				$item_dirs = \File::read_dir($dir, 1);
+
+				foreach ($item_dirs as $item_dir => $empty)
+				{
+					$fullpath = $dir . $item_dir;
+					$destination = \Config::get('formloader.output_path') . $migrate_item . $item_dir;
+					\File::copy_dir($fullpath, $destination);
+					\Cli::write("\t".'Copied templates from ' . $fullpath, 'green');
+				}				
 			}
+			
+			
 		}
 		catch (\FileAccessException $e)
 		{
@@ -128,7 +134,7 @@ class Formloader
 	 */
 	public static function exit_script()
 	{
-		\Cli::write("\t".'Script failed, please fix the above errors', 'red');
+		\Cli::write("\t".'Script failed, please fix the above errors or initialize manually.', 'red');
 		exit;
 	}
 	

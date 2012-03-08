@@ -149,7 +149,7 @@ ROW;
 		{
 			$groups = \Config::get('formbuilder.ignored_groups');
 			$return = array();
-			if ($dirs = \File::read_dir(PKGPATH.'formloader/forms'))
+			if ($dirs = \File::read_dir(\Config::get('formloader.output_path').'/forms'))
 			{
 				foreach ($dirs as $k => $v)
 				{

@@ -21,11 +21,11 @@ return array(
 	'output_path' => APPPATH . 'modules/formloader',
 
 	/**
-	 * Location of the template scaffolding to be moved for form creation
+	 * Location of everything we migrate at installation
 	 * @var
 	 */
-	'template_source' => __DIR__ . '/../templates/',
-	
+	'bundle_source' => __DIR__ . '/../bundle',
+
 	/** 
 	 * Absolute path to Mustache, only needed in the preview
 	 * @var string
