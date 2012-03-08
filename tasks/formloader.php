@@ -75,12 +75,22 @@ class Formloader
 				$dir = \Config::get('formloader.bundle_source').DS.$migrate_item;
 				$item_dirs = \File::read_dir($dir, 1);
 
-				foreach ($item_dirs as $item_dir => $empty)
+				foreach ($item_dirs as $item_dir => $file)
 				{
-					$fullpath = $dir . $item_dir;
-					$destination = \Config::get('formloader.output_path') . $migrate_item . $item_dir;
-					\File::copy_dir($fullpath, $destination);
-					\Cli::write("\t".'Copied templates from ' . $fullpath, 'green');
+					if ( ! is_int($item_dir))
+					{
+						$fullpath = $dir.$item_dir;
+						$destination = \Config::get('formloader.output_path').$migrate_item.DS.$item_dir;
+						\File::copy_dir($fullpath, $destination);
+						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
+					}
+					else
+					{
+						$fullpath = $dir.$file;
+						$destination = \Config::get('formloader.output_path').$migrate_item.DS;
+						\File::copy($fullpath, $destination);
+						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
+					}
 				}				
 			}
 		}
