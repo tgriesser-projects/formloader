@@ -39,8 +39,8 @@ class Formloader_Fs
 	public static function _init()
 	{
 		self::$dirs = array(
-			'output' => PKGPATH.'formloader'.DS.'output',
-			'forms'  => PKGPATH.'formloader'.DS.'forms'
+			'output' => PKGPATH.'formloader/output',
+			'forms'  => PKGPATH.'formloader/forms'
 		);
 		self::$headers['attributes'] = <<<HEAD
 <?php
@@ -143,7 +143,7 @@ HEAD;
 	 */
 	public static function save_item($type, $group, $filename, $code)
 	{
-		$output_dir = self::$dirs[$type] . DS . $group;
+		$output_dir = self::$dirs[$type].DS.$group;
 
 		try
 		{
@@ -156,7 +156,7 @@ HEAD;
 				\File::create_dir(self::$dirs[$type], $group, 0755);
 			}
 
-			$action = ! file_exists($output_dir . DS . $filename) ? 'create' : 'update';
+			$action = ! file_exists($output_dir.DS.$filename) ? 'create' : 'update';
 
 			\File::$action(
 				$output_dir,

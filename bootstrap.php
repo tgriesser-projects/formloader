@@ -39,7 +39,7 @@ $whitelist = Config::get('security.whitelisted_classes');
 $whitelist[] = 'Formloader\\Formloader';
 Config::set('security.whitelisted_classes', $whitelist);
 
-// Decide whether to load the formbuilder
+// Decide whether to load the module
 Config::get('formloader.builder.enabled');
 
 /* End of file bootstrap.php */

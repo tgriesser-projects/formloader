@@ -120,7 +120,8 @@ return array(
 				/**
 				 * Loads the items that are enabled for editing...
 				 */
-				Config::load('formbuilder', true);
+				$builder_config = \Config::get('formloader.output_path').'/config/formbuilder.php';
+				Config::load($builder_config, 'formbuilder');
 
 				/**				
 				 * Adds the module path and module

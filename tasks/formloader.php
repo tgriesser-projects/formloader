@@ -23,11 +23,14 @@ class Formloader
 		$asset_destination = DOCROOT.$public_path.DS.\Config::get('formloader.builder.asset_destination');
 
 		$writable_paths = array(
-			\Config::get('formloader.output_path').DS.'output',
-			\Config::get('formloader.output_path').DS.'forms',
-			\Config::get('formloader.output_path').DS.'config'
+			\Config::get('formloader.output_path').'/output',
+			\Config::get('formloader.output_path').'/forms',
+			\Config::get('formloader.output_path').'/config'
 		);
 		
+		/**
+		 * chmod 0777 each of the writable paths above
+		 */
 		foreach ($writable_paths as $path)
 		{
 			if ( ! is_dir($path))
@@ -46,14 +49,12 @@ class Formloader
 			}
 		}
 		
-		if ( ! is_dir(\Config::get('formloader.output_path').DS.'templates'))
+		if ( ! is_dir(\Config::get('formloader.output_path').'/templates'))
 		{
-			mkdir(\Config::get('formloader.output_path').DS.'templates', 0755);
+			mkdir(\Config::get('formloader.output_path').'/templates', 0755);
 		}
 		try
 		{
-			\File::
-			
 			\File::copy_dir(\Config::get('formloader.builder.asset_source'), $asset_destination);
 		}
 		catch (\FileAccessException $e)
