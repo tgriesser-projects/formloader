@@ -131,7 +131,6 @@ class Controller_Api extends \Controller_Rest
 			$obj['view_html'] = '<form>' . $obj['view_html'] . '</form>';
 		}
 
-		class_exists("Mustache") or include \Config::get('formloader.mustache_path');
 		echo preg_replace("#<script(.*?)<\/script>#is", '', new \Mustache($obj['view_html'], null, null, null));
 		exit;		
 	}

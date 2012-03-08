@@ -22,6 +22,8 @@ Once you have downloaded the Formloader package, all you need to do is enable it
 
 By default, the Formloader module will only be enabled when `Fuel::$env === "development"`. You can modify this in the configuration, but do so at your own risk... you don't want a public facing interface to be able to edit forms in production mode without any security measures.
 
+## Methods
+
 ---
 
 ## Disclaimer: 

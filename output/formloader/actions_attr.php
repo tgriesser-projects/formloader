@@ -16,5 +16,5 @@ return array(
 						array('fuel.required','fuel.valid_string[alpha,dashes]'),
 				),
 		),
-		'route_success' => 'HMVC::formloader/api/create/actions',
+		'route_success' => 'HMVC::formloader/api/save/actions',
 );

@@ -11,7 +11,7 @@ namespace Formloader;
  * @license   MIT License
  * @copyright 2012 Tim Griesser
  * @link      http://tgriesser.com
- **/
+ */
 class Formloader_Actions extends Formloader_Bridge
 {
 	/**

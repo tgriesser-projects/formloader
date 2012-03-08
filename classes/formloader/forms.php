@@ -11,7 +11,7 @@ namespace Formloader;
  * @license   MIT License
  * @copyright 2012 Tim Griesser
  * @link      http://tgriesser.com
- **/
+ */
 class Formloader_Forms extends Formloader_Bridge
 {
 	/**
@@ -88,7 +88,7 @@ class Formloader_Forms extends Formloader_Bridge
 				'data'  => array()  // All data-attr will be filtered below
 			),
 			
-			'__data' => function(&$f)
+			'_data' => function(&$f)
 			{
 				if ( ! empty($f['attributes']['data']))
 				{
@@ -114,22 +114,36 @@ class Formloader_Forms extends Formloader_Bridge
 				return \Form::close();
 			},
 
+			/**
+			 * The route success/error are public and can be 
+			 * changed on the Formloader at render-time
+			 * @var string
+			 */
 			'route_success' => '',
 			'route_error'   => '',
 			
+			/**
+			 * The list of fields we're processing, and the field item to process on them
+			 * @var array
+			 */
 			'fields' => array(),
-			'__fields'  => function(&$f)
+			'_fields'  => function(&$f)
 			{
 				$f['fields'] = call_user_func("\\Formloader_Fields::_process_items", $f);
 				return '__remove__';				
 			},
+
+			/**
+			 * Whether there are fields
+			 * @var bool
+			 */
 			'has_fields' => function($f)
 			{
-				return (count($f['actions']) > 0);
+				return (count($f['fields']) > 0);
 			},
 			
 			'fieldsets'  => array(),
-			'__fieldsets'  => function(&$f)
+			'_fieldsets'  => function(&$f)
 			{
 				$f['fieldsets'] = call_user_func("\\Formloader_Fieldsets::_process_items", $f);
 				return '__remove__';				
@@ -145,7 +159,11 @@ class Formloader_Forms extends Formloader_Bridge
 				$f['actions'] = call_user_func("\\Formloader_Actions::_process_items", $f);
 				return '__remove__';				
 			},
-			
+
+			/**
+			 * Whether there are actions
+			 * @var bool
+			 */			
 			'has_actions' => function($f)
 			{
 				return (count($f['actions']) > 0);
@@ -195,7 +213,7 @@ class Formloader_Forms extends Formloader_Bridge
 			'form_packager' => function($f)
 			{
 				return array(
-					'validation'    => \Formloader_Bridge::get('validations'),
+					'validation'    => \Formloader_Bridge::prep_validation(),
 					'selects'       => \Formloader_Bridge::get('selects'),
 					'checks'        => \Formloader_Bridge::get('checks'),
 					'option_calls'  => \Formloader_Bridge::get('option_calls'),

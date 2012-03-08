@@ -19,6 +19,9 @@ class FormloaderException extends \FuelException {}
  */
 class Formloader
 {
+	/**
+	 * Set these directly when creating the Formloader object
+	 */
 	public $form_action;
 	public $route_success;
 	public $route_error;
@@ -63,9 +66,9 @@ class Formloader
 	 * @param string  form name or false (if this is a database form)
 	 * @return \Formloader instance
 	 */
-	public static function forge($group_or_id, $name = false, $listen = true)
+	public static function forge($group, $name = false, $listen = true)
 	{
-		$self = new static($group_or_id, $name);
+		$self = new static($group, $name);
 		$listen and $self->listen();
 		return $self;
 	}
@@ -76,17 +79,17 @@ class Formloader
 	 * @param string  form name or false (if this is a database form)
 	 * @return \Formloader instance
 	 */
-	public function __construct($group_or_id, $name = false)
+	public function __construct($group, $name = false)
 	{
 		// This is the most likely way things are called...
 		if ($name !== false)
 		{
 			$this->name  = $name;
-			$this->group = $group_or_id;
+			$this->group = $group;
 			$this->_id   = $this->group . '.' . $this->name;
 
 			// Check for the form & settings...
-			$form = self::fetch_files($group_or_id, $name);
+			$form = self::fetch_files($group, $name);
 
 			if ( ! empty($form))
 			{
@@ -335,8 +338,8 @@ class Formloader
 			$this->html = "Error retrieving form $this->name from the $this->group group";
 		}
 		
-		// Create a new \View_Mustache, otherwise it breaks the regular mustache...
-		$this->rendered = (string) \View_Mustache::parser($this->_id)->render($this->html, $values);
+		// Create a new \Formloader_Mustache, otherwise it breaks the regular mustache...
+		$this->rendered = (string) \Formloader_Mustache::parser($this->_id)->render($this->html, $values);
 		
 		return $this->rendered;
 	}

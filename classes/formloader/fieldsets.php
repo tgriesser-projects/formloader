@@ -11,7 +11,7 @@ namespace Formloader;
  * @license   MIT License
  * @copyright 2012 Tim Griesser
  * @link      http://tgriesser.com
- **/
+ */
 class Formloader_Fieldsets extends Formloader_Bridge
 {
 	/**
@@ -134,13 +134,14 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			'fieldset_close' => '</fieldset>',
 
 			/**
-			 * Whether to use the 'legend' tag for this fieldset
+			 * The 'legend' tag text for this fieldset
 			 * @var bool
 			 */
-			'legend'     => false,
+			'legend'     => '',
 			
 			/**
-			 * 
+			 * Determines whether we use the legend or not
+			 * @var bool
 			 */
 			'use_legend' => function ($f)
 			{

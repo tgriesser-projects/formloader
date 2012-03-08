@@ -13,5 +13,5 @@ return array(
 				),
 		),
 		'selects' => array('attributes.type','options'),
-		'route_success' => 'HMVC::formloader/api/create/fields',
+		'route_success' => 'HMVC::formloader/api/save/fields',
 );

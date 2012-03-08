@@ -377,7 +377,7 @@ class Formloader_Fields extends Formloader_Bridge
 				{
 					foreach ($multi as $k => $item)
 					{
-						$f['options'][] = \Bsonforge::process_arrays(self::$_defaults, array(
+						$f['options'][] = \Loopforge::process_arrays(self::$_defaults, array(
 							'parent' => $f['name_with_dots'],
 							'group'  => $f['group'],
 							'name'   => $k,

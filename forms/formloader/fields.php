@@ -21,7 +21,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Action Attributes',
-				'view_path' => 'formloader/fieldset/dropdown.mustache',
+				'view_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','value','button_type','style','data'),
 		),
 		'attributes_field' => array(
@@ -29,7 +29,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Field Attributes',
-				'view_path' => 'formloader/fieldset/dropdown.mustache',
+				'view_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('type','id','class','name','value','placeholder','style','data'),
 		),
 		'attributes_fieldset' => array(
@@ -37,7 +37,7 @@ return array(
 						'name' => 'attributes',
 				),
 				'label' => 'Fieldset Attributes',
-				'view_path' => 'formloader/fieldset/dropdown.mustache',
+				'view_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','data','style'),
 		),
 		'attributes_form' => array(
@@ -45,7 +45,7 @@ return array(
 				'attributes' => array(
 						'name' => 'attributes',
 				),
-				'view_path' => 'formloader/fieldset/dropdown.mustache',
+				'view_path' => 'formloader/fieldsets/dropdown.mustache',
 				'fields' => array('id','class','name','form_action','form_method','data'),
 				'options' => array(),
 		),

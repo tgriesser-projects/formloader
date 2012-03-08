@@ -13,5 +13,5 @@ return array(
 				),
 		),
 		'selects' => array('use_legend'),
-		'route_success' => 'HMVC::formloader/api/create/fieldsets',
+		'route_success' => 'HMVC::formloader/api/save/fieldsets',
 );

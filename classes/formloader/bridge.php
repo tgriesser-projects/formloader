@@ -186,6 +186,29 @@ class Formloader_Bridge extends \Loopforge
 			return $id . '_' . $current;
 		}
 	}
+	
+	/**
+	 * Preps the validation...
+	 * @param  Reference to the current form object
+	 * @return string  validations
+	 */
+	public static function prep_validation()
+	{
+		$val = self::get('validations');
+		if ( ! empty($val))
+		{
+			// Quick find/replace for 'fuel.' prefixed...
+			$val = json_decode(str_replace('fuel.', '', json_encode($val)));
+
+			foreach ($val as &$arr)
+			{
+				$arr[1] = substr($arr[1], -1) === ':' ? substr($arr[1], 0, -1) : $arr[1];
+				$arr[2] = implode('|', $arr[2]);
+			}
+			unset($arr);
+		}
+		return $val;
+	}
 
 	/**
 	 * Gets the appropriate view directory based on the naming
