@@ -83,8 +83,6 @@ class Formloader
 					\Cli::write("\t".'Copied templates from ' . $fullpath, 'green');
 				}				
 			}
-			
-			
 		}
 		catch (\FileAccessException $e)
 		{

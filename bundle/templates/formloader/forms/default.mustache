@@ -1,0 +1,23 @@
+{{{form_open}}}
+
+	{%#__hidden_vars%}
+		<input type="hidden" value="{%value%}" name="{%name%}" />
+	{%/__hidden_vars%}
+
+	{{#fields}}
+		{{{template_html}}}
+	{{/fields}}
+
+  {{#fieldsets}}
+   {{{template_html}}}
+  {{/fieldsets}}
+
+	{{#has_actions}}
+		<div data-formloader-actions="{{api_action}}" class="form-actions">
+			{{#actions}}
+				{{{template_html}}}
+			{{/actions}}
+		</div>
+	{{/has_actions}}
+
+{{{form_close}}}
