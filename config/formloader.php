@@ -113,7 +113,7 @@ return array(
 				{
 					echo \View::forge('error', array(
 						'message'      => $e->getMessage()
-					));
+					), false);
 					die;
 				}
 				

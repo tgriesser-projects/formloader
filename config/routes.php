@@ -20,6 +20,6 @@ return array(
 	'formloader/settings'                                         => 'formloader/base/formloader/settings',
 	'formloader'                                                  => function()
 	{
-		\Response::redirect('formloader/form');
+		\Response::redirect('formloader/forms');
 	}
 );
