@@ -3,9 +3,12 @@ Create all necessary defaults and model groups for the collections
 ###
 Formloader = _.defaults(Formloader or {}, 
   Uri : do ->
-    path = "<?= \Uri::string() ?>"
-    path.split('/')
-  UrlBase : "<?=\Uri::base()?>formloader"
+    fullurl = "#{window.location.origin}#{window.location.pathname}"
+    fullurl.replace("<?=Uri::base()?>", '')
+    if path.substr(-1) is '/'
+      path = path.substr(0, (path.length - 1))
+    path = path.split('/')
+  UrlBase : "<?=Uri::base()?>formloader"
   Collections : {}
   Models : {}
   View   : {}
