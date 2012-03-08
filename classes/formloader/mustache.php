@@ -22,7 +22,7 @@ class Formloader_Mustache extends \View
 	 */
 	public static function _init()
 	{
-		if ( ! is_class('Mustache'))
+		if ( ! class_exists('Mustache'))
 		{
 			if ( ! include \Config::get('formloader.mustache_path'))
 			{
