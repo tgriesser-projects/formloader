@@ -75,7 +75,7 @@ class Formloader
 			foreach ($template_dirs as $tdir => $empty)
 			{
 				$template = \Config::get('formloader.template_source') . $tdir;
-				$destination = \Config::get('formloader.output_path') . '/templates' . $tdir;
+				$destination = \Config::get('formloader.output_path') . '/templates/';
 				\File::copy_dir($template, $destination);
 				\Cli::write("\t".'Copied templates from ' . $template, 'green');
 			}

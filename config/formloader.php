@@ -98,7 +98,7 @@ return array(
 					catch (\PackageNotFoundException $e)
 					{
 						throw new FormloaderException("The Loopforge module is a dependency of this package/module. <br><br>
-						Please grab it from: <pre><code>git@github.com:tgriesser/loopforge.git</pre></code> and put it in the packages directory");
+						Please grab it from: <pre><code>git://github.com/tgriesser/loopforge.git</pre></code> and put it in the packages directory");
 					}				
 					try
 					{
