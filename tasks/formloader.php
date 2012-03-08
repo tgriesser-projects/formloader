@@ -103,7 +103,7 @@ class Formloader
 			}
 			if (isset($destination))
 			{
-				\Cli::write("\t".'Destination: '.$destination..'red');
+				\Cli::write("\t".'Destination: '.$destination.'red');
 			}
 			self::exit_script();
 		}
