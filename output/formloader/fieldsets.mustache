@@ -198,7 +198,7 @@ Fieldset Settings						<b class="caret"></b>
 	</div>
 </div>
 </fieldset>
-   <fieldset id="view_info" name="view_info" data-collapsible-fieldset="">
+   <fieldset id="template_info" name="template_info" data-collapsible-fieldset="">
 
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
@@ -208,7 +208,7 @@ Fieldset Settings						<b class="caret"></b>
 View Path Info						<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a data-formloader-showfield="view" href="#">view</a></li>
+				<li><a data-formloader-showfield="template" href="#">template</a></li>
 				<li><a data-formloader-showfield="template_dir" href="#">template_directory</a></li>
 				<li><a data-formloader-showfield="template_path" href="#">template_path</a></li>
 				<li><a data-formloader-showfield="template_html" href="#">template_html</a></li>
@@ -218,22 +218,22 @@ View Path Info						<b class="caret"></b>
 		</li>
 	</ul>
 
-  <div data-formloader-fieldset="formloader.view_info" class="formloader-fieldset-hide">
-    <div class="control-group{{wrapper_class.view}}" data-formloader-wrapper="view">
-	<label for="view" class="control-label">Mustache View:</label>
+  <div data-formloader-fieldset="formloader.template_info" class="formloader-fieldset-hide">
+    <div class="control-group{{wrapper_class.template}}" data-formloader-wrapper="template">
+	<label for="template" class="control-label">Mustache View:</label>
 	<div class="controls">
-		 <input id="view" name="view" value="{{view}}" type="text" placeholder="default.mustache" />
-	   {{#error.view}}
+		 <input id="template" name="template" value="{{template}}" type="text" placeholder="default.mustache" />
+	   {{#error.template}}
 	   <p class="help-block">
-		   {{{error.view.message}}}
+		   {{{error.template.message}}}
 	   </p>
-	   {{/error.view}}
+	   {{/error.template}}
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_dir}}" data-formloader-wrapper="template_dir">
 	<label for="template_directory" class="control-label">View Directory:</label>
 	<div class="controls">
-		 <input id="template_directory" name="template_dir" value="{{template_dir}}" type="text" placeholder="/path/to/mustache/view" />
+		 <input id="template_directory" name="template_dir" value="{{template_dir}}" type="text" placeholder="/path/to/mustache/template" />
 	   {{#error.template_dir}}
 	   <p class="help-block">
 		   {{{error.template_dir.message}}}
@@ -247,14 +247,14 @@ View Path Info						<b class="caret"></b>
     <div class="control-group{{wrapper_class.template_path}}" data-formloader-wrapper="template_path">
 	<label for="template_path" class="control-label">View Path:</label>
 	<div class="controls">
-		 <input id="template_path" name="template_path" value="{{template_path}}" type="text" placeholder="/path/to/view/view.mustache" />
+		 <input id="template_path" name="template_path" value="{{template_path}}" type="text" placeholder="/path/to/template.mustache" />
 	   {{#error.template_path}}
 	   <p class="help-block">
 		   {{{error.template_path.message}}}
 	   </p>
 	   {{/error.template_path}}
 		 {{^error.template_path}}
-	   <span class="help-block">Full path - combined view director and view path</span>
+	   <span class="help-block">Full path - combined template directory and template path</span>
 		 {{/error.template_path}}
 	</div>
 </div>

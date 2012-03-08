@@ -166,13 +166,13 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			},
 
 			/**
-			 * Default view for the action
+			 * Default template for the action
 			 * @var string
 			 */
 			'template'       => 'default.mustache',
 
 			/**
-			 * Resolves the view directory for the action
+			 * Resolves the template directory for the action
 			 * @param  array $f - current action array
 			 * @return string
 			 */
@@ -182,7 +182,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			},
 
 			/**
-			 * Path to the view relative to the "modules/formloader/templates" directory
+			 * Path to the template relative to the "modules/formloader/templates" directory
 			 * @param  array $f - current action array
 			 * @return string
 			 */			

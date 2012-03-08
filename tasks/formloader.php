@@ -49,6 +49,11 @@ class Formloader
 			}
 		}
 		
+		// -----------
+		
+		/**
+		 * Make the templates path
+		 */
 		if ( ! is_dir(\Config::get('formloader.output_path').'/templates'))
 		{
 			mkdir(\Config::get('formloader.output_path').'/templates', 0755);

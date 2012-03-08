@@ -249,7 +249,7 @@ return array(
 		'template_directory' => array(
 				'attributes' => array(
 						'name' => 'template_dir',
-						'placeholder' => '/path/to/mustache/view',
+						'placeholder' => '/path/to/mustache/template',
 				),
 				'tip' => 'Directory that the template is in (within the modules/formloader/templates)',
 				'options' => array(),
@@ -261,9 +261,9 @@ return array(
 				),
 		),
 		'template_path' => array(
-				'tip' => 'Full path - combined view director and view path',
+				'tip' => 'Full path - combined template directory and template path',
 				'attributes' => array(
-						'placeholder' => '/path/to/view/view.mustache',
+						'placeholder' => '/path/to/template.mustache',
 				),
 		),
 );

@@ -33,8 +33,8 @@ return array(
 				),
 								'fields' => array('options','option_static_call'),
 		),
-		'view_info' => array(
-				'legend' => 'View Path Info',
+		'template_info' => array(
+				'legend' => 'Template Path Info',
 				'template' => 'dropdown.mustache',
 								'fields' => array('template','template_directory','template_path','template_html'),
 		),

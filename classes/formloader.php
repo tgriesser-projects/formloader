@@ -296,7 +296,7 @@ class Formloader
 			$values = \Arr::merge($this->defaults, $values);
 		}
 		
-		// To keep the idea of complete logic separation from views
+		// To keep the idea of complete logic separation from views(templates)
 		// we need to modify the input on the selects
 		foreach (array('selects', 'checks') as $sel)
 		{
