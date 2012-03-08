@@ -473,8 +473,8 @@ class Formloader_Fields extends Formloader_Bridge
 			else
 			{
 				$dirs = array(
-					'group_dir'   => $path.$f['group'].'/input',
-					'regular_dir' => $path.\Config::get('formloader.template_dir').'/input',
+					'group_dir'   => $path.$f['group'].'/inputs',
+					'regular_dir' => $path.\Config::get('formloader.template_dir').'/inputs',
 				);		
 			}
 		

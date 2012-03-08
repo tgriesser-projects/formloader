@@ -30,26 +30,21 @@
 </head>
 <body>
 	<div id="wrapper">
-		<h1>Formloader Error</h1>
+		<h1>Formloader Installer</h1>
 
 		<p class="intro"></p>
 
 		<p>
-			The Formloader module requires the assets to be copied from <br>
-			<pre><code><?= $asset_source ?></code></pre> into <br>
-			<pre><code><?= $asset_destination ?></code></pre>
-			(the application's public assets folder).
+			To finish the installation (making the appropriate directories writable, etc)<br>
+			Please navigate to the application's base directory and run:<br>
+			<pre><code>$ oil r formloader</code></pre><br> 
 		</p>
 		<br>
-		<p>
-			Please run <br>
-			<pre><code>php oil r formloader</code></pre><br> 
-			or copy them manually
-		</p>
 
 		<p class="footer">
 			<a href="http://formloader.tgriesser.com">Formloader</a> and <a href="http://fuelphp.com">FuelPHP</a> are released under the MIT license.
 		</p>
+
 	</div>
 </body>
 </html>

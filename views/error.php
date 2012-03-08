@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<h1>Formloader Error</h1>
+		<h1>Formloader Installer</h1>
 
 		<p><?= $message ?></p>
 		<br>
