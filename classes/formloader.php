@@ -232,7 +232,10 @@ class Formloader
 				break;
 			}
 			
-			\Session::set_flash('formloader_alert', $response);
+			if (is_array($response) or ! is_null($response = json_decode($response)))
+			{
+				\Session::set_flash('formloader_alert', $response);
+			}
 		}
 		catch (\HttpNotFoundException $e)
 		{
