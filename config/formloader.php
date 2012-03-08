@@ -11,7 +11,21 @@
  * @link      http://formloader.tgriesser.com
  **/
 return array(
-		
+	
+	/**
+	 * Where everything output by the Formbuilder is dumped...
+	 * so we are able to version forms, etc. while keeping formloader
+	 * an independent package/module
+	 * @var string
+	 */
+	'output_path' => APPPATH . 'modules/formloader',
+
+	/**
+	 * Location of the template scaffolding to be moved for form creation
+	 * @var
+	 */
+	'template_source' => __DIR__ . '../templates/',
+	
 	/** 
 	 * Absolute path to Mustache, only needed in the preview
 	 * @var string

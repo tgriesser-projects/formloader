@@ -14,8 +14,6 @@ namespace Fuel\Tasks;
  */
 class Formloader
 {
-	const loopforge_path = '';
-		
 	public static function run($public_path = 'public')
 	{
 		// Load the formloader config
@@ -25,14 +23,18 @@ class Formloader
 		$asset_destination = DOCROOT.$public_path.DS.\Config::get('formloader.builder.asset_destination');
 
 		$writable_paths = array(
-			APPPATH.''
-			PKGPATH.'formloader'.DS.'output',
-			PKGPATH.'formloader'.DS.'forms',
-			PKGPATH.'formloader'.DS.'config'
+			\Config::get('formloader.output_path').DS.'output',
+			\Config::get('formloader.output_path').DS.'forms',
+			\Config::get('formloader.output_path').DS.'config'
 		);
 		
 		foreach ($writable_paths as $path)
 		{
+			if ( ! is_dir($path))
+			{
+				mkdir($path, 0777, true);
+			}
+			
 			if (@chmod($path, 0777))
 			{
 				\Cli::write("\t".'Made writable: '.$path, 'green');
@@ -44,9 +46,35 @@ class Formloader
 			}
 		}
 		
+		if ( ! is_dir(\Config::get('formloader.output_path').DS.'templates'))
+		{
+			mkdir(\Config::get('formloader.output_path').DS.'templates', 0755);
+		}
+		try
+		{
+			\File::
+			
+			\File::copy_dir(\Config::get('formloader.builder.asset_source'), $asset_destination);
+		}
+		catch (\FileAccessException $e)
+		{
+			$exception = $e->getMessage();
+		}
+
+		if ( ! empty($exception))
+		{
+			\Cli::write("\t".'Error moving templates: '.$exception, 'red');
+		}
+		else
+		{
+			\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
+		}
+		
+		
 		if (is_dir($asset_destination . 'formloader'))
 		{
 			\Cli::write("\t".'Directory: '.$asset_destination.' already exists, please delete it and run "php oil r formloader" again to update', 'yellow');
+			exit;
 		}
 		else
 		{
@@ -67,7 +95,7 @@ class Formloader
 
 				if ( ! empty($exception))
 				{
-					\Cli::write("\t".'Error: '.$exception, 'red');
+					\Cli::write("\t".'Error moving assets: '.$exception, 'red');
 				}
 				else
 				{
@@ -79,10 +107,5 @@ class Formloader
 				\Cli::write("\t".'Error: Failed to make writable: '.$asset_destination, 'red');				
 			}
 		}
-		
-		if ( ! is_dir(PKGPATH.'loopforge'))
-		{
-			\Cli::write("\t". 'Please install the loopforge package: ' . self::loopforge_path, 'red');
-		}	
 	}
 }

@@ -10,8 +10,6 @@
  * @copyright 2012 Tim Griesser
  * @link      http://formloader.tgriesser.com
  */
-Config::load('formloader', true);
-
 Autoloader::add_core_namespace('Formloader');
 Autoloader::add_classes(array(
 	// Formloader
@@ -32,14 +30,15 @@ Autoloader::add_classes(array(
 	'Formloader\\FormloaderException' => __DIR__.'/classes/formloader.php',
 ));
 
+// Load the formloader config
+Config::load('formloader', true);
+
 // Add this module to the whitelisted classes, so the form output actually shows up right!
 $whitelist = Config::get('security.whitelisted_classes');
 $whitelist[] = 'Formloader\\Formloader';
 Config::set('security.whitelisted_classes', $whitelist);
 
-// Determine whether the backend module is enabled
-if (Uri::segment(1) === 'formloader')
-{
-	Config::get('formloader.builder.enabled');	
-}
+// Decide whether to load the formbuilder
+Config::get('formloader.builder.enabled');
+
 /* End of file bootstrap.php */
