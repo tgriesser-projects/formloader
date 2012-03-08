@@ -90,7 +90,7 @@ class Formloader_Mustache extends \View
 		}
 
 		// Create a new view
-		$view = new \View(null, $data, $auto_encode);
+		$view = new \Formloader_Mustache(null, $data, $auto_encode);
 
 		// Set extension when given
 		$extension and $view->extension = $extension;

@@ -134,7 +134,7 @@ Formloader.Model = Backbone.Model.extend
   
 Formloader.Collection = Backbone.Collection.extend
   url   : () ->
-    "/formloader/js/#{@type}"
+    "#{Formloader.UrlBase}/js/#{@type}"
   model : Formloader.Model
   initialize: (m, opts) ->
     @type = opts.type

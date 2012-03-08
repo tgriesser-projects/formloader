@@ -167,7 +167,7 @@ class Formloader_Forms extends Formloader_Bridge
 			 * @var array
 			 */			
 			'actions' => array(),
-			'__actions'  => function(&$f)
+			'_actions'  => function(&$f)
 			{
 				$f['actions'] = call_user_func("\\Formloader_Actions::_process_items", $f);
 				return '__remove__';				

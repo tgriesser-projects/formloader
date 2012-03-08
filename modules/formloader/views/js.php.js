@@ -102,7 +102,7 @@ Formloader.Model = Backbone.Model.extend({
 
 Formloader.Collection = Backbone.Collection.extend({
   url: function() {
-    return "/formloader/js/" + this.type;
+    return "" + Formloader.UrlBase + "/js/" + this.type;
   },
   model: Formloader.Model,
   initialize: function(m, opts) {
