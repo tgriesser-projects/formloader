@@ -139,10 +139,10 @@ ROW;
 			\Config::save($path, array(
 				'ignored_groups' => array_keys(\Input::post('ignored_groups', array()))
 			));
-			\Session::set_flash('formloader_alert', json_encode(array(
+			\Session::set_flash('formloader_alert', array(
 				'message' => 'The forms displayed in the Formbuilder was updated!',
 				'type' => 'success'
-			)));
+			));
 			return \Response::redirect(\Uri::main());
 		}
 		else
