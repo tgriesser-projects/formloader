@@ -18,7 +18,7 @@ return array(
 	 * an independent package/module
 	 * @var string
 	 */
-	'output_path' => APPPATH . 'modules/formloader',
+	'output_path' => APPPATH . 'modules/formloader/',
 
 	/**
 	 * Location of everything we migrate at installation
@@ -120,7 +120,7 @@ return array(
 				/**
 				 * Loads the items that are enabled for editing...
 				 */
-				$builder_config = \Config::get('formloader.output_path').'/config/formbuilder.php';
+				$builder_config = \Config::get('formloader.output_path').'config/formbuilder.php';
 				Config::load($builder_config, 'formbuilder');
 
 				/**				

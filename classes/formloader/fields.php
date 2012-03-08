@@ -463,7 +463,7 @@ class Formloader_Fields extends Formloader_Bridge
 			// We can just add input.mustache as a custom field and have it relative to the group it's in...
 			$input = ! empty($f['input_template']) ? str_replace('.mustache', '', $f['input_template']) : $f['attributes']['type'];
 			
-			$path = \Config::get('output_path').'/templates/';
+			$path = \Config::get('output_path').'templates/';
 
 			// If the template_dir isn't a closure, we have a definite value for the template_dir, use that
 			if (($f['template_dir'] instanceof \Closure) === false)

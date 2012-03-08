@@ -39,8 +39,8 @@ class Formloader_Fs
 	public static function _init()
 	{
 		self::$dirs = array(
-			'output' => \Config::get('formloader.output_path').'/output',
-			'forms'  => \Config::get('formloader.output_path').'/forms'
+			'output' => \Config::get('formloader.output_path').'output',
+			'forms'  => \Config::get('formloader.output_path').'forms'
 		);
 		self::$headers['attributes'] = <<<HEAD
 <?php

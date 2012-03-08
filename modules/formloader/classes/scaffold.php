@@ -135,7 +135,7 @@ ROW;
 	{
 		if (\Input::method() === "POST" and \Input::post('api_action', 'formloader.ignored_groups'))
 		{
-			$path = \Config::get('formloader.output_path').'/config/formbuilder.php';
+			$path = \Config::get('formloader.output_path').'config/formbuilder.php';
 			\Config::save($path, array(
 				'ignored_groups' => array_keys(\Input::post('ignored_groups', array()))
 			));
@@ -149,7 +149,7 @@ ROW;
 		{
 			$groups = \Config::get('formbuilder.ignored_groups');
 			$return = array();
-			if ($dirs = \File::read_dir(\Config::get('formloader.output_path').'/forms'))
+			if ($dirs = \File::read_dir(\Config::get('formloader.output_path').'forms'))
 			{
 				foreach ($dirs as $k => $v)
 				{
