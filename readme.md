@@ -10,7 +10,7 @@ The version number matches with the FuelPHP install it requires, however it is a
 
 ## Introduction
 
-When writing CRUD apps, much of the logic and views are built around handling/rendering user input. Most of this is very repetitive and scattered throughout an application. This package/module combination aims to simplify the form creation process, storing the structure for forms in a consistent fashion in the filesystem (or MongoDB database - under construction) and providing a simple user interface for managing the form logic, attributes, and views.
+When writing CRUD apps, much of the logic and views are built around handling/rendering user input. Most of this is very repetitive and scattered throughout an application. This package/module combination aims to simplify the form creation process, storing the structure for forms in a consistent fashion in the filesystem and providing a simple user interface for managing the form logic, attributes, and views.
 
 ## Installation
 
@@ -49,32 +49,30 @@ If `$listen` is true, then the form will process automatically if submitted.
 		<tr>
 			<th>Parameters</th>
 			<td>
-				<table class="parameters">
-					<tr>
-						<th>Param</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th class="description">Description</th>
-					</tr>
-					<tr>
-						<th>$name</th>
-						<td><em>string</em></td>
-						<td><pre><code>None</code></pre></td>
-						<td>The group of the form to render</td>
-					</tr>
-					<tr>
-						<th>$group</th>
-						<td><em>string</em></td>
-						<td><pre><code>None</code></pre></td>
-						<td>The name of the form to render</td>
-					</tr>
-					<tr>
-						<th>$listen</th>
-						<td><em>bool</em></td>
-						<td><pre><code>true</code></pre></td>
-						<td>Whether the submission listener is enabled automatically</td>
-					</tr>
-				</table>
+				<tr>
+					<th>Param</th>
+					<th>Type</th>
+					<th>Default</th>
+					<th class="description">Description</th>
+				</tr>
+				<tr>
+					<th>$name</th>
+					<td><em>string</em></td>
+					<td><pre><code>None</code></pre></td>
+					<td>The group of the form to render</td>
+				</tr>
+				<tr>
+					<th>$group</th>
+					<td><em>string</em></td>
+					<td><pre><code>None</code></pre></td>
+					<td>The name of the form to render</td>
+				</tr>
+				<tr>
+					<th>$listen</th>
+					<td><em>bool</em></td>
+					<td><pre><code>true</code></pre></td>
+					<td>Whether the submission listener is enabled automatically</td>
+				</tr>
 			</td>
 		</tr>
 		<tr>
