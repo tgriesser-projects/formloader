@@ -131,7 +131,8 @@ class Controller_Api extends \Controller_Rest
 			$obj['template_html'] = '<form>' . $obj['template_html'] . '</form>';
 		}
 
-		echo preg_replace("#<script(.*?)<\/script>#is", '', new \Mustache($obj['template_html'], null, null, null));
+		$output = Formloader_Mustache::parser('preview')->render($obj['template_html']);
+		echo preg_replace("#<script(.*?)<\/script>#is", '', $output);
 		exit;		
 	}
 
