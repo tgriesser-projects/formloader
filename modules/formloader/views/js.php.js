@@ -5,9 +5,9 @@ var Formloader;
 
 Formloader = _.defaults(Formloader || {}, {
   Uri: (function() {
-    var fullurl, path;
-    fullurl = "" + window.location.origin + window.location.pathname;
-    fullurl.replace("<?=Uri::base()?>", '');
+    var path;
+    path = "" + window.location.origin + window.location.pathname;
+    path = path.replace("<?=Uri::base()?>", '');
     if (path.substr(-1) === '/') path = path.substr(0, path.length - 1);
     return path = path.split('/');
   })(),
