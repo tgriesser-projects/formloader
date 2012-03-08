@@ -80,14 +80,14 @@ class Formloader
 					if ( ! is_int($item_dir))
 					{
 						$fullpath = $dir.DS.$item_dir;
-						$destination = \Config::get('formloader.output_path').DS.$migrate_item.DS.$item_dir;
+						$destination = \Config::get('formloader.output_path').$migrate_item.DS.$item_dir;
 						\File::copy_dir($fullpath, $destination);
 						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
 					}
 					else
 					{
 						$fullpath = $dir.DS.$file;
-						$destination = \Config::get('formloader.output_path').DS.$migrate_item.DS.$file;
+						$destination = \Config::get('formloader.output_path').$migrate_item.DS.$file;
 						\File::copy($fullpath, $destination);
 						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
 					}
