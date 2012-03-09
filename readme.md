@@ -39,45 +39,47 @@ This class contains the methods that will be accessed in the application's contr
 			
 The *forge* method returns a new Formloader instance, based on the name/group combination of the form. 
 If `$listen` is true, then the form will process automatically if submitted.
-	
-<table class="method">
+
+<table>
+	<tr>
+		<th>Parameters</th>
+		<td>
+			<table>
+				<tbody>
+					<tr>
+						<th>Param</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th class="description">Description</th>
+					</tr>
+					<tr>
+						<th>$name</th>
+						<td><em>string</em></td>
+						<td><pre><code>None</code></pre></td>
+						<td>The group of the form to render</td>
+					</tr>
+					<tr>
+						<th>$group</th>
+						<td><em>string</em></td>
+						<td><pre><code>None</code></pre></td>
+						<td>The name of the form to render</td>
+					</tr>
+					<tr>
+						<th>$listen</th>
+						<td><em>bool</em></td>
+						<td><pre><code>true</code></pre></td>
+						<td>Whether the submission listener is enabled automatically</td>
+					</tr>
+				</tbody>
+			</table>
+		</td>
+	</tr>
+</table>
+<table>
 	<tbody>
 		<tr>
 			<th class="legend">Static</th>
 			<td>Yes</td>
-		</tr>
-		<tr>
-			<th>Parameters</th>
-			<td>
-				<table>
-					<tbody>
-						<tr>
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th class="description">Description</th>
-						</tr>
-						<tr>
-							<th>$name</th>
-							<td><em>string</em></td>
-							<td><pre><code>None</code></pre></td>
-							<td>The group of the form to render</td>
-						</tr>
-						<tr>
-							<th>$group</th>
-							<td><em>string</em></td>
-							<td><pre><code>None</code></pre></td>
-							<td>The name of the form to render</td>
-						</tr>
-						<tr>
-							<th>$listen</th>
-							<td><em>bool</em></td>
-							<td><pre><code>true</code></pre></td>
-							<td>Whether the submission listener is enabled automatically</td>
-						</tr>
-					</tbody>
-				</table>
-			</td>
 		</tr>
 		<tr>
 			<th>Returns</th>
