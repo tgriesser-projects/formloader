@@ -24,6 +24,8 @@ Once you have downloaded the Formloader package, all you need to do is enable it
 	),
 	```
 
+After that, navigate to `http://example.com/formloader` and the installer prompts should guide you through the rest
+
 By default, the Formloader module will only be enabled when `Fuel::$env === "development"`. You can modify this in the configuration, but do so at your own risk... you don't want a public facing interface to be able to edit forms in production mode without any security measures.
 
 # Formloader Class
@@ -362,6 +364,8 @@ returning an array if one of the two isn't true.
 		<td>The path of the file we're trying to include</td>
 	</tr>
 </table>
+
+#### Parameters
 
 <table class="method">
 	<tbody>
