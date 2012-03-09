@@ -72,8 +72,6 @@ If `$listen` is true, then the form will process automatically if submitted.
 					</tr>
 				</tbody>
 			</table>
-		</td>
-	</tr>
 </table>
 <table>
 	<tbody>
