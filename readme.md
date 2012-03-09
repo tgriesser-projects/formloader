@@ -49,30 +49,34 @@ If `$listen` is true, then the form will process automatically if submitted.
 		<tr>
 			<th>Parameters</th>
 			<td>
-				<tr>
-					<th>Param</th>
-					<th>Type</th>
-					<th>Default</th>
-					<th class="description">Description</th>
-				</tr>
-				<tr>
-					<th>$name</th>
-					<td><em>string</em></td>
-					<td><pre><code>None</code></pre></td>
-					<td>The group of the form to render</td>
-				</tr>
-				<tr>
-					<th>$group</th>
-					<td><em>string</em></td>
-					<td><pre><code>None</code></pre></td>
-					<td>The name of the form to render</td>
-				</tr>
-				<tr>
-					<th>$listen</th>
-					<td><em>bool</em></td>
-					<td><pre><code>true</code></pre></td>
-					<td>Whether the submission listener is enabled automatically</td>
-				</tr>
+				<table>
+					<tbody>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th class="description">Description</th>
+						</tr>
+						<tr>
+							<th>$name</th>
+							<td><em>string</em></td>
+							<td><pre><code>None</code></pre></td>
+							<td>The group of the form to render</td>
+						</tr>
+						<tr>
+							<th>$group</th>
+							<td><em>string</em></td>
+							<td><pre><code>None</code></pre></td>
+							<td>The name of the form to render</td>
+						</tr>
+						<tr>
+							<th>$listen</th>
+							<td><em>bool</em></td>
+							<td><pre><code>true</code></pre></td>
+							<td>Whether the submission listener is enabled automatically</td>
+						</tr>
+					</tbody>
+				</table>
 			</td>
 		</tr>
 		<tr>
