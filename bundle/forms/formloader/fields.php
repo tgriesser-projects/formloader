@@ -105,12 +105,14 @@ return array(
 		),
 		'form_action' => array(
 				'attributes' => array(
+						'name' => 'action',
 						'placeholder' => 'Full URL or relative (/page/location)',
 				),
 				'inline_tip' => 'URI of form post, defaults to current URL',
 		),
 		'form_method' => array(
 				'attributes' => array(
+						'name' => 'method',
 						'type' => 'dropdown',
 				),
 				'options' => array(

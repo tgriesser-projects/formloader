@@ -109,8 +109,8 @@
 				<li><a data-formloader-showfield="attributes.id" href="#">id</a></li>
 				<li><a data-formloader-showfield="attributes.class" href="#">class</a></li>
 				<li><a data-formloader-showfield="attributes.name" href="#">name</a></li>
-				<li><a data-formloader-showfield="attributes.form_action" href="#">form_action</a></li>
-				<li><a data-formloader-showfield="attributes.form_method" href="#">form_method</a></li>
+				<li><a data-formloader-showfield="attributes.action" href="#">action</a></li>
+				<li><a data-formloader-showfield="attributes.method" href="#">method</a></li>
 				<li><a data-formloader-showfield="attributes.data" href="#">data</a></li>
 				<li class="divider"></li>
 				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
@@ -152,28 +152,28 @@
 	   {{/error.attributes.name}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.attributes.form_action}}" data-formloader-wrapper="attributes.form_action">
-	<label for="form_action" class="control-label">Form Action:</label>
+    <div class="control-group{{wrapper_class.attributes.action}}" data-formloader-wrapper="attributes.action">
+	<label for="action" class="control-label">Form Action:</label>
 	<div class="controls">
-		 <input id="form_action" name="attributes[form_action]" value="{{attributes.form_action}}" type="text" placeholder="Full URL or relative (/page/location)" />
-	   {{#error.attributes.form_action}}
+		 <input id="action" name="attributes[action]" value="{{attributes.action}}" type="text" placeholder="Full URL or relative (/page/location)" />
+	   {{#error.attributes.action}}
 	   <p class="help-block">
-		   {{{error.attributes.form_action.message}}}
+		   {{{error.attributes.action.message}}}
 	   </p>
-	   {{/error.attributes.form_action}}
+	   {{/error.attributes.action}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.attributes.form_method}}" data-formloader-wrapper="attributes.form_method">
-	<label for="form_method" class="control-label">Form Method:</label>
+    <div class="control-group{{wrapper_class.attributes.method}}" data-formloader-wrapper="attributes.method">
+	<label for="method" class="control-label">Form Method:</label>
 	<div class="controls">
-		 <select id="form_method" name="attributes[form_method]" value="{{attributes.form_method}}" type="dropdown">		<option value="">post</option>
-		<option {{#__selected.attributes.form_method.get}}selected="selected" {{/__selected.attributes.form_method.get}}value="get">get</option>
+		 <select id="method" name="attributes[method]" value="{{attributes.method}}" type="dropdown">		<option value="">post</option>
+		<option {{#__selected.attributes.method.get}}selected="selected" {{/__selected.attributes.method.get}}value="get">get</option>
 </select>
-	   {{#error.attributes.form_method}}
+	   {{#error.attributes.method}}
 	   <p class="help-block">
-		   {{{error.attributes.form_method.message}}}
+		   {{{error.attributes.method.message}}}
 	   </p>
-	   {{/error.attributes.form_method}}
+	   {{/error.attributes.method}}
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.data}}" data-formloader-wrapper="attributes.data">

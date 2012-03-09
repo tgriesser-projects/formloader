@@ -22,7 +22,7 @@ class Formloader
 	/**
 	 * Set these directly when creating the Formloader object
 	 */
-	public $form_action;
+	public $action;
 	public $route_success;
 	public $route_error;
 	
@@ -279,7 +279,7 @@ class Formloader
 
 		// Used in case that there isn't a specific post URI tied to the form at compile time
 		// TODO: (check that URI main is what we want)
-		$values['uri:://action'] = $this->form_action ? : \Arr::get($values, 'uri:://action', \Uri::main());
+		$values['uri:://action'] = $this->action ? : \Arr::get($values, 'uri:://action', \Uri::main());
 
 		if ( ! empty($this->errors))
 		{
