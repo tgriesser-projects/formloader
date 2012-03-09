@@ -20,7 +20,7 @@ class Formloader_Scaffold
 
 	/**
 	 * Renders the view if we haven't set the HTML output yet
-	 * @return String  view html
+	 * @return string  view html
 	 */
 	public function __toString()
 	{
@@ -30,7 +30,7 @@ class Formloader_Scaffold
 	
 	/**
 	 * Creates a new scaffold instance and sets the type
-	 * @param String - {forms|fields|fieldsets|actions}
+	 * @param string - {forms|fields|fieldsets|actions}
 	 */
 	public static function forge($type)
 	{

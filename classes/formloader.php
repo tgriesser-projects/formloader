@@ -111,8 +111,8 @@ class Formloader
 		
 	/**
 	 * Calls the validation on the submission
-	 * @param  array   input that overwrites POST values
-	 * @param  bool    will skip validation of values it can't find or are null
+	 * @param array   input that overwrites POST values
+	 * @param bool    will skip validation of values it can't find or are null
 	 * @return bool    true if it validates, false if it doesn't, null if there isn't a set validation
 	 */
 	public function validate($input = array(), $allow_partial = false)
@@ -159,7 +159,7 @@ class Formloader
 	
 	/**
 	 * Allows us to dynamically add hidden inputs to the form at runtime...
-	 * @param String|Array  name of the item we're hiding, or an array of items
+	 * @param string|Array  name of the item we're hiding, or an array of items
 	 * @param Value         a non-empty value for the hidden field
 	 */
 	public function hidden($name, $val = null)
@@ -368,8 +368,8 @@ class Formloader
 
 	/**
 	 * Allows us to get the pre-rendered form output by the group and name...
-	 * @param  group  - name of the group in the output_dir
-	 * @param  name   - name of the form
+	 * @param group  - name of the group in the output_dir
+	 * @param name   - name of the form
 	 * @return array  - html path & other settings
 	 */
 	protected static function fetch_files($group, $name)

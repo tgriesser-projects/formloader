@@ -74,8 +74,8 @@ class Formloader_Mustache extends \View
 	 *
 	 *     $view = View::forge($file);
 	 *
-	 * @param   string  view filename
-	 * @param   array   array of values
+	 * @param  string  view filename
+	 * @param  array   array of values
 	 * @return  View
 	 */
 	public static function forge($file = null, $data = null, $auto_encode = true)

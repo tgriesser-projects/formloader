@@ -16,8 +16,8 @@ class Controller_Api extends \Controller_Rest
 {
 	/**
 	 * Surrounds the router in a try-catch, to help with correct output notifications and ajax
-	 * @param  string
-	 * @param  array
+	 * @param string
+	 * @param array
 	 */
 	public function router($resource, array $arguments)
 	{
@@ -138,8 +138,7 @@ class Controller_Api extends \Controller_Rest
 
 	/**
 	 * AJAX only - deletes individual items from the Formloader
-	 * @param Bool whether to refresh all dependent elements on deletion
-	 * @param 
+	 * @param bool whether to refresh all dependent elements on deletion
 	 */
 	public function post_delete($id)
 	{
@@ -268,8 +267,8 @@ class Controller_Api extends \Controller_Rest
 
 	/**
 	 * Compiles the HTML for the Formloader
-	 * @param String type   {Form|Fieldset|Field|Action}
-	 * @param String method 
+	 * @param string type   {Form|Fieldset|Field|Action}
+	 * @param string method 
 	 */
 	public function compile($type, $act, $arg)
 	{

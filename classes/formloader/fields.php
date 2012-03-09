@@ -40,7 +40,7 @@ class Formloader_Fields extends Formloader_Bridge
 			
 			/**
 			 * Required name of the group (used to namespace the form items)
-			 * @var String
+			 * @var string
 			 * @throws FormloaderException
 			 */			
 			'group'  => function()
@@ -50,7 +50,7 @@ class Formloader_Fields extends Formloader_Bridge
 			
 			/**
 			 * Required name of the action
-			 * @var String
+			 * @var string
 			 * @throws FormloaderException
 			 */
 			'name'   => function()
@@ -61,7 +61,7 @@ class Formloader_Fields extends Formloader_Bridge
 			/**
 			 * The _id of the form item... prefixed with "fs-" so that we can easily add
 			 * mongoDB form items and be able to differentiate between the two
-			 * @param  array   $f - current field array
+			 * @param array   $f - current field array
 			 * @return string  the _id of the field
 			 */
 			'_id'        => function($f)
@@ -124,7 +124,7 @@ class Formloader_Fields extends Formloader_Bridge
 				
 				/**
 				 * By default, the id will be the lowercased name of the form...
-			   * @param  array   $f - current field array
+			   * @param array   $f - current field array
 			   * @return string
 				 */
 				'id'    => function($f)
@@ -135,7 +135,7 @@ class Formloader_Fields extends Formloader_Bridge
 				/**
 				 * Initial processing for the name attribute... by default this will be the name
 				 * of the form...
-				 * @param  array   $f - current field array
+				 * @param array   $f - current field array
 				 * @return string
 				 */
 				'name'  => function($f)
@@ -172,7 +172,7 @@ class Formloader_Fields extends Formloader_Bridge
 			
 			/**
 			 * Filters all data- attributes
-			 * @param  array - reference to the field object
+			 * @param array - reference to the field object
 			 * @return string  __remove__
 			 */
 			'_data' => function(&$f)
@@ -184,7 +184,7 @@ class Formloader_Fields extends Formloader_Bridge
 			 * The 'name_with_dots' is a dot-separated field name (for nested fields)
 			 * this is important because it allows us to easily set values at the correct depth
 			 * in the mustache
-			 * @param  array   $f - current field array
+			 * @param array   $f - current field array
 			 * @return string
 			 */
 			'name_with_dots'   => function($f)
@@ -247,7 +247,7 @@ class Formloader_Fields extends Formloader_Bridge
 			/**
 			 * The label for the field... by default this is the 
 			 * uppercase of the field's name
-			 * @param  array  - current field object
+			 * @param array  - current field object
 			 * @return string
 			 */
 			'label'      => function($f)
@@ -257,7 +257,7 @@ class Formloader_Fields extends Formloader_Bridge
 
 			/**
 			 * The html for the label... using the "label" above
-			 * @param  array - current field object
+			 * @param array - current field object
 			 * @return string - current form label
 			 */
 			'label_html' => function($f)
@@ -278,7 +278,7 @@ class Formloader_Fields extends Formloader_Bridge
 			
 			/**
 			 * Determines the input template for the form...
-			 * @param  array - reference to the current field object
+			 * @param array - reference to the current field object
 			 * @return string  __remove__
 			 */
 			'_input_template' => function(&$f)
@@ -309,7 +309,7 @@ class Formloader_Fields extends Formloader_Bridge
 
 			/**
 			 * Resolves the template directory for the field
-			 * @param  array $f - current action array
+			 * @param array $f - current action array
 			 * @return string
 			 */
 			'template_dir'   => function($f)
@@ -319,7 +319,7 @@ class Formloader_Fields extends Formloader_Bridge
 
 			/**
 			 * Path to the template relative to the "modules/formloader/templates" directory
-			 * @param  array $f - current action field
+			 * @param array $f - current action field
 			 * @return string
 			 */
 			'template_path'  => function($f)
@@ -341,8 +341,8 @@ class Formloader_Fields extends Formloader_Bridge
 
 	/**
 	 * Routes the field creation based on the field type
-	 * @param  Array   the entire processed field object
-	 * @return String  output mustache HTML for the dropdown
+	 * @param array   the entire processed field object
+	 * @return string  output mustache HTML for the dropdown
 	 */	
 	public static function forge_field(&$f)
 	{
@@ -397,8 +397,8 @@ class Formloader_Fields extends Formloader_Bridge
 
 	/**
 	 * Generates a select field for Formbuilder
-	 * @param  Array   the entire processed field object
-	 * @return String  output mustache HTML for the dropdown
+	 * @param array   the entire processed field object
+	 * @return string  output mustache HTML for the dropdown
 	 */	
 	private static function select($f)
 	{
@@ -435,8 +435,8 @@ class Formloader_Fields extends Formloader_Bridge
 	
 	/**
 	 * Generates a checkbox for Formbuilder
-	 * @param  Array   the entire processed field object
-	 * @return String  output mustache HTML for the checkbox
+	 * @param array   the entire processed field object
+	 * @return string  output mustache HTML for the checkbox
 	 */
 	private static function check($f)
 	{
@@ -463,7 +463,7 @@ class Formloader_Fields extends Formloader_Bridge
 			// We can just add input.mustache as a custom field and have it relative to the group it's in...
 			$input = ! empty($f['input_template']) ? str_replace('.mustache', '', $f['input_template']) : $f['attributes']['type'];
 			
-			$path = \Config::get('output_path').'templates/';
+			$path = \Config::get('formloader.output_path').'templates/';
 
 			// If the template_dir isn't a closure, we have a definite value for the template_dir, use that
 			if (($f['template_dir'] instanceof \Closure) === false)

@@ -40,7 +40,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			
 			/**
 			 * Required name of the group (used to namespace the form items)
-			 * @var String
+			 * @var string
 			 * @throws FormloaderException
 			 */			
 			'group'  => function()
@@ -50,7 +50,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			
 			/**
 			 * Required name of the action
-			 * @var String
+			 * @var string
 			 * @throws FormloaderException
 			 */
 			'name'   => function()
@@ -61,7 +61,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			/**
 			 * The _id of the form item... prefixed with "fs-" so that we can easily add
 			 * mongoDB form items and be able to differentiate between the two
-			 * @param  array   $f - current field array
+			 * @param array   $f - current field array
 			 * @return string  the _id of the field
 			 */
 			'_id'        => function($f)
@@ -117,7 +117,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 
 			/**
 			 * Filters all data- attributes
-			 * @param  array - reference to the field object
+			 * @param array - reference to the field object
 			 * @return string  __remove__
 			 */
 			'_data' => function(&$f)
@@ -173,7 +173,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 
 			/**
 			 * Resolves the template directory for the action
-			 * @param  array $f - current action array
+			 * @param array $f - current action array
 			 * @return string
 			 */
 			'template_dir'   => function($f)
@@ -183,7 +183,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 
 			/**
 			 * Path to the template relative to the "modules/formloader/templates" directory
-			 * @param  array $f - current action array
+			 * @param array $f - current action array
 			 * @return string
 			 */			
 			'template_path'  => function($f)

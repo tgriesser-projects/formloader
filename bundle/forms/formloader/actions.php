@@ -17,7 +17,6 @@ return array(
 						'value' => 'Preview',
 						'type' => 'button',
 				),
-				'submit' => 'Save',
 		),
 		'save' => array(
 				'attributes' => array(

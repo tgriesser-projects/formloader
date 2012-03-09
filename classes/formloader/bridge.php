@@ -133,7 +133,7 @@ class Formloader_Bridge extends \Loopforge
 	
 	/**
 	 * Filters all data- attributes
-	 * @param  Reference to the current form object
+	 * @param Reference to the current form object
 	 * @return string  __remove__
 	 */
 	public static function data_filter(&$f)
@@ -167,7 +167,7 @@ class Formloader_Bridge extends \Loopforge
 
 	/**
 	 * Ensures that a unique id is generated for the current item...
-	 * @param  Reference to the current object
+	 * @param Reference to the current object
 	 */
 	public static function unique_id($f)
 	{
@@ -189,7 +189,7 @@ class Formloader_Bridge extends \Loopforge
 	
 	/**
 	 * Preps the validation...
-	 * @param  Reference to the current form object
+	 * @param Reference to the current form object
 	 * @return string  validations
 	 */
 	public static function prep_validation()
@@ -213,7 +213,7 @@ class Formloader_Bridge extends \Loopforge
 	/**
 	 * Gets the appropriate template directory based on the naming
 	 * and availability of templates in the directories
-	 * @param  array    a loopforge array from the Formloader classes
+	 * @param array    a loopforge array from the Formloader classes
 	 * @return string   the directory we are using
 	 */
 	public static function template_directory($f)

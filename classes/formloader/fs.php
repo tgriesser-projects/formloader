@@ -91,8 +91,8 @@ HEAD;
 
 	/**
 	 * Fetches a group
-	 * @param  string {group name}
-	 * @return Array
+	 * @param string {group name}
+	 * @return array
 	 */
 	public static function fetch_group($group)
 	{
@@ -109,9 +109,9 @@ HEAD;
 
 	/**
 	 * Grab a specific item from the group, i.e. the forms from the Formloader group
-	 * @param  String  Group Name
-	 * @param  String  Item Type
-	 * @return Array
+	 * @param string  Group Name
+	 * @param string  Item Type
+	 * @return array
 	 */
 	public static function fetch_group_type($group, $type)
 	{
@@ -121,9 +121,9 @@ HEAD;
 
 	/**
 	 * Save a type of group...
-	 * @param String  Group Name
-	 * @param String  Group Type
-	 * @param Array   
+	 * @param string  Group Name
+	 * @param string  Group Type
+	 * @param array   
 	 */
 	public static function save_group_type($group, $type, array $item)
 	{
@@ -136,10 +136,10 @@ HEAD;
 
 	/**
 	 * Saves the attributes or output to the filesystem
-	 * @param String  {forms|output}
-	 * @param String  Group Name
-	 * @param String  Filename
-	 * @param String  Output to Save
+	 * @param string  {forms|output}
+	 * @param string  Group Name
+	 * @param string  Filename
+	 * @param string  Output to Save
 	 */
 	public static function save_item($type, $group, $filename, $code)
 	{
@@ -178,10 +178,10 @@ HEAD;
 		
 	/**
 	 * Cleans up the spacing on the generated array
-	 * @param  String  Header Type
-	 * @param  String  Name of the group we're in... so the notation is nicer (and relative)
-	 * @param  String  Raw array we're saving...
-	 * @return String  Cleaned up content
+	 * @param string  Header Type
+	 * @param string  Name of the group we're in... so the notation is nicer (and relative)
+	 * @param string  Raw array we're saving...
+	 * @return string  Cleaned up content
 	 */
 	public static function prep_array_output($header, $group, array $item)
 	{
@@ -211,9 +211,9 @@ HEAD;
 
 	/**
 	 * Gets a certain type of a Formloader item, across all groups
-	 * @param  String  Type {form, fieldset, field, action}
-	 * @param  Bool    Whether we're fetching from the filesystem... 
-	 * @return Array   Located items
+	 * @param string  Type {form, fieldset, field, action}
+	 * @param bool    Whether we're fetching from the filesystem... 
+	 * @return array   Located items
 	 */
 	public static function fetch_type($type)
 	{

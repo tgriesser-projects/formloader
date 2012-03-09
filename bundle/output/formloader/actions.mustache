@@ -131,7 +131,22 @@
     <div class="control-group{{wrapper_class.attributes.data}}" data-formloader-wrapper="attributes.data">
 	<label for="fields_data" class="control-label">Data Attributes</label>
 	<div class="controls">
-		 <input type="text" id="fields_data" name="attributes[data]" value="{{attributes.data}}" />
+		 <div data-option-sgroup="attributes[data]">
+	<div class="optionRow">
+		<div>
+			 <input type="text" class="inline span2" name="attributes[data][key][]" placeholder="Label" />
+			 <input type="text" class="inline span2" name="attributes[data][value][]" placeholder="name or value" />
+			 <a href="#" data-formloader-action="add_option_row" class="btn btn-primary">+</a>
+			 <span class="btn small disabled optionSortHandle">Sort</span>
+		</div>
+		<br>
+	</div>
+</div>
+<script type="text/javascript">
+var Formloader = Formloader || {};
+		Formloader.Forms = Formloader.Forms || {};
+		Formloader.Forms["attributes[data]"] = {{#attributes.data}}{{{attributes.data}}}{{/attributes.data}}{{^attributes.data}}[]{{/attributes.data}};
+</script>
 	   {{#error.attributes.data}}
 	   <p class="help-block">
 		   {{{error.attributes.data.message}}}
@@ -221,7 +236,7 @@ Template Path Info						<b class="caret"></b>
 
 		<div data-formloader-actions="formloader.actions" class="form-actions">
 				<button id="actions_save" type="submit" class="btn-info btn" value="Save">Save</button>
-				<button id="preview_item" type="button" class="pull-right small btn" name="submit" value="Preview">Preview</button>
+				<button id="preview_item" type="button" class="pull-right small btn" value="Preview">Preview</button>
 		</div>
 
 </form>
