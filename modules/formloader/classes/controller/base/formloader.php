@@ -46,7 +46,7 @@ class Controller_Base_Formloader extends \Controller_Template
 	public function before()
 	{
 		// Show the error for people that haven't run the "oil refine formloader" yet
-		if ( ! is_dir(static::$asset_destination) or ! is_dir('formloader.output_path'))
+		if ( ! is_dir(static::$asset_destination) or ! is_dir(\Config::get('formloader.output_path')))
 		{
 			echo \View::forge('errors/assets');
 			exit;
