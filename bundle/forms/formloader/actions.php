@@ -14,7 +14,6 @@ return array(
 				'attributes' => array(
 						'id' => 'preview_item',
 						'class' => 'pull-right small',
-						'name' => 'submit',
 						'value' => 'Preview',
 						'type' => 'button',
 				),

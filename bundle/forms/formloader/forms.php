@@ -11,7 +11,7 @@ return array(
 				'title' => 'Create',
 				'route_success' => 'HMVC::formloader/api/save/actions',
 				'fieldsets' => array('template_info'),
-				'fields' => array('group','action_name','attributes_action','actions'),
+				'fields' => array('group','action_name','attributes_action'),
 				'actions' => array('save','preview'),
 		),
 		'fields' => array(
