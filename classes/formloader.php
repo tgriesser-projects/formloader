@@ -285,8 +285,8 @@ class Formloader
 		{
 			foreach ($this->errors as $k => $v)
 			{
-				$values['error'][$k]['message'] = $v->get_message();
-				$values['wrapper_class'][$k] = ' error';
+				\Arr::set($values['error'], $k.'.message', $v->get_message());
+				\Arr::set($values['wrapper_class'], $k, ' error');
 			}
 		}
 

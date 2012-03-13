@@ -28,10 +28,13 @@ class Formloader
 		// Add the asset destination
 		$asset_destination = DOCROOT.$public_path.DS.\Config::get('formloader.builder.asset_destination');
 
+		$source = \Config::get('formloader.bundle_source') . '/';
+		$destination = \Config::get('formloader.output_path');
+
 		$writable_paths = array(
-			\Config::get('formloader.output_path').'output',
-			\Config::get('formloader.output_path').'forms',
-			\Config::get('formloader.output_path').'config'
+			$destination.'output',
+			$destination.'forms',
+			$destination.'config'
 		);
 		
 		/**
@@ -68,33 +71,83 @@ class Formloader
 		 */
 		try
 		{
-			foreach (array('templates', 'output', 'forms', 'config') as $migrate_item)
+			/**
+			 * Make sure that every file is writable as we go through the
+			 * directories...
+			 */
+			$stack = array();
+			
+			/**
+			 * Recursively moves individual items on the directory tree, chmodding each to 0777
+			 * 
+			 * @param array   
+			 * @param string  type
+			 * @param function
+			 */
+			$move_dirs = function($dir_tree, $self) use (&$stack, $source, $destination)
 			{
-				$dir = \Config::get('formloader.bundle_source').DS.$migrate_item;
-				$item_dirs = \File::read_dir($dir, 1);
-
-				foreach ($item_dirs as $item_dir => $file)
+				foreach ($dir_tree as $k => $v)
 				{
-					if ( ! is_int($item_dir))
+					// This is a file...
+					if (is_int($k))
 					{
-						$fullpath = $dir.DS.$item_dir;
-						$destination = \Config::get('formloader.output_path').$migrate_item.DS.$item_dir;
-						\File::copy_dir($fullpath, $destination);
-						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
+						// We need a matching stack minus the first element...
+						$filepath = implode($stack) . $v;
+
+						$src  = $source . $filepath;
+						$dst  = $destination . $filepath;
+						
+						try
+						{
+							\File::copy($src, $dst);
+							@chmod($dst, 0777);
+						}
+						catch (\Exception $e)
+						{
+							\Cli::write("\t" . 'Error: ' . $e->getMessage());
+						}
 					}
+					// This is a directory
 					else
 					{
-						$fullpath = $dir.DS.$file;
-						$destination = \Config::get('formloader.output_path').$migrate_item.DS.$file;
-						\File::copy($fullpath, $destination);
-						\Cli::write("\t".'Copied '.$migrate_item.' from ' . $fullpath, 'green');
+						// Go up a level...
+						array_push($stack, $k);
+						
+						// This is the destination path
+						$dest_path = $destination . implode($stack);
+						
+						// Create the directories with the appropriate permissions as we go through
+						if ( ! is_dir($dest_path))
+						{
+							mkdir($dest_path, 0777);
+						}
+						
+						$self($v, $self);
+						array_pop($stack);
 					}
-				}				
+				}
+			};
+			
+			// Go through each individual portable directory...
+			foreach (array('templates', 'output', 'forms', 'config') as $migrate_item)
+			{
+				// This will be the base of the stack
+				$migrate_item .= '/';
+				
+				\Cli::write("\t" . 'Moving: '. $migrate_item, 'green');
+
+				// Create a fresh stack for the $move_dirs use()...
+				$stack = array(
+					$migrate_item
+				);
+				
+				$move_dirs(\File::read_dir($source.$migrate_item), $move_dirs);
 			}
 		}
 		catch (\FileAccessException $e)
 		{
 			\Cli::write("\t".'Error moving '.$migrate_item.': '.$e->getMessage(), 'red');
+
 			if (isset($fullpath))
 			{
 				\Cli::write("\t".'Path: '.$fullpath, 'red');
@@ -107,7 +160,6 @@ class Formloader
 		}
 
 		\Cli::write("\t".'Copied assets from '.\Config::get('formloader.builder.asset_source').' to '.$asset_destination, 'green');
-		
 		
 		if (is_dir($asset_destination . 'formloader'))
 		{

@@ -90,15 +90,7 @@ class Formloader_Forms extends Formloader_Bridge
 			
 			'_data' => function(&$f)
 			{
-				if ( ! empty($f['attributes']['data']))
-				{
-					foreach ($f['attributes']['data'] as $k => $v)
-					{
-						$f['attributes']["data-$k"] = $v;
-					}
-					$f['attributes']['data'] = '';
-				}
-				return '__remove__';
+				return Formloader_Bridge::data_filter($f);
 			},
 			
 			'api_action' => function($f)

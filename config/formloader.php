@@ -24,7 +24,7 @@ return array(
 	 * Location of everything we migrate at installation
 	 * @var
 	 */
-	'bundle_source' => __DIR__ . '/../bundle',
+	'bundle_source' => __DIR__ . '/../bundle/',
 
 	/** 
 	 * Absolute path to Mustache, only needed in the preview

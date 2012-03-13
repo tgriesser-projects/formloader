@@ -88,6 +88,9 @@ return array(
 				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
 		),
 		'fields' => array(
+				'attributes' => array(
+						'id' => 'fields',
+				),
 				'tip' => 'Start typing the name of a field you have already created, or click the "+" to create a new one',
 				'input_template' => 'tagit.mustache',
 		),
@@ -100,6 +103,9 @@ return array(
 				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
 		),
 		'fieldsets' => array(
+				'attributes' => array(
+					'id' => 'fieldsets'
+				),
 				'tip' => 'Start typing the name of a fieldset you have already created, or click the "+" to create a new one',
 				'input_template' => 'tagit.mustache',
 		),
@@ -135,7 +141,15 @@ return array(
 				'label' => 'Inline Help:',
 				'help_inline' => 'help that goes over here...',
 		),
-		'hide_name' => array(),
+		'hide_name' => array(
+				'attributes' => array(
+					'type' => 'dropdown'
+				),
+				'options' => array(
+					'No'  => '',
+					'Yes' => 'true'
+				)
+		),
 		'id' => array(
 				'placeholder' => '#id of the form/field',
 		),
@@ -236,6 +250,9 @@ return array(
 				),
 		),
 		'validations' => array(
+				'attributes' => array(
+					'id' => 'validations'
+				),
 				'tip' => 'Validations (other than the native ones) are not checked... you must ensure the validations are correctly setup on the server side.',
 				'input_template' => 'tagit.mustache',
 		),
