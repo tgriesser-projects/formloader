@@ -114,6 +114,7 @@ class Formloader
 	 * @param array   input that overwrites POST values
 	 * @param bool    will skip validation of values it can't find or are null
 	 * @return bool    true if it validates, false if it doesn't, null if there isn't a set validation
+	 * @throws FormloaderException  if the validation has already been set once...
 	 */
 	public function validate($input = array(), $allow_partial = false)
 	{
@@ -139,6 +140,7 @@ class Formloader
 	 * Sets any values we want in the form, before the actual render call
 	 * @param array|string  either an array of values to set, or the name of the value
 	 * @param string|null   if the $item isn't an array, this is the value
+ 	 * @return $this for method chaining
 	 */
 	public function values($item, $value = null)
 	{
@@ -153,7 +155,6 @@ class Formloader
 		{
 			$this->values[$item] = $value;
 		}
-		
 		return $this;
 	}
 	
@@ -161,6 +162,7 @@ class Formloader
 	 * Allows us to dynamically add hidden inputs to the form at runtime...
 	 * @param string|Array  name of the item we're hiding, or an array of items
 	 * @param Value         a non-empty value for the hidden field
+	 * @return $this for method chaining
 	 */
 	public function hidden($name, $val = null)
 	{
@@ -176,7 +178,6 @@ class Formloader
 		{
 			$this->values['__hidden_vars'][] = array('name' => $name, 'value' => $val);
 		}
-		
 		return $this;
 	}
 
@@ -184,6 +185,7 @@ class Formloader
 	 * Checks if the submission is "POST" 
 	 * and the form's api_action matches the submission
 	 * If it does then it takes the appropriate action (form rendering or the like)
+	 * @return $this for method chaining
 	 */
 	public function listen()
 	{
@@ -198,6 +200,7 @@ class Formloader
 				$this->routing($this->route_error, 'error');
 			}
 		}
+		return $this;
 	}
 	
 	/**
@@ -258,6 +261,7 @@ class Formloader
 	 * Renders the form
 	 * @param array 
 	 * @param if this is a form submission, any of the submitted items on this form may be overwritten
+	 * @return html to display
    */
 	public function render($values = array(), $override_post = false)
 	{
@@ -349,8 +353,9 @@ class Formloader
 
 	/**
 	 * Sets an item in the Formloader with method chaining
-	 * @param name of the variable to set
-	 * @param 
+	 * @param variable to set
+	 * @param value to set
+	 * @return $this for method chaining
 	 */
 	public function set($name, $val)
 	{
