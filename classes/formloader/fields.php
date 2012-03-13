@@ -140,7 +140,7 @@ class Formloader_Fields extends Formloader_Bridge
 				 */
 				'name'  => function($f)
 				{
-					return $f['hide_name'] !== true ? $f['name'] : '';
+					return $f['hide_name'] === false ? $f['name'] : '';
 				},
 				
 				/**

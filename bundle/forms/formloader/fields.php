@@ -134,6 +134,9 @@ return array(
 				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
 		),
 		'group' => array(
+				'attributes' => array(
+					'id' => 'group'
+				),
 				'tip' => 'Used mainly to namespace the forms/child items',
 				'validations' => array('fuel.required','fuel.valid_string[alpha]'),
 		),
