@@ -12,6 +12,5 @@ return array(
 						'required|valid_string[alpha,dashes]',
 				),
 		),
-		'selects' => array('attributes.type','options'),
-		'route_success' => 'HMVC::formloader/api/save/fields',
+		'selects' => array('attributes.type','options')
 );

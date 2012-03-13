@@ -348,6 +348,17 @@ class Formloader
 	}
 
 	/**
+	 * Sets an item in the Formloader with method chaining
+	 * @param name of the variable to set
+	 * @param 
+	 */
+	public function set($name, $val)
+	{
+		$this->$name = $val;
+		return $this;
+	}
+	
+	/**
 	 * Checks if a file exists, as well as whether the file has an array
 	 * return statement... if it's neither then it returns a blank array
 	 * @param string  path of the file we're loading

@@ -131,7 +131,8 @@ class Controller_Api extends \Controller_Rest
 			$obj['template_html'] = '<form>' . $obj['template_html'] . '</form>';
 		}
 
-		$output = Formloader_Mustache::parser('preview')->render($obj['template_html']);
+		$output = Formloader_Mustache::parser('preview')
+			->render($obj['template_html']);
 		echo preg_replace("#<script(.*?)<\/script>#is", '', $output);
 		exit;		
 	}
@@ -150,7 +151,7 @@ class Controller_Api extends \Controller_Rest
 	 */
 	public function get_messages()
 	{
-		
+		# Todo... figure out alerts here
 	}
 
 	/**

@@ -7,22 +7,22 @@ return array(
 		'field_settings' => array(
 				'legend' => 'Field Settings',
 				'template' => 'dropdown.mustache',
-								'fields' => array('field_label','help_inline','tip','default','input_template','field_html'),
+				'fields' => array('field_label','help_inline','tip','default','input_template','field_html'),
 		),
 		'fieldset_settings' => array(
 				'legend' => 'Fieldset Settings',
 				'template' => 'dropdown.mustache',
-								'fields' => array('legend','use_legend'),
+				'fields' => array('legend','use_legend'),
 		),
 		'form_routing' => array(
 				'legend' => 'Submission Routing',
-								'fields' => array('route_success'),
+				'fields' => array('route_success'),
 		),
 		'form_settings' => array(
 				'legend' => 'Form Settings',
 				'use_legend' => 'true',
 				'template' => 'dropdown.mustache',
-								'fields' => array('title','route_success','route_error'),
+				'fields' => array('title','route_success','route_error'),
 		),
 		'options' => array(
 				'attributes' => array(
@@ -31,11 +31,11 @@ return array(
 						),
 						'style' => 'display:none',
 				),
-								'fields' => array('options','option_static_call'),
+				'fields' => array('options','option_static_call'),
 		),
 		'template_info' => array(
 				'legend' => 'Template Path Info',
 				'template' => 'dropdown.mustache',
-								'fields' => array('template','template_directory','template_path','template_html'),
+				'fields' => array('template','template_directory','template_path','template_html'),
 		),
 );

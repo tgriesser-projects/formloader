@@ -12,6 +12,5 @@ return array(
 						'required|valid_string[alpha,dashes]',
 				),
 		),
-		'selects' => array('use_legend'),
-		'route_success' => 'HMVC::formloader/api/save/fieldsets',
+		'selects' => array('use_legend')
 );

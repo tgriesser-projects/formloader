@@ -16,9 +16,10 @@ return array(
 	'formloader/js/(forms|fields|fieldsets|actions)/(:any)' => 'formloader/js/fetch/$2/$1',
 	'formloader/js/(forms|fields|fieldsets|actions)'        => 'formloader/js/$1',
 
-	'formloader/(forms|fields|fieldsets|actions)/((.*?)-(.*?)-(.*?))' => 'formloader/$1/edit/$2',
-	'formloader/settings'                                         => 'formloader/base/formloader/settings',
-	'formloader'                                                  => function()
+	'formloader/(forms|fields|fieldsets|actions)/((.*?)-(.*?)-(.*?))' => 'formloader/base/edit/$1/$2',
+	'formloader/(forms|fields|fieldsets|actions)/(list|create)'       => 'formloader/base/$1/$2'
+	'formloader/settings'                                             => 'formloader/base/formloader/settings',
+	'formloader'                                                      => function()
 	{
 		\Response::redirect('formloader/forms');
 	}

@@ -13,7 +13,7 @@ namespace Formloader;
  * @copyright  2012 Tim Griesser
  * @link       http://tgriesser.com
  */
-class Controller_Base_Formloader extends \Controller_Template
+class Controller_Base extends \Controller_Template
 {
 	protected static $asset_destination;
 	
@@ -72,13 +72,11 @@ class Controller_Base_Formloader extends \Controller_Template
 	 */
 	public function after($response)
 	{
-		$flash = \Session::get_flash('formloader_alert');
-		
+		$flash = \Session::get_flash('formloader_alert');	
 		if ( ! is_null($flash))
 		{
 			$this->template->set('formloader_alert', $flash, false);
 		}
-
 		return parent::after($response);
 	}
 
@@ -88,6 +86,31 @@ class Controller_Base_Formloader extends \Controller_Template
 	public function action_index()
 	{
 		$this->action_list();
+	}
+
+	/**
+	 * Lists all of the items for a specific category (forms/fieldsets/fields/actions)
+	 * @param array|null
+	 */
+	public function action_list($type)
+	{
+		$this->template->title = 'All ' . $type;
+		$this->template->content = \Formloader_Scaffold::forge($type);
+	}
+	
+	/**
+	 * Creates an action
+	 * @param array|null
+	 */
+	public function action_create($type)
+	{
+		$this->template->title = 'Create new ' . substr($type, 0, -1);
+
+		// Create the appropriate form depending on the page we're on...
+		$this->template->content = Formloader::forge('formloader', $type, false)
+			->set('route_success', 'HMVC::formloader/api/save/' . $type)
+			->hidden('hidden_vars[get][]', \Input::get('ref'))
+			->listen();
 	}
 
 	/**
@@ -105,7 +128,7 @@ class Controller_Base_Formloader extends \Controller_Template
 	 * Edits a specific item (forms/fieldsets/fields/actions)
 	 * @param array|null
 	 */	
-	public function edit($id, $type)
+	public function action_edit($type, $id)
 	{
 		// Grab the item by "id"
 		$item = Formloader_Fs::fetch_item($id, $type);
@@ -126,11 +149,11 @@ class Controller_Base_Formloader extends \Controller_Template
 				$item['attributes']['data'] = isset($item['attributes']['data']) ? json_encode($item['attributes']['data']) : array();
 			}
 			
-			// The hidden variable determines whether this is a popup
-			$form = Formloader::forge('formloader', $type)->values($item)
-				->hidden('hidden_vars[get][]', \Input::get('ref'));
-
-			$this->template->content = $form;
+			$this->template->content = Formloader::forge('formloader', $type, false)
+				->values($item)
+				->set('route_success', 'HMVC::formloader/api/save/' . $type)
+				->hidden('hidden_vars[get][]', \Input::get('ref')) // The hidden variable determines whether this is a popup
+				->listen();
 		}
 		else
 		{

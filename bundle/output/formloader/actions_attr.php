@@ -11,6 +11,5 @@ return array(
 						'Action Name',
 						'required|valid_string[alpha,dashes]',
 				),
-		),
-		'route_success' => 'HMVC::formloader/api/save/actions',
+		)
 );

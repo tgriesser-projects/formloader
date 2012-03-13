@@ -140,7 +140,7 @@ class Formloader_Fields extends Formloader_Bridge
 				 */
 				'name'  => function($f)
 				{
-					return $f['hide_name'] === false ? $f['name'] : '';
+					return $f['name'];
 				},
 				
 				/**
@@ -197,7 +197,7 @@ class Formloader_Fields extends Formloader_Bridge
 			 * @param array  - reference to the field object
 			 */
 			'_name' => function(&$f)
-			{				
+			{
 				$exp = explode('.', $f['name_with_dots']);
 				$field = array_shift($exp);
 				$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
