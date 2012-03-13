@@ -52,6 +52,7 @@ class Controller_Api extends \Controller_Rest
 		}
 
 		// Unset unnecessary values for form processing...
+		unset($post['submit']);
 		unset($post['hidden_vars']);
 		unset($post['api_action']);
 
