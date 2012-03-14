@@ -10,7 +10,7 @@ return array(
 				'attributes' => array(
 						'name' => 'name',
 				),
-				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
+				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes,numeric]'),
 		),
 		'actions' => array(
 				'tip' => 'Start typing the name of an action you have already created, or click the "+" to create a new one',
@@ -85,7 +85,7 @@ return array(
 				'attributes' => array(
 						'name' => 'name',
 				),
-				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
+				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes,numeric]'),
 		),
 		'fields' => array(
 				'attributes' => array(
@@ -100,7 +100,7 @@ return array(
 				'attributes' => array(
 						'name' => 'name',
 				),
-				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
+				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes,numeric]'),
 		),
 		'fieldsets' => array(
 				'attributes' => array(
@@ -131,14 +131,14 @@ return array(
 				'attributes' => array(
 						'name' => 'name',
 				),
-				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes]'),
+				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes,numeric]'),
 		),
 		'group' => array(
 				'attributes' => array(
 					'id' => 'group'
 				),
 				'tip' => 'Used mainly to namespace the forms/child items',
-				'validations' => array('fuel.required','fuel.valid_string[alpha]'),
+				'validations' => array('fuel.required','fuel.valid_string[alpha,numeric]'),
 		),
 		'help_inline' => array(
 				'label' => 'Inline Help:',

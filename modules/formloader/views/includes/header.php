@@ -14,17 +14,13 @@
 		'formloader.css',
 	)); ?>
 	
-	<?php if (Fuel::$env === 'production') { 
-	echo Asset::js('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
-	} else { 
-	echo Asset::js('jquery-1.7.1.js');
-	} ?>
-
+	<?= Asset::js('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'); ?>
+	
 	<?php if (Input::get('ref') === 'popup') { ?>
-		<style type="text/css" media="screen">
+	<style type="text/css" media="screen">
 		body {
 		  padding-top: 0px; /* 40px to make the container go all the way to the bottom of the topbar */
-		}			
-		</style>
+		}
+	</style>
 	<?php } ?>
 </head>

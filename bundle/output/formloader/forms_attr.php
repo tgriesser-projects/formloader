@@ -5,11 +5,11 @@
  */
 return array(
 		'validation' => array(
-				array('group','Group','required|valid_string[alpha]'),
+				array('group','Group','required|valid_string[alpha,numeric]'),
 				array(
 						'name',
 						'Form Name',
-						'required|valid_string[alpha,dashes]',
+						'required|valid_string[alpha,dashes,numeric]',
 				),
 		),
 		'selects' => array('attributes.form_method')

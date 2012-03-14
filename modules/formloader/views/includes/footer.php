@@ -2,18 +2,9 @@
 		<footer class="pull-center">
 			<p>&copy; tgriesser <?= date('Y') ?></p>
 		</footer>
-
-		<?php if (Fuel::$env === 'production') { 
-		echo Asset::js(
-			'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js'
-		);	
-		} else { 
-		echo Asset::js(
-			'jquery-ui.min.js'
-		);
-		} ?>
 		
 		<?= Asset::js(array(
+			'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js',
 			'underscore.js',
 			'backbone.js',
 			'bootstrap.js',
