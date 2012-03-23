@@ -11,7 +11,7 @@
  * @link      http://formloader.tgriesser.com
  **/
 return array(
-	
+
 	/**
 	 * Where everything output by the Formbuilder is dumped...
 	 * so we are able to version forms, etc. while keeping formloader
@@ -38,6 +38,13 @@ return array(
 	 */
 	'template_dir'  => 'bootstrap2',
 	
+	/**
+	 * Enable CSRF
+	 * whether to add csrf protection to every form generated
+	 * @var bool
+	 */
+	'csrf' => true,
+
 	/**
 	 * Whether we're redirecting the request on error (with form values persisted)
 	 * @var bool
@@ -81,7 +88,13 @@ return array(
 		'asset_subpaths' => array(
 			'assets/formloader/tag-it/'
 		),
-				
+		
+		/**
+		 * Preview prefix - class added to <form> tag for non-form items 
+		 * @var string
+		 */
+		'preview_class' => 'form-horizontal',
+		
 		/**
 		 * Determines whether to load the module based on the above settings & $env
 		 */
@@ -119,7 +132,7 @@ return array(
 				 * Adds the module path and module
 				 */
 				$module_paths = Config::get('module_paths');
-				array_push($module_paths, __DIR__ . '/../modules/');
+				array_unshift($module_paths, __DIR__ . '/../modules/');
 				Config::set('module_paths', $module_paths);
 				Fuel::add_module('formloader');
 

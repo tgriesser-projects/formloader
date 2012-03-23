@@ -11,7 +11,7 @@ namespace Formloader;
  * @author     Tim Griesser
  * @license    MIT License
  * @copyright  2012 Tim Griesser
- * @link       http://tgriesser.com
+ * @link       http://formloader.tgriesser.com
  */
 class Controller_Base extends \Controller_Template
 {

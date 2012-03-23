@@ -10,7 +10,7 @@ namespace Formloader;
  * @author    Tim Griesser
  * @license   MIT License
  * @copyright 2012 Tim Griesser
- * @link      https://tgriesser.com
+ * @link      http://formloader.tgriesser.com
  */
 class Controller_Js extends \Controller {
 	

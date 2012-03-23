@@ -129,7 +129,8 @@ class Controller_Api extends \Controller_Rest
 		// So it looks good when we're rendering...
 		if ($type !== 'forms')
 		{
-			$obj['template_html'] = '<form>' . $obj['template_html'] . '</form>';
+			$obj['template_html'] = '<form class='.\Config::get('formloader.builder.preview_class').'>' 
+										. $obj['template_html'] . '</form>';
 		}
 
 		$output = Formloader_Mustache::parser('preview')
