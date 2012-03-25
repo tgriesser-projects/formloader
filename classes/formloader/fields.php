@@ -290,12 +290,21 @@ class Formloader_Fields extends Formloader_Bridge
 			/**
 			 * The field's html, wrapped in the field's template
 			 * @param array  - reference to the current field object
-			 * @return string __remove__
-			 */ 
+			 * @return string - html for the field
+			 */
+			'field' => function(&$f)
+			{
+				return Formloader_Fields::forge_field($f);
+			},
+
+			/**
+			 * The field's wrapper...
+			 * @param array  - reference to the current field object
+			 * @return string - wrapped html for the field
+			 */
 			'field_html'      => function(&$f)
 			{
-				$field = Formloader_Fields::forge_field($f);
-				return ( ! empty($f['input_template']) ? Formloader_Mustache::forge($f['input_template'], $f, false) : $field);
+				return ( ! empty($f['input_template']) ? Formloader_Mustache::forge($f['input_template'], $f, false) : $f['field']);
 			},
 	
 			/** 
