@@ -30,7 +30,7 @@ return array(
 	 * Absolute path to Mustache, only needed in the preview
 	 * @var string
 	 */
-	'mustache_path' => PKGPATH . 'parser/vendor/mustache/Mustache.php',
+	'mustache_path' => PKGPATH . 'parser/vendor/Mustache/Mustache.php',
 	
 	/**
 	 * The default directory within "templates" which houses form template skeletons

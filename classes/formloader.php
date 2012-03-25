@@ -189,7 +189,7 @@ class Formloader
 	 */
 	public function listen()
 	{
-		if (\Input::method() === 'POST' and \Input::post('api_action') === $this->_id and \Request::main() === \Request::active())
+		if (\Input::method() === 'POST' and \Input::post('api_action') === $this->_id)
 		{
 			if ($this->validate() !== false and $this->route_success)
 			{
