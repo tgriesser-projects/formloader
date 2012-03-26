@@ -194,7 +194,7 @@ HEAD;
 			'#=> \n#'          => '=> ',             # removes unnecessary newlines after the =>
 			'#=>\s+array#'     => '=> array',        # brings array( to the same line when it is the value
 			'#fs-(.*?)-(.*?)#' => '$1.$2',           # replaces the _id format to the dot format for the items
-			"#$group\.(.*?)#"  => '$2',              # if it matches the group's name, we don't need this to be dot-separated...
+			"#$group\.((?!mustache).*?)#"  => '$2',  # if it matches the group's name and isn't a template, we don't need it to be dot-separated...
 			"#array\(\n\t+\n(\t+)#" => "array(\n$1", # more straightening up of the array(
 			"#\n\t+\n(\t+)#"        => "\n$1",       # whitespace cleanup
 			"#array\(\s+\),#"       => "array(),",   # empty arrays open/close on the same line

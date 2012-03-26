@@ -225,6 +225,11 @@ class Controller_Api extends \Controller_Rest
 	 */
 	private function sort_tags($arr)
 	{
+		if (strpos($arr['name'], '-') !== false or strpos($arr['group'], '-') !== false)
+		{
+			throw new FormloaderException('Dashes are not allowed in item names, only underscores &amp; alpha-numeric.');
+		}
+
 		foreach ($arr as $k => $v)
 		{
 			if ($k === 'tagit' and ! empty($v))
