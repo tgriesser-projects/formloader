@@ -31,7 +31,7 @@ return array(
 						),
 						'style' => 'display:none',
 				),
-				'fields' => array('options','option_static_call'),
+				'fields' => array('options','option_call'),
 		),
 		'template_info' => array(
 				'legend' => 'Template Path Info',

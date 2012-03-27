@@ -15,6 +15,12 @@ namespace Formloader;
 class Controller_Api extends \Controller_Rest
 {
 	/**
+	 * Only field types which are able to have 'options' associated with them
+	 * @var array
+	 */
+	protected $dropdown_types = array('dropdown', 'checkboxes', 'radios', 'select');
+
+	/**
 	 * Surrounds the router in a try-catch, to help with correct output notifications and ajax
 	 * @param string
 	 * @param array
@@ -190,7 +196,7 @@ class Controller_Api extends \Controller_Rest
 	 */
 	private function prep_opts(&$post)
 	{
-		if (isset($post['attributes']['type']) and $post['attributes']['type'] === 'dropdown')
+		if (isset($post['attributes']['type']) and in_array($post['attributes']['type'], $this->dropdown_types))
 		{
 			$this->prep_set($post['options']);
 		}

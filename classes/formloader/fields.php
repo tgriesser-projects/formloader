@@ -95,7 +95,7 @@ class Formloader_Fields extends Formloader_Bridge
 			 * ($option, $value, $selected = false)
 			 * @var string
 			 */
-			'option_static_call' => '',
+			'option_call' => '',
 
 			/**
 			 * Help that is shown inline with the forms
@@ -193,6 +193,21 @@ class Formloader_Fields extends Formloader_Bridge
 			},
 			
 			/**
+			 * Stores the default for a check/radio
+			 * @var string
+			 */
+			'default' => '',
+
+			/**
+			 * Makes sure to collapse a field object if it's radio
+			 * @param array  - reference to the field object
+			 */
+			'_default' => function(&$f)
+			{
+				return "__remove__";
+			},
+
+			/**
 			 * Using the "name with dots"
 			 * @param array  - reference to the field object
 			 */
@@ -209,12 +224,15 @@ class Formloader_Fields extends Formloader_Bridge
 			 */
 			'_value' => function(&$f)
 			{
-				$f['attributes']['value'] = ( ! empty($f['attributes']['value'])
-					? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
-						: '') . '{%' . $f['name_with_dots'] . '%}';
+				if ($f['attributes']['type'] !== 'radio' and $f['attributes']['type'] !== 'dropdown')
+				{
+					$f['attributes']['value'] = ( ! empty($f['attributes']['value'])
+						? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
+							: '') . '{%' . $f['name_with_dots'] . '%}';
+				}
 				return '__remove__';
 			},
-			
+
 			/**
 			 * Array of the fields that are children of this field...
 			 * @var array
@@ -243,7 +261,17 @@ class Formloader_Fields extends Formloader_Bridge
 				$f['attributes']['type'] = ! empty($f['fields']) ? 'nested' : $f['attributes']['type'];
 				return '__remove__';
 			},
-				
+			
+			/**
+			 * Returns all attributes, filtered an put in string form for manual
+			 * tag formation
+			 * @param array - current fieldset object
+			 */
+			'attribute_string' => function($f)
+			{
+				return array_to_attr(array_filter($f['attributes']));
+			},
+
 			/**
 			 * The label for the field... by default this is the 
 			 * uppercase of the field's name
@@ -370,8 +398,9 @@ class Formloader_Fields extends Formloader_Bridge
 			case "dropdown":
 				return self::select($f);
 			break;
+			case "radio":
 			case "checkbox":
-				return self::check($f);
+				return self::multi($f);
 			case "file":
 				return \Form::file(array_filter($f['attributes']));
 			break;
@@ -380,27 +409,46 @@ class Formloader_Fields extends Formloader_Bridge
 			break;
 			case "checkboxes":
 			case "radios":
-				$multi = self::multi($f);
-				# Don't actually process the form here, this will be taken care of in the template
-				if ( ! empty($multi))
-				{
-					foreach ($multi as $k => $item)
-					{
-						$f['options'][] = \Loopforge::process_arrays(self::$_defaults, array(
-							'parent' => $f['name_with_dots'],
-							'group'  => $f['group'],
-							'name'   => $k,
-							'label'  => ucfirst($k) . ' Group',
-							'attributes' => array(
-								'type' => \Inflector::singularize($f['attributes']['type'])
-							)
-						));
-					}
-				}
+				return self::multi($f, 'check_radio');
 			break;
 			case "uneditable":
 				return \Form::hidden($f['attributes']['name'], $f['value']) . PHP_EOL;
 			break;
+		}
+	}
+
+	private static function multi(&$f)
+	{
+		// Check if the option_call field is set, if not use the options array
+		$multi = ! empty($f['option_call']) ? '' : $f['options'];
+
+		// This means that there are actually options
+		if ( ! empty($multi))
+		{
+			// Unset the options
+			$f['options'] = array();
+
+			$type = \Inflector::singularize($f['attributes']['type']);
+
+			foreach ($multi as $k => $item)
+			{
+				$f['options'][] = \Loopforge::process_arrays(self::$_defaults, array(
+					'parent' => $f['name_with_dots'],
+					'group'  => $f['group'],
+					'name'   => $item,
+					'label'  => ucfirst($k),
+					'attributes' => array(
+						'class' => $type . (stripos($f['attributes']['class'], 'inline') !== false ? ' inline' : ''),
+						'type'  => $type,
+						'value'  => $item,
+					)
+				));
+			}
+		}
+		else
+		{
+			// We don't need options if there's an option call
+			$f['options'] = '';
 		}
 	}
 
@@ -409,37 +457,30 @@ class Formloader_Fields extends Formloader_Bridge
 	 * @param array   the entire processed field object
 	 * @return string  output mustache HTML for the dropdown
 	 */	
-	private static function select($f)
+	private static function select(&$f)
 	{
-		$options = array();
-		$content = '';
+		// Check if the option_call field is set, if not use the options array
+		$multi = ! empty($f['option_call']) ? '' : $f['options'];
 
-		if ( ! empty($f['options']))
+		if ( ! empty($multi))
 		{
-			foreach ($f['options'] as $k => $v)
+			$f['options'] = array();
+			
+			foreach ($multi as $k => $v)
 			{
-				// We need a key (field name) in order to be able to put this together
 				if ( ! empty($k))
 				{
-					$attr = ! empty($v) ? array(
-						'{%#__selected.'.$f['name_with_dots'].'.'.$v.'%}selected' => 'selected" {%/__selected.'.$f['name_with_dots'].'.'.$v.'%}value="'.$v.'',
-					) : array('value' => '');
-					// This is pretty messy, but combined with Formloader::render, it gives the best workaround for now for the mustache...
-					$content .= "\t\t" . html_tag('option', $attr, $k) . PHP_EOL;
+					$f['options'][] = array(
+						'content' => $k,
+						'value' => $v,
+					);
 				}
 			}
 		}
-		// We need to maintain the empty value as an empty string...
-		$val = $f['attributes']['value'];
-		return html_tag('select', array_merge(array_filter($f['attributes']), array('value' => $val)), $content);
-	}
-
-	/**
-	 * Determine how this multi-item is populated...
-	 */
-	private static function multi($f)
-	{
-		return ! empty($f['option_static_call']) ? '' : $f['options'];
+		else
+		{
+			$f['options'] = '';
+		}
 	}
 	
 	/**
@@ -486,12 +527,13 @@ class Formloader_Fields extends Formloader_Bridge
 					'regular_dir' => $path.\Config::get('formloader.template_dir').'/inputs',
 				);		
 			}
-		
+			
+			$match = '';
+
 			// See if there is a field that matches the function name in the callable directories, 
 			// otherwise use the default...
 			foreach ($dirs as $dir)
 			{
-				$match = false;
 				if (file_exists($dir.DS.$input.'.mustache'))
 				{
 					$match = $dir.DS.$input.'.mustache';
@@ -499,7 +541,7 @@ class Formloader_Fields extends Formloader_Bridge
 				}
 			}
 
-			return ($match !== false ? $match : '');
+			return $match;
 		}
 	}
 }
