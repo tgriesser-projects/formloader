@@ -102,26 +102,6 @@ return array(
 		{
 			if (Config::get('formloader.builder.use_module') and (Fuel::$env === 'development' or ! Config::get('formloader.builder.dev_only')))
 			{
-				try
-				{
-					try
-					{
-						Package::loaded('loopforge') or Package::load('loopforge');
-					}
-					catch (\PackageNotFoundException $e)
-					{
-						throw new FormloaderException("The Loopforge module is a dependency of this package/module. <br><br>
-						Please grab it from: <pre><code>git://github.com/tgriesser/loopforge.git</pre></code> and put it in the packages directory");
-					}
-				}
-				catch (FormloaderException $e)
-				{
-					echo \View::forge('error', array(
-						'message'      => $e->getMessage()
-					), false);
-					die;
-				}
-				
 				/**
 				 * Loads the items that are enabled for editing...
 				 */
