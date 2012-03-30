@@ -189,7 +189,7 @@ class Formloader
 	 */
 	public function listen()
 	{
-		if (\Input::method() === 'POST' and \Input::post('api_action') === $this->_id and \Request::main() === \Request::active())
+		if (\Input::method() === 'POST' and \Input::post('api_action') === $this->_id)
 		{
 			if ($this->validate() !== false and $this->route_success)
 			{
@@ -262,21 +262,12 @@ class Formloader
 	 * @param array 
 	 * @param if this is a form submission, any of the submitted items on this form may be overwritten
 	 * @return html to display
-   */
+   	 */
 	public function render($values = array(), $override_post = false)
 	{
 		if ($this->rendered)
 		{
 			return $this->rendered;
-		}
-		
-		// Populate the dynamic multi-select items at runtime
-		if ( ! empty($this->option_calls))
-		{
-			foreach ($this->option_calls as $field => $func)
-			{
-				$this->values[$field] = call_user_func($func) or array();
-			}
 		}
 		
 		$values = \Arr::merge($this->values, $values);
@@ -302,7 +293,16 @@ class Formloader
 		{
 			$values = \Arr::merge($this->defaults, $values);
 		}
-		
+
+		// Populate the dynamic multi-items at runtime
+		if ( ! empty($this->option_calls))
+		{
+			foreach ($this->option_calls as $field => $func)
+			{
+				$values[$field] = is_callable($func) ? call_user_func($func) : array();
+			}
+		}
+
 		// To keep the idea of complete logic separation from views(templates)
 		// we need to modify the input on the selects
 		foreach (array('selects', 'checks') as $sel)

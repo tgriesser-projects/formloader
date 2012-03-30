@@ -107,17 +107,17 @@ class Formloader_Bridge extends \Loopforge
 					{
 						static::$validations[] = array($result['name_with_dots'], $result['label'], $result['validations']);
 					}
-					if ($result['attributes']['type'] === 'dropdown')
+					if ($result['attributes']['type'] === 'dropdown' and empty($result['option_call']))
 					{
 						static::$selects[] = $result['name_with_dots'];
 					}
-					if ($result['attributes']['type'] === 'checkbox')
+					if (in_array($result['attributes']['type'], array('checkbox', 'radios')))
 					{
 						static::$checks[] = $result['name_with_dots'];
 					}
-					if ( ! empty($result['option_static_call']))
+					if ( ! empty($result['option_call']))
 					{
-						static::$option_calls[$result['name_with_dots']] = $result['option_static_call'];
+						static::$option_calls[$result['name_with_dots']] = $result['option_call'];
 					}
 					if ( ! empty($result['default']))
 					{

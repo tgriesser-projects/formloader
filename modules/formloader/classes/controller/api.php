@@ -15,6 +15,12 @@ namespace Formloader;
 class Controller_Api extends \Controller_Rest
 {
 	/**
+	 * Only field types which are able to have 'options' associated with them
+	 * @var array
+	 */
+	protected $dropdown_types = array('dropdown', 'checkboxes', 'radios', 'select');
+
+	/**
 	 * Surrounds the router in a try-catch, to help with correct output notifications and ajax
 	 * @param string
 	 * @param array
@@ -129,7 +135,8 @@ class Controller_Api extends \Controller_Rest
 		// So it looks good when we're rendering...
 		if ($type !== 'forms')
 		{
-			$obj['template_html'] = '<form class="'.\Config::get('formloader.builder.preview_class').'">' . $obj['template_html'] . '</form>';
+			$obj['template_html'] = '<form class='.\Config::get('formloader.builder.preview_class').'>' 
+										. $obj['template_html'] . '</form>';
 		}
 
 		$output = Formloader_Mustache::parser('preview')
@@ -189,7 +196,7 @@ class Controller_Api extends \Controller_Rest
 	 */
 	private function prep_opts(&$post)
 	{
-		if (isset($post['attributes']['type']) and $post['attributes']['type'] === 'dropdown')
+		if (isset($post['attributes']['type']) and in_array($post['attributes']['type'], $this->dropdown_types))
 		{
 			$this->prep_set($post['options']);
 		}
@@ -224,6 +231,11 @@ class Controller_Api extends \Controller_Rest
 	 */
 	private function sort_tags($arr)
 	{
+		if (strpos($arr['name'], '-') !== false or strpos($arr['group'], '-') !== false)
+		{
+			throw new FormloaderException('Dashes are not allowed in item names, only underscores &amp; alpha-numeric.');
+		}
+
 		foreach ($arr as $k => $v)
 		{
 			if ($k === 'tagit' and ! empty($v))

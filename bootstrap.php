@@ -32,6 +32,12 @@ Autoloader::add_classes(array(
 	'Formloader\\FormloaderException' => __DIR__.'/classes/formloader.php',
 ));
 
+if ( ! Package::loaded('Loopforge'))
+{
+	Autoloader::add_core_namespace('Loopforge');
+	Autoloader::add_class('Loopforge\\Loopforge', __DIR__.'/vendor/loopforge.php');
+}
+
 // Load the formloader config
 Config::load('formloader', true);
 

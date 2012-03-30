@@ -157,6 +157,16 @@ class Formloader_Actions extends Formloader_Bridge
 				}
 				return '__remove__';
 			},
+
+			/**
+			 * Returns all attributes, filtered an put in string form for manual
+			 * tag formation
+			 * @param array - current action array
+			 */
+			'attribute_string' => function($f)
+			{
+				return array_to_attr(array_filter($f['attributes']));
+			},
 			
 			/**
 			 * The action button... we can override this to directly set the action's HTML

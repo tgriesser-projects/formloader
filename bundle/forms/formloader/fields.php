@@ -160,7 +160,7 @@ return array(
 				'attributes' => array(
 						'type' => 'checkboxes',
 				),
-				'option_static_call' => 'Formloader_Scaffold::ignored_groups',
+				'option_call' => 'Formloader_Scaffold::ignored_groups',
 		),
 		'input_template' => array(
 				'tip' => 'direct path to just the input part of a field (not the wrapper)...',
@@ -168,8 +168,8 @@ return array(
 		),
 		'legend' => array(),
 		'name' => array(),
-		'option_static_call' => array(
-				'label' => 'Option Static Call:',
+		'option_call' => array(
+				'label' => 'Option Call:',
 				'tip' => 'Put a function here and it will call/expect an array return to populate the option...',
 		),
 		'options' => array(

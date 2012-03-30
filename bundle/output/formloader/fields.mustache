@@ -254,18 +254,18 @@ var Formloader = Formloader || {};
 		 {{/error.options}}
 	</div>
 </div>
-    <div class="control-group{{wrapper_class.option_static_call}}" data-formloader-wrapper="option_static_call">
-	<label for="option_static_call" class="control-label">Option Static Call:</label>
+    <div class="control-group{{wrapper_class.option_call}}" data-formloader-wrapper="option_call">
+	<label for="option_call" class="control-label">Option Call:</label>
 	<div class="controls">
-		 <input id="option_static_call" name="option_static_call" value="{{option_static_call}}" type="text" />
-	   {{#error.option_static_call}}
+		 <input id="option_call" name="option_call" value="{{option_call}}" type="text" />
+	   {{#error.option_call}}
 	   <p class="help-block">
-		   {{{error.option_static_call.message}}}
+		   {{{error.option_call.message}}}
 	   </p>
-	   {{/error.option_static_call}}
-		 {{^error.option_static_call}}
+	   {{/error.option_call}}
+		 {{^error.option_call}}
 	   <span class="help-block">Put a function here and it will call/expect an array return to populate the option...</span>
-		 {{/error.option_static_call}}
+		 {{/error.option_call}}
 	</div>
 </div>
 </fieldset>

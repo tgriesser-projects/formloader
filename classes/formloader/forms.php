@@ -93,6 +93,16 @@ class Formloader_Forms extends Formloader_Bridge
 				return Formloader_Bridge::data_filter($f);
 			},
 			
+			/**
+			 * Returns all attributes, filtered an put in string form for manual
+			 * tag formation
+			 * @param array - current form array
+			 */
+			'attribute_string' => function($f)
+			{
+				return array_to_attr(array_filter($f['attributes']));
+			},
+
 			'api_action' => function($f)
 			{
 				return $f['group'] . '.' . $f['name'];
