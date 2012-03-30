@@ -12,6 +12,8 @@
  */
 Autoloader::add_core_namespace('Formloader');
 Autoloader::add_classes(array(
+	'Scaffold' => APPPATH . 'classes/scaffold.php',
+	
 	// Formloader
 	'Formloader\\Formloader'           => __DIR__.'/classes/formloader.php',
 
