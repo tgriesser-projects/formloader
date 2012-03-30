@@ -135,13 +135,9 @@ ROW;
 	{
 		if (\Input::method() === "POST" and \Input::post('api_action', 'formloader.ignored_groups'))
 		{
-			$path = \Config::get('formloader.output_path').'config/formbuilder.php';
-			\Config::save($path, array(
-				'ignored_groups' => array_keys(\Input::post('ignored_groups', array()))
-			));
 			\Session::set_flash('formloader_alert', array(
-				'message' => 'The forms displayed in the Formbuilder was updated!',
-				'type' => 'success'
+				'message' => 'Form items cannot be changed in this demo...',
+				'type' => 'warning'
 			));
 			return \Response::redirect(\Uri::main());
 		}

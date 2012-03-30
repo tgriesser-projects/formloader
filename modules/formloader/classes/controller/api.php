@@ -44,6 +44,8 @@ class Controller_Api extends \Controller_Rest
 	 */
 	public function post_save($type)
 	{
+		throw new FormloaderException('Form items cannot be changed in this demo...');
+
 		$post   = $this->sort_tags(\Input::post());
 		$hidden = \Arr::get($post, 'hidden_vars', array());
 
