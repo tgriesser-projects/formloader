@@ -1,4 +1,4 @@
-<form id="form" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
+<form id="forms_forms" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
 <input name="api_action" value="formloader.forms" type="hidden" id="form_api_action" />
 
 	{{#__hidden_vars}}
@@ -8,7 +8,7 @@
 		<div class="control-group{{wrapper_class.group}}" data-formloader-wrapper="group">
 	<label for="group" class="control-label">Group:</label>
 	<div class="controls">
-		 <input id="group" name="group" value="{{group}}" type="text" />
+		 <input type="text" id="group" name="group" value="{{group}}" />
 	   {{#error.group}}
 	   <p class="help-block">
 		   {{{error.group.message}}}
@@ -20,9 +20,9 @@
 	</div>
 </div>
 		<div class="control-group{{wrapper_class.name}}" data-formloader-wrapper="name">
-	<label for="form_name" class="control-label">Form Name:</label>
+	<label for="fields_form_name" class="control-label">Form Name:</label>
 	<div class="controls">
-		 <input id="form_name" name="name" value="{{name}}" type="text" />
+		 <input type="text" id="fields_form_name" name="name" value="{{name}}" />
 	   {{#error.name}}
 	   <p class="help-block">
 		   {{{error.name.message}}}
@@ -97,7 +97,6 @@
 	</div>
 </div>
 		<fieldset data-collapsible-fieldset="">
-
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
@@ -109,8 +108,8 @@
 				<li><a data-formloader-showfield="attributes.id" href="#">id</a></li>
 				<li><a data-formloader-showfield="attributes.class" href="#">class</a></li>
 				<li><a data-formloader-showfield="attributes.name" href="#">name</a></li>
-				<li><a data-formloader-showfield="attributes.action" href="#">action</a></li>
-				<li><a data-formloader-showfield="attributes.method" href="#">method</a></li>
+				<li><a data-formloader-showfield="attributes.action" href="#">form_action</a></li>
+				<li><a data-formloader-showfield="attributes.method" href="#">form_method</a></li>
 				<li><a data-formloader-showfield="attributes.data" href="#">data</a></li>
 				<li class="divider"></li>
 				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
@@ -120,9 +119,9 @@
 
   <div data-formloader-fieldset="formloader.attributes_form" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.attributes.id}}" data-formloader-wrapper="attributes.id">
-	<label for="id" class="control-label">Id:</label>
+	<label for="fields_id" class="control-label">Id:</label>
 	<div class="controls">
-		 <input id="id" name="attributes[id]" value="{{attributes.id}}" type="text" />
+		 <input type="text" id="fields_id" name="attributes[id]" value="{{attributes.id}}" />
 	   {{#error.attributes.id}}
 	   <p class="help-block">
 		   {{{error.attributes.id.message}}}
@@ -131,9 +130,9 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.class}}" data-formloader-wrapper="attributes.class">
-	<label for="class" class="control-label">Class:</label>
+	<label for="fields_class" class="control-label">Class:</label>
 	<div class="controls">
-		 <input id="class" name="attributes[class]" value="{{attributes.class}}" type="text" />
+		 <input type="text" id="fields_class" name="attributes[class]" value="{{attributes.class}}" />
 	   {{#error.attributes.class}}
 	   <p class="help-block">
 		   {{{error.attributes.class.message}}}
@@ -142,9 +141,9 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.name}}" data-formloader-wrapper="attributes.name">
-	<label for="name" class="control-label">Name:</label>
+	<label for="fields_name" class="control-label">Name:</label>
 	<div class="controls">
-		 <input id="name" name="attributes[name]" value="{{attributes.name}}" type="text" />
+		 <input type="text" id="fields_name" name="attributes[name]" value="{{attributes.name}}" />
 	   {{#error.attributes.name}}
 	   <p class="help-block">
 		   {{{error.attributes.name.message}}}
@@ -153,9 +152,9 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.action}}" data-formloader-wrapper="attributes.action">
-	<label for="action" class="control-label">Form Action:</label>
+	<label for="fields_form_action" class="control-label">Form Action:</label>
 	<div class="controls">
-		 <input id="action" name="attributes[action]" value="{{attributes.action}}" type="text" placeholder="Full URL or relative (/page/location)" />
+		 <input type="text" id="fields_form_action" name="attributes[action]" value="{{attributes.action}}" placeholder="Full URL or relative (/page/location)" />
 	   {{#error.attributes.action}}
 	   <p class="help-block">
 		   {{{error.attributes.action.message}}}
@@ -164,11 +163,12 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.method}}" data-formloader-wrapper="attributes.method">
-	<label for="method" class="control-label">Form Method:</label>
+	<label for="fields_form_method" class="control-label">Form Method:</label>
 	<div class="controls">
-		 <select id="method" name="attributes[method]" value="{{attributes.method}}" type="dropdown">		<option value="">post</option>
-		<option {{#__selected.attributes.method.get}}selected="selected" {{/__selected.attributes.method.get}}value="get">get</option>
-</select>
+		 <select type="dropdown" id="fields_form_method" name="attributes[method]">
+	<option value="" >post</option>
+	<option value="get" {{#__selected.attributes.method.get}}selected="selected"{{/__selected.attributes.method.get}}>get</option>
+	</select>
 	   {{#error.attributes.method}}
 	   <p class="help-block">
 		   {{{error.attributes.method.message}}}
@@ -177,7 +177,7 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.data}}" data-formloader-wrapper="attributes.data">
-	<label for="data" class="control-label">Data Attributes</label>
+	<label for="fields_data" class="control-label">Data Attributes</label>
 	<div class="controls">
 		 <div data-option-sgroup="attributes[data]">
 	<div class="optionRow">
@@ -207,8 +207,7 @@ var Formloader = Formloader || {};
 </div>
 </fieldset>
 
-   <fieldset id="form_settings" name="form_settings" data-collapsible-fieldset="">
-
+   <fieldset data-collapsible-fieldset="">
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
@@ -228,9 +227,9 @@ Form Settings						<b class="caret"></b>
 
   <div data-formloader-fieldset="formloader.form_settings" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.title}}" data-formloader-wrapper="title">
-	<label for="title" class="control-label">Title</label>
+	<label for="fields_title" class="control-label">Title</label>
 	<div class="controls">
-		 <input id="title" name="title" value="{{title}}" type="text" />
+		 <input type="text" id="fields_title" name="title" value="{{title}}" />
 	   {{#error.title}}
 	   <p class="help-block">
 		   {{{error.title.message}}}
@@ -239,9 +238,9 @@ Form Settings						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.route_success}}" data-formloader-wrapper="route_success">
-	<label for="route_success" class="control-label">Route Success:</label>
+	<label for="fields_route_success" class="control-label">Route Success:</label>
 	<div class="controls">
-		 <input id="route_success" name="route_success" class="span6" value="{{route_success}}" type="text" placeholder="HMVC::path/to/controller or Static::public_method" />
+		 <input type="text" id="fields_route_success" name="route_success" class="span6" value="{{route_success}}" placeholder="HMVC::path/to/controller or Static::public_method" />
 	   {{#error.route_success}}
 	   <p class="help-block">
 		   {{{error.route_success.message}}}
@@ -253,9 +252,9 @@ Form Settings						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.route_error}}" data-formloader-wrapper="route_error">
-	<label for="route_error" class="control-label">Route Error:</label>
+	<label for="fields_route_error" class="control-label">Route Error:</label>
 	<div class="controls">
-		 <input id="route_error" name="route_error" class="span6" value="{{route_error}}" type="text" placeholder="HMVC::path/to/controller or Static::public_method" />
+		 <input type="text" id="fields_route_error" name="route_error" class="span6" value="{{route_error}}" placeholder="HMVC::path/to/controller or Static::public_method" />
 	   {{#error.route_error}}
 	   <p class="help-block">
 		   {{{error.route_error.message}}}
@@ -267,14 +266,13 @@ Form Settings						<b class="caret"></b>
 	</div>
 </div>
 </fieldset>
-   <fieldset id="template_info" name="template_info" data-collapsible-fieldset="">
-
+   <fieldset data-collapsible-fieldset="">
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
 			data-toggle="dropdown"
 			href="#">
-View Path Info						<b class="caret"></b>
+Template Path Info						<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a data-formloader-showfield="template" href="#">template</a></li>
@@ -289,9 +287,9 @@ View Path Info						<b class="caret"></b>
 
   <div data-formloader-fieldset="formloader.template_info" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.template}}" data-formloader-wrapper="template">
-	<label for="template" class="control-label">Mustache View:</label>
+	<label for="fields_template" class="control-label">Mustache View:</label>
 	<div class="controls">
-		 <input id="template" name="template" value="{{template}}" type="text" placeholder="default.mustache" />
+		 <input type="text" id="fields_template" name="template" value="{{template}}" placeholder="default.mustache" />
 	   {{#error.template}}
 	   <p class="help-block">
 		   {{{error.template.message}}}
@@ -300,9 +298,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_dir}}" data-formloader-wrapper="template_dir">
-	<label for="template_directory" class="control-label">View Directory:</label>
+	<label for="fields_template_directory" class="control-label">Template Directory:</label>
 	<div class="controls">
-		 <input id="template_directory" name="template_dir" value="{{template_dir}}" type="text" placeholder="/path/to/mustache/template" />
+		 <input type="text" id="fields_template_directory" name="template_dir" value="{{template_dir}}" placeholder="/path/to/mustache/template" />
 	   {{#error.template_dir}}
 	   <p class="help-block">
 		   {{{error.template_dir.message}}}
@@ -314,9 +312,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_path}}" data-formloader-wrapper="template_path">
-	<label for="template_path" class="control-label">View Path:</label>
+	<label for="fields_template_path" class="control-label">Template Path:</label>
 	<div class="controls">
-		 <input id="template_path" name="template_path" value="{{template_path}}" type="text" placeholder="/path/to/template.mustache" />
+		 <input type="text" id="fields_template_path" name="template_path" value="{{template_path}}" placeholder="/path/to/template.mustache" />
 	   {{#error.template_path}}
 	   <p class="help-block">
 		   {{{error.template_path.message}}}
@@ -328,9 +326,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_html}}" data-formloader-wrapper="template_html">
-	<label for="template_html" class="control-label">View Html:</label>
+	<label for="fields_template_html" class="control-label">Template Html:</label>
 	<div class="controls">
-		 <textarea id="template_html" name="template_html" type="textarea">{{template_html}}</textarea>
+		 <textarea type="textarea" id="fields_template_html" name="template_html">{{template_html}}</textarea>
 	   {{#error.template_html}}
 	   <p class="help-block">
 		   {{{error.template_html.message}}}
@@ -343,9 +341,9 @@ View Path Info						<b class="caret"></b>
 </div>
 </fieldset>
 
-		<div data-formloader-actions="formloader.form" class="form-actions">
-				<button type="submit" class="btn-primary btn" value="Compile">Compile</button>
-				<button type="button" class="pull-right small btn" name="submit" value="Preview" id="preview_item">Preview</button>
+		<div data-formloader-actions="formloader.forms" class="form-actions">
+				<button id="actions_compile" type="submit" class="btn-primary btn" value="Compile">Compile</button>
+				<button id="preview_item" type="button" class="pull-right small btn" value="Preview">Preview</button>
 		</div>
 
 </form>

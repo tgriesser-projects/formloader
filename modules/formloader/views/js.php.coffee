@@ -1,7 +1,8 @@
+
 ###
 Create all necessary defaults and model groups for the collections
 ###
-Formloader = _.defaults(Formloader or {}, 
+Formloader = _.defaults(window.Formloader or {}, 
   Uri : do ->
     path = "#{window.location.protocol}//#{window.location.host}#{window.location.pathname}"
     path = path.replace("<?=Uri::base()?>", '')
@@ -530,3 +531,5 @@ $ ->
       )
       .error(formloader_alerts)
   null
+
+window.Formloader = Formloader

@@ -1,13 +1,13 @@
 <?php
 /**
- * Formloader: Updated by Formloader Module - 2012/02/28 22:14:26
+ * Formloader: Updated by Formloader Module - 2012/04/05 15:09:55
  * --- You may edit the below, changes will not be lost, just appended---
  */
 return array(
 		'field_settings' => array(
 				'legend' => 'Field Settings',
 				'template' => 'dropdown.mustache',
-				'fields' => array('field_label','help_inline','tip','default','input_template','field_html'),
+				'fields' => array('field_label','help_inline','tip','default','input_template','field_html','hide_name'),
 		),
 		'fieldset_settings' => array(
 				'legend' => 'Fieldset Settings',

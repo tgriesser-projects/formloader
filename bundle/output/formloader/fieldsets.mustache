@@ -1,4 +1,4 @@
-<form id="fieldsets" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
+<form id="forms_fieldsets" method="POST" action="{{{uri:://action}}}" class="form-horizontal" accept-charset="utf-8">
 <input name="api_action" value="formloader.fieldsets" type="hidden" id="form_api_action" />
 
 	{{#__hidden_vars}}
@@ -8,7 +8,7 @@
 		<div class="control-group{{wrapper_class.group}}" data-formloader-wrapper="group">
 	<label for="group" class="control-label">Group:</label>
 	<div class="controls">
-		 <input id="group" name="group" value="{{group}}" type="text" />
+		 <input type="text" id="group" name="group" value="{{group}}" />
 	   {{#error.group}}
 	   <p class="help-block">
 		   {{{error.group.message}}}
@@ -20,9 +20,9 @@
 	</div>
 </div>
 		<div class="control-group{{wrapper_class.name}}" data-formloader-wrapper="name">
-	<label for="fieldset_name" class="control-label">Fieldset Name:</label>
+	<label for="fields_fieldset_name" class="control-label">Fieldset Name:</label>
 	<div class="controls">
-		 <input id="fieldset_name" name="name" value="{{name}}" type="text" />
+		 <input type="text" id="fields_fieldset_name" name="name" value="{{name}}" />
 	   {{#error.name}}
 	   <p class="help-block">
 		   {{{error.name.message}}}
@@ -55,7 +55,6 @@
 	</div>
 </div>
 		<fieldset data-collapsible-fieldset="">
-
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
@@ -77,9 +76,9 @@
 
   <div data-formloader-fieldset="formloader.attributes_fieldset" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.attributes.id}}" data-formloader-wrapper="attributes.id">
-	<label for="id" class="control-label">Id:</label>
+	<label for="fields_id" class="control-label">Id:</label>
 	<div class="controls">
-		 <input id="id" name="attributes[id]" value="{{attributes.id}}" type="text" />
+		 <input type="text" id="fields_id" name="attributes[id]" value="{{attributes.id}}" />
 	   {{#error.attributes.id}}
 	   <p class="help-block">
 		   {{{error.attributes.id.message}}}
@@ -88,9 +87,9 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.class}}" data-formloader-wrapper="attributes.class">
-	<label for="class" class="control-label">Class:</label>
+	<label for="fields_class" class="control-label">Class:</label>
 	<div class="controls">
-		 <input id="class" name="attributes[class]" value="{{attributes.class}}" type="text" />
+		 <input type="text" id="fields_class" name="attributes[class]" value="{{attributes.class}}" />
 	   {{#error.attributes.class}}
 	   <p class="help-block">
 		   {{{error.attributes.class.message}}}
@@ -99,9 +98,9 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.name}}" data-formloader-wrapper="attributes.name">
-	<label for="name" class="control-label">Name:</label>
+	<label for="fields_name" class="control-label">Name:</label>
 	<div class="controls">
-		 <input id="name" name="attributes[name]" value="{{attributes.name}}" type="text" />
+		 <input type="text" id="fields_name" name="attributes[name]" value="{{attributes.name}}" />
 	   {{#error.attributes.name}}
 	   <p class="help-block">
 		   {{{error.attributes.name.message}}}
@@ -110,7 +109,7 @@
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.data}}" data-formloader-wrapper="attributes.data">
-	<label for="data" class="control-label">Data Attributes</label>
+	<label for="fields_data" class="control-label">Data Attributes</label>
 	<div class="controls">
 		 <div data-option-sgroup="attributes[data]">
 	<div class="optionRow">
@@ -139,9 +138,9 @@ var Formloader = Formloader || {};
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.style}}" data-formloader-wrapper="attributes.style">
-	<label for="style" class="control-label">Style:</label>
+	<label for="fields_style" class="control-label">Style:</label>
 	<div class="controls">
-		 <input id="style" name="attributes[style]" value="{{attributes.style}}" type="text" />
+		 <input type="text" id="fields_style" name="attributes[style]" value="{{attributes.style}}" />
 	   {{#error.attributes.style}}
 	   <p class="help-block">
 		   {{{error.attributes.style.message}}}
@@ -154,8 +153,7 @@ var Formloader = Formloader || {};
 </div>
 </fieldset>
 
-   <fieldset id="fieldset_settings" name="fieldset_settings" data-collapsible-fieldset="">
-
+   <fieldset data-collapsible-fieldset="">
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
@@ -174,9 +172,9 @@ Fieldset Settings						<b class="caret"></b>
 
   <div data-formloader-fieldset="formloader.fieldset_settings" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.legend}}" data-formloader-wrapper="legend">
-	<label for="legend" class="control-label">Legend:</label>
+	<label for="fields_legend" class="control-label">Legend:</label>
 	<div class="controls">
-		 <input id="legend" name="legend" value="{{legend}}" type="text" />
+		 <input type="text" id="fields_legend" name="legend" value="{{legend}}" />
 	   {{#error.legend}}
 	   <p class="help-block">
 		   {{{error.legend.message}}}
@@ -185,11 +183,12 @@ Fieldset Settings						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.use_legend}}" data-formloader-wrapper="use_legend">
-	<label for="use_legend" class="control-label">Use Legend:</label>
+	<label for="fields_use_legend" class="control-label">Use Legend:</label>
 	<div class="controls">
-		 <select id="use_legend" name="use_legend" value="{{use_legend}}" type="dropdown">		<option value="">No</option>
-		<option {{#__selected.use_legend.true}}selected="selected" {{/__selected.use_legend.true}}value="true">Yes</option>
-</select>
+		 <select type="dropdown" id="fields_use_legend" name="use_legend">
+	<option value="" >No</option>
+	<option value="true" {{#__selected.use_legend.true}}selected="selected"{{/__selected.use_legend.true}}>Yes</option>
+	</select>
 	   {{#error.use_legend}}
 	   <p class="help-block">
 		   {{{error.use_legend.message}}}
@@ -198,14 +197,13 @@ Fieldset Settings						<b class="caret"></b>
 	</div>
 </div>
 </fieldset>
-   <fieldset id="template_info" name="template_info" data-collapsible-fieldset="">
-
+   <fieldset data-collapsible-fieldset="">
 	<ul class="nav nav-tabs">
 		<li class="dropdown">
 			<a class="dropdown-toggle"
 			data-toggle="dropdown"
 			href="#">
-View Path Info						<b class="caret"></b>
+Template Path Info						<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a data-formloader-showfield="template" href="#">template</a></li>
@@ -220,9 +218,9 @@ View Path Info						<b class="caret"></b>
 
   <div data-formloader-fieldset="formloader.template_info" class="formloader-fieldset-hide">
     <div class="control-group{{wrapper_class.template}}" data-formloader-wrapper="template">
-	<label for="template" class="control-label">Mustache View:</label>
+	<label for="fields_template" class="control-label">Mustache View:</label>
 	<div class="controls">
-		 <input id="template" name="template" value="{{template}}" type="text" placeholder="default.mustache" />
+		 <input type="text" id="fields_template" name="template" value="{{template}}" placeholder="default.mustache" />
 	   {{#error.template}}
 	   <p class="help-block">
 		   {{{error.template.message}}}
@@ -231,9 +229,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_dir}}" data-formloader-wrapper="template_dir">
-	<label for="template_directory" class="control-label">View Directory:</label>
+	<label for="fields_template_directory" class="control-label">Template Directory:</label>
 	<div class="controls">
-		 <input id="template_directory" name="template_dir" value="{{template_dir}}" type="text" placeholder="/path/to/mustache/template" />
+		 <input type="text" id="fields_template_directory" name="template_dir" value="{{template_dir}}" placeholder="/path/to/mustache/template" />
 	   {{#error.template_dir}}
 	   <p class="help-block">
 		   {{{error.template_dir.message}}}
@@ -245,9 +243,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_path}}" data-formloader-wrapper="template_path">
-	<label for="template_path" class="control-label">View Path:</label>
+	<label for="fields_template_path" class="control-label">Template Path:</label>
 	<div class="controls">
-		 <input id="template_path" name="template_path" value="{{template_path}}" type="text" placeholder="/path/to/template.mustache" />
+		 <input type="text" id="fields_template_path" name="template_path" value="{{template_path}}" placeholder="/path/to/template.mustache" />
 	   {{#error.template_path}}
 	   <p class="help-block">
 		   {{{error.template_path.message}}}
@@ -259,9 +257,9 @@ View Path Info						<b class="caret"></b>
 	</div>
 </div>
     <div class="control-group{{wrapper_class.template_html}}" data-formloader-wrapper="template_html">
-	<label for="template_html" class="control-label">View Html:</label>
+	<label for="fields_template_html" class="control-label">Template Html:</label>
 	<div class="controls">
-		 <textarea id="template_html" name="template_html" type="textarea">{{template_html}}</textarea>
+		 <textarea type="textarea" id="fields_template_html" name="template_html">{{template_html}}</textarea>
 	   {{#error.template_html}}
 	   <p class="help-block">
 		   {{{error.template_html.message}}}
@@ -274,9 +272,9 @@ View Path Info						<b class="caret"></b>
 </div>
 </fieldset>
 
-		<div data-formloader-actions="formloader.fieldset" class="form-actions">
-				<button type="submit" class="btn-info btn" value="Save">Save</button>
-				<button type="button" class="pull-right small btn" name="submit" value="Preview" id="preview_item">Preview</button>
+		<div data-formloader-actions="formloader.fieldsets" class="form-actions">
+				<button id="actions_save" type="submit" class="btn-info btn" value="Save">Save</button>
+				<button id="preview_item" type="button" class="pull-right small btn" value="Preview">Preview</button>
 		</div>
 
 </form>

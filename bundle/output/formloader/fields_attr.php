@@ -12,5 +12,5 @@ return array(
 						'required|valid_string[alpha,dashes,numeric]',
 				),
 		),
-		'selects' => array('attributes.type','options')
+		'selects' => array('attributes.type','options','hide_name'),
 );

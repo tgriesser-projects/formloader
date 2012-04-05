@@ -12,5 +12,5 @@ return array(
 						'required|valid_string[alpha,dashes,numeric]',
 				),
 		),
-		'selects' => array('use_legend')
+		'selects' => array('use_legend'),
 );
