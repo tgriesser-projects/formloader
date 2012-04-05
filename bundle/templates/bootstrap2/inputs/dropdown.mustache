@@ -1,0 +1,11 @@
+<select {{{attribute_string}}}>
+	{{#options}}
+	<option value="{{value}}" {{#value}}{%#__selected.{{name_with_dots}}.{{value}}%}selected="selected"{%/__selected.{{name_with_dots}}.{{value}}%}{{/value}}>{{content}}</option>
+	{{/options}}
+	{{^options}}
+	{%#{{name_with_dots}}%}
+	<option value="{%value%}" {%#value%}{%#__selected.{{name_with_dots}}.{%value%}%}selected="selected"{%/__selected.{{name_with_dots}}.{%value%}%}
+	{%/value%}>{%content%}</option>
+	{%/{{name_with_dots}}%}
+	{{/options}}
+</select>

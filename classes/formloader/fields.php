@@ -230,6 +230,10 @@ class Formloader_Fields extends Formloader_Bridge
 						? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
 							: '') . '{%' . $f['name_with_dots'] . '%}';
 				}
+				else
+				{
+					$f['attributes']['value'] = '';
+				}
 				return '__remove__';
 			},
 
@@ -398,9 +402,8 @@ class Formloader_Fields extends Formloader_Bridge
 			case "dropdown":
 				return self::select($f);
 			break;
-			case "radio":
 			case "checkbox":
-				return self::multi($f);
+				return self::check($f);
 			case "file":
 				return \Form::file(array_filter($f['attributes']));
 			break;
@@ -409,7 +412,7 @@ class Formloader_Fields extends Formloader_Bridge
 			break;
 			case "checkboxes":
 			case "radios":
-				return self::multi($f, 'check_radio');
+				return self::multi($f);
 			break;
 			case "uneditable":
 				return \Form::hidden($f['attributes']['name'], $f['value']) . PHP_EOL;

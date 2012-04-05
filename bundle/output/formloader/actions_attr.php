@@ -11,5 +11,5 @@ return array(
 						'Action Name',
 						'required|valid_string[alpha,dashes,numeric]',
 				),
-		)
+		),
 );

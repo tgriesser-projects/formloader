@@ -122,8 +122,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			 */
 			'_data' => function(&$f)
 			{
-				$f['attributes']['data'] = Formloader_Bridge::data_filter($f);
-				return '__remove__';
+				return Formloader_Bridge::data_filter($f);
 			},
 
 			/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Formloader: Updated by Formloader Module - 2012/03/04 22:55:13
+ * Formloader: Updated by Formloader Module - 2012/04/05 16:03:00
  * --- You may edit the below, changes will not be lost, just appended---
  */
 return array(
@@ -13,6 +13,9 @@ return array(
 				'validations' => array('fuel.required','fuel.valid_string[alpha,dashes,numeric]'),
 		),
 		'actions' => array(
+				'attributes' => array(
+						'id' => 'actions',
+				),
 				'tip' => 'Start typing the name of an action you have already created, or click the "+" to create a new one',
 				'input_template' => 'tagit.mustache',
 		),
@@ -104,7 +107,7 @@ return array(
 		),
 		'fieldsets' => array(
 				'attributes' => array(
-					'id' => 'fieldsets'
+						'id' => 'fieldsets',
 				),
 				'tip' => 'Start typing the name of a fieldset you have already created, or click the "+" to create a new one',
 				'input_template' => 'tagit.mustache',
@@ -135,7 +138,7 @@ return array(
 		),
 		'group' => array(
 				'attributes' => array(
-					'id' => 'group'
+						'id' => 'group',
 				),
 				'tip' => 'Used mainly to namespace the forms/child items',
 				'validations' => array('fuel.required','fuel.valid_string[alpha,numeric]'),
@@ -146,12 +149,12 @@ return array(
 		),
 		'hide_name' => array(
 				'attributes' => array(
-					'type' => 'dropdown'
+						'type' => 'dropdown',
 				),
 				'options' => array(
-					'No'  => '',
-					'Yes' => 'true'
-				)
+						'No' => '',
+						'Yes' => 'true',
+				),
 		),
 		'id' => array(
 				'placeholder' => '#id of the form/field',
@@ -210,6 +213,32 @@ return array(
 				'tip' => 'Adding fields here will add a depth layer to the array',
 				'input_template' => 'tagit.mustache',
 		),
+		'template' => array(
+				'label' => 'Mustache View:',
+				'attributes' => array(
+						'placeholder' => 'default.mustache',
+				),
+		),
+		'template_directory' => array(
+				'attributes' => array(
+						'name' => 'template_dir',
+						'placeholder' => '/path/to/mustache/template',
+				),
+				'tip' => 'Directory that the template is in (within the modules/formloader/templates)',
+				'options' => array(),
+		),
+		'template_html' => array(
+				'tip' => 'We can specify the raw HTML for an item here... completely overriding every other setting',
+				'attributes' => array(
+						'type' => 'textarea',
+				),
+		),
+		'template_path' => array(
+				'tip' => 'Full path - combined template directory and template path',
+				'attributes' => array(
+						'placeholder' => '/path/to/template.mustache',
+				),
+		),
 		'tip' => array(
 				'tip' => '<strong>Tips are found underneath a form item, and can carry valid html markup</strong>',
 				'options' => array(),
@@ -254,38 +283,12 @@ return array(
 		),
 		'validations' => array(
 				'attributes' => array(
-					'id' => 'validations'
+						'id' => 'validations',
 				),
 				'tip' => 'Validations (other than the native ones) are not checked... you must ensure the validations are correctly setup on the server side.',
 				'input_template' => 'tagit.mustache',
 		),
 		'value' => array(
 				'options' => array(),
-		),
-		'template' => array(
-				'label' => 'Mustache View:',
-				'attributes' => array(
-						'placeholder' => 'default.mustache',
-				),
-		),
-		'template_directory' => array(
-				'attributes' => array(
-						'name' => 'template_dir',
-						'placeholder' => '/path/to/mustache/template',
-				),
-				'tip' => 'Directory that the template is in (within the modules/formloader/templates)',
-				'options' => array(),
-		),
-		'template_html' => array(
-				'tip' => 'We can specify the raw HTML for an item here... completely overriding every other setting',
-				'attributes' => array(
-						'type' => 'textarea',
-				),
-		),
-		'template_path' => array(
-				'tip' => 'Full path - combined template directory and template path',
-				'attributes' => array(
-						'placeholder' => '/path/to/template.mustache',
-				),
 		),
 );

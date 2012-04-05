@@ -12,5 +12,5 @@ return array(
 						'required|valid_string[alpha,dashes,numeric]',
 				),
 		),
-		'selects' => array('attributes.form_method')
+		'selects' => array('attributes.method'),
 );
