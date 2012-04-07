@@ -55,6 +55,11 @@ class Controller_Api extends \Controller_Rest
 		if (isset($post['attributes']['data']) and ! empty($post['attributes']['data']))
 		{
 			$this->prep_set($post['attributes']['data']);
+			
+			if (empty($post['attributes']['data']))
+			{
+				unset($post['attributes']['data']);
+			}
 		}
 
 		// Unset unnecessary values for form processing...
