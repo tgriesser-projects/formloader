@@ -134,7 +134,7 @@ class Controller_Base extends \Controller_Template
 		$item = Formloader_Fs::fetch_item($id, $type);
 
 		// Set the unhide variable, so we can reduce the form size
-		\View::set_global('unhide', json_encode(self::array_key_collapse($item)), false);
+		\View::set_global('unhide', json_encode(\Loopforge::array_key_collapse($item)), false);
 
 		if ( ! empty($item))
 		{
@@ -160,38 +160,6 @@ class Controller_Base extends \Controller_Template
 			$this->template->title = 'Error';
 			$this->template->content = 'Error finding ' . $type;
 		}
-	}
-
-	/**
-	 * Checks if the array's keys/sub-keys aren't (int)...
-	 * if so it adds them to a stack of collapsed keys
-	 * @param array
-	 */
-	public function array_key_collapse($array)
-	{
-		$stack = array();
-		$depth = array();
-		$collapse = function($val, $key, $func) use(&$stack, &$depth)
-		{
-			array_push($depth, $key);
-			if (is_array($val))
-			{
-				$stack[] = implode('.', $depth);
-				array_walk($val, $func, $func);
-			}
-			else
-			{
-				if ( ! is_int($key))
-				{
-					$stack[] = implode('.', $depth);
-				}
-			}
-			array_pop($depth);
-		};
-		
-		array_walk($array, $collapse, $collapse);
-		
-		return $stack;
 	}
 	
 }
