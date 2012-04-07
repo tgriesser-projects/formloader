@@ -213,6 +213,7 @@ class Controller_Api extends \Controller_Rest
 	private function prep_set(&$post_item)
 	{
 		$arr = array();
+
 		foreach ($post_item['key'] as $k => $key_val)
 		{
 			if ( ! empty($key_val))
@@ -271,11 +272,18 @@ class Controller_Api extends \Controller_Rest
 		// Pair down the posted object so we don't have blank attributes all over the place...
 		$filtered = \Loopforge::array_filter_recursive($arr);
 
+		// Ensures we don't lose the blank data- items
+		if ( ! empty($arr['attributes']['data']))
+		{
+			\Arr::set($filtered, 'attributes.data', $arr['attributes']['data']);
+		}
+
 		// Ensures we don't lose the blank values associated with the options array...
 		if ( ! empty($arr['options']))
 		{
 			\Arr::set($filtered, 'options', $arr['options']);
 		}
+
 		return $filtered;
 	}
 

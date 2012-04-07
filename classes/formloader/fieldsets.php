@@ -116,23 +116,13 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			),
 
 			/**
-			 * Filters all data- attributes
-			 * @param array - reference to the fieldset array
-			 * @return string  __remove__
-			 */
-			'_data' => function(&$f)
-			{
-				return Formloader_Bridge::data_filter($f);
-			},
-
-			/**
 			 * Returns all attributes, filtered an put in string form for manual
 			 * tag formation
 			 * @param array - current fieldset array
 			 */
 			'attribute_string' => function($f)
 			{
-				return array_to_attr(array_filter($f['attributes']));
+				return array_to_attr(Formloader_Bridge::filter_attributes($f));
 			},
 
 			/**
@@ -142,7 +132,7 @@ class Formloader_Fieldsets extends Formloader_Bridge
 			 */
 			'fieldset_open' => function(&$f)
 			{
-				return \Form::fieldset_open(array_filter($f['attributes']));
+				return \Form::fieldset_open(Formloader_Bridge::filter_attributes($f));
 			},
 			
 			/**

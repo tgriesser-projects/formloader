@@ -85,32 +85,43 @@ class Formloader_Forms extends Formloader_Bridge
 
 				'action' => '{%%uri:://action%%}',
 
-				'data'  => array()  // All data-attr will be filtered below
+				'data'  => array()
 			),
-			
-			'_data' => function(&$f)
-			{
-				return Formloader_Bridge::data_filter($f);
-			},
 			
 			/**
 			 * Returns all attributes, filtered an put in string form for manual
 			 * tag formation
-			 * @param array - current form array
+			 * @param array - reference to current form array
 			 */
-			'attribute_string' => function($f)
+			'attribute_string' => function(&$f)
 			{
-				return array_to_attr(array_filter($f['attributes']));
+				return array_to_attr(Formloader_Bridge::filter_attributes($f));
 			},
 
+			/**
+			 * Api_action for the form
+			 * @param array $f - current form array
+			 * @return array
+			 */
 			'api_action' => function($f)
 			{
 				return $f['group'] . '.' . $f['name'];
 			},
-			'form_open' => function($f)
+			
+			/**
+			 * Opens the form with the appropriate attributes
+			 * @param reference to current form array
+			 * @return string
+			 */
+			'form_open' => function(&$f)
 			{
-				return \Form::open(array_filter($f['attributes']), array('api_action' => $f['api_action']));
+				return \Form::open(Formloader_Bridge::filter_attributes($f), array('api_action' => $f['api_action']));
 			},
+
+			/**
+			 * Closes the form
+			 * @return string
+			 */
 			'form_close' => function()
 			{
 				return \Form::close();
@@ -192,7 +203,7 @@ class Formloader_Forms extends Formloader_Bridge
 
 			/**
 			 * Resolves the template directory for the action
-			 * @param array $f - current action array
+			 * @param array $f - current form array
 			 * @return string
 			 */
 			'template_dir'   => function($f)
@@ -202,7 +213,7 @@ class Formloader_Forms extends Formloader_Bridge
 
 			/**
 			 * Path to the template relative to the "modules/formloader/templates" directory
-			 * @param array $f - current action array
+			 * @param array $f - current form array
 			 * @return string
 			 */			
 			'template_path'  => function($f)
@@ -212,7 +223,7 @@ class Formloader_Forms extends Formloader_Bridge
 
 			/**
 			 * Output HTML for the action
-			 * @param array
+			 * @param array $f - current form array
 			 * @return string  rendered \View object
 			 */
 			'template_html' => function($f)
