@@ -130,14 +130,14 @@ class Formloader_Bridge extends \Loopforge
 		}
 		return $return;
 	}
-	
+
 	/**
-	 * Filters all data- attributes
+	 * Filters the attributes going into the form items...
 	 * @param Reference to the current form object
-	 * @return string  __remove__
 	 */
-	public static function data_filter(&$f)
+	public static function filter_attributes(&$f)
 	{
+		// Filters all data- attributes
 		if ( ! empty($f['attributes']['data']))
 		{
 			foreach ($f['attributes']['data'] as $k => $v)
@@ -146,7 +146,33 @@ class Formloader_Bridge extends \Loopforge
 			}
 			$f['attributes']['data'] = '';
 		}
-		return '__remove__';
+
+		switch ($f['object_type'])
+		{
+			case "fields":
+				if ($f['attributes']['type'] !== 'radios' and $f['attributes']['type'] !== 'dropdown')
+				{
+					$f['attributes']['value'] = ( ! empty($f['attributes']['value'])
+						? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
+							: '') . '{%' . $f['name_with_dots'] . '%}';
+				}
+			break;
+			case "actions":
+				// Puts an attribute value in the action item
+				if (empty($f['attributes']['value']))
+				{
+					$f['attributes']['value'] = ucwords(str_replace('_', ' ', $f['name']));
+				}
+				// Ensures that every button has a "btn" class
+				$f['attributes']['class'] .= ( ! empty($f['attributes']['class']) ? ' btn' : 'btn');
+			break;
+		}
+
+		// Ensures we still have the data- attributes we need for the form
+		$data = \Arr::filter_prefixed($f['attributes'], "data-", false);
+
+		// Send back the filtered items plus the data-attributes
+		return array_merge(array_filter($f['attributes']), $data);
 	}
 
 	/**

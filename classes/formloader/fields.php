@@ -124,8 +124,8 @@ class Formloader_Fields extends Formloader_Bridge
 				
 				/**
 				 * By default, the id will be the lowercased name of the form...
-			   * @param array   $f - current field array
-			   * @return string
+				 * @param array   $f - current field array
+				 * @return string
 				 */
 				'id'    => function($f)
 				{
@@ -171,16 +171,6 @@ class Formloader_Fields extends Formloader_Bridge
 			),
 			
 			/**
-			 * Filters all data- attributes
-			 * @param array - reference to the field object
-			 * @return string  __remove__
-			 */
-			'_data' => function(&$f)
-			{
-				return Formloader_Bridge::data_filter($f);
-			},
-			
-			/**
 			 * The 'name_with_dots' is a dot-separated field name (for nested fields)
 			 * this is important because it allows us to easily set values at the correct depth
 			 * in the mustache
@@ -199,15 +189,6 @@ class Formloader_Fields extends Formloader_Bridge
 			'default' => '',
 
 			/**
-			 * Makes sure to collapse a field object if it's radio
-			 * @param array  - reference to the field object
-			 */
-			'_default' => function(&$f)
-			{
-				return "__remove__";
-			},
-
-			/**
 			 * Using the "name with dots"
 			 * @param array  - reference to the field object
 			 */
@@ -216,25 +197,6 @@ class Formloader_Fields extends Formloader_Bridge
 				$exp = explode('.', $f['name_with_dots']);
 				$field = array_shift($exp);
 				$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
-			},
-
-			/**
-			 * Set the appropriate default value for the field
-			 * @param array  - reference to the field object
-			 */
-			'_value' => function(&$f)
-			{
-				if ($f['attributes']['type'] !== 'radio' and $f['attributes']['type'] !== 'dropdown')
-				{
-					$f['attributes']['value'] = ( ! empty($f['attributes']['value'])
-						? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
-							: '') . '{%' . $f['name_with_dots'] . '%}';
-				}
-				else
-				{
-					$f['attributes']['value'] = '';
-				}
-				return '__remove__';
 			},
 
 			/**
@@ -271,9 +233,9 @@ class Formloader_Fields extends Formloader_Bridge
 			 * tag formation
 			 * @param array - current fieldset object
 			 */
-			'attribute_string' => function($f)
+			'attribute_string' => function(&$f)
 			{
-				return array_to_attr(array_filter($f['attributes']));
+				return array_to_attr(Formloader_Bridge::filter_attributes($f));
 			},
 
 			/**
@@ -391,13 +353,13 @@ class Formloader_Fields extends Formloader_Bridge
 		{
 			case "text":
 			case "password":
-				return \Form::input(array_filter($f['attributes']));
+				return \Form::input(Formloader_Bridge::filter_attributes($f));
 			break;
 			case "textarea":
-				return \Form::textarea(array_filter($f['attributes']));
+				return \Form::textarea(Formloader_Bridge::filter_attributes($f));
 			break;
 			case "button":
-				return \Form::button(array_filter($f['attributes']));
+				return \Form::button(Formloader_Bridge::filter_attributes($f));
 			break;
 			case "dropdown":
 				return self::select($f);
@@ -405,7 +367,7 @@ class Formloader_Fields extends Formloader_Bridge
 			case "checkbox":
 				return self::check($f);
 			case "file":
-				return \Form::file(array_filter($f['attributes']));
+				return \Form::file(Formloader_Bridge::filter_attributes($f));
 			break;
 			case "hidden":
 				return \Form::hidden($f['attributes']['name'], $f['value']) . PHP_EOL;

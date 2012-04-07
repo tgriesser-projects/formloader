@@ -25,7 +25,7 @@ return array(
 				),
 				'label' => 'Action Attributes',
 				'template_path' => 'formloader/fieldsets/dropdown.mustache',
-				'fields' => array('id','class','name','value','button_type','style','data'),
+				'fields' => array('id','class','name','value','button_type','style','data','href'),
 		),
 		'attributes_field' => array(
 				'attributes' => array(
@@ -56,7 +56,7 @@ return array(
 				'attributes' => array(
 						'name' => 'type',
 				),
-				'help_inline' => 'either "submit" or "button"',
+				'help_inline' => 'either "submit", "button", or "a" for a link',
 		),
 		'class' => array(),
 		'data' => array(
@@ -155,6 +155,9 @@ return array(
 						'No' => '',
 						'Yes' => 'true',
 				),
+		),
+		'href' => array(
+				'tip' => 'Note: this is only used if the button type is "a" (default #)'
 		),
 		'id' => array(
 				'placeholder' => '#id of the form/field',

@@ -49,6 +49,7 @@
 				<li><a data-formloader-showfield="attributes.type" href="#">button_type</a></li>
 				<li><a data-formloader-showfield="attributes.style" href="#">style</a></li>
 				<li><a data-formloader-showfield="attributes.data" href="#">data</a></li>
+				<li><a data-formloader-showfield="attributes.href" href="#">href</a></li>
 				<li class="divider"></li>
 				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
 			</ul>
@@ -105,13 +106,27 @@
 	<div class="controls">
 		 <input type="text" id="fields_button_type" name="attributes[type]" value="{{attributes.type}}" />
 		 {{^error.attributes.type}}
-	   <span class="help-inline">either "submit" or "button"</span>
+	   <span class="help-inline">either "submit", "button", or "a" for a link</span>
 		 {{/error.attributes.type}}
 	   {{#error.attributes.type}}
 	   <p class="help-block">
 		   {{{error.attributes.type.message}}}
 	   </p>
 	   {{/error.attributes.type}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.href}}" data-formloader-wrapper="attributes.href">
+	<label for="fields_href" class="control-label">Href:</label>
+	<div class="controls">
+		 <input type="text" id="fields_href" name="attributes[href]" value="{{attributes.href}}" />
+		 {{^error.attributes.href}}
+	   <span class="help-inline">Note: this is only used if the button type is "a" (default #)</span>
+		 {{/error.attributes.href}}
+	   {{#error.attributes.href}}
+	   <p class="help-block">
+		   {{{error.attributes.href.message}}}
+	   </p>
+	   {{/error.attributes.href}}
 	</div>
 </div>
     <div class="control-group{{wrapper_class.attributes.style}}" data-formloader-wrapper="attributes.style">

@@ -95,7 +95,28 @@ class Formloader_Actions extends Formloader_Bridge
 				{
 					return $f['name'] === 'submit' ? 'submit' : 'button';
 				},
+
+				/**
+				 * Lowercase the type...
+				 * @param array $f - reference to current action array
+				 * @return string (empry)
+				 */
+				'_type'   => function (&$f)
+				{
+					$f['attributes']['type'] === strtolower($f['attributes']['type']);
+					return '';
+				},
 				
+				/**
+				 * If the attribute 'type' is 'A'
+				 * then we will expect it to have an href value
+				 * 
+				 */
+				'href' => function($f)
+				{
+					return $f['attributes']['type'] === 'a' ? '#' : '';
+				},
+
 				/**
 				 * String of the current class
 				 * @param string
@@ -116,6 +137,12 @@ class Formloader_Actions extends Formloader_Bridge
 				'value' => '',
 				
 				/**
+				 * Style attribute for the action (don't use too many inline styles)
+				 * @var string
+				 */
+				'style' => '',
+
+				/**
 				 * Array of key => value pairs, each key will be filtered below,
 				 * prefixed with 'data-' and added to the attributes...
 				 * @var array
@@ -124,48 +151,13 @@ class Formloader_Actions extends Formloader_Bridge
 			),
 
 			/**
-			 * Ensures that every button has a "btn" class
-			 * @param Reference to the Action object
-			 * @return string  __remove__
-			 */
-			'_class' => function (&$f)
-			{
-				$f['attributes']['class'] .= ( ! empty($f['attributes']['class']) ? ' btn' : 'btn');
-				return '__remove__';
-			},
-			
-			/**
-			 * Filters all data- attributes
-			 * @param Reference to the Action object
-			 * @return string  __remove__
-			 */
-			'_data' => function(&$f)
-			{
-				return Formloader_Bridge::data_filter($f);
-			},
-
-			/**
-			 * Required name of the action
-			 * @param array $f - current action array
-			 * @return string
-			 */
-			'_value' => function(&$f)
-			{
-				if (empty($f['attributes']['value']))
-				{
-					$f['attributes']['value'] = ucwords(str_replace('_', ' ', $f['name']));
-				}
-				return '__remove__';
-			},
-
-			/**
 			 * Returns all attributes, filtered an put in string form for manual
 			 * tag formation
 			 * @param array - current action array
 			 */
-			'attribute_string' => function($f)
+			'attribute_string' => function(&$f)
 			{
-				return array_to_attr(array_filter($f['attributes']));
+				return array_to_attr(Formloader_Bridge::filter_attributes($f));
 			},
 			
 			/**
@@ -173,9 +165,20 @@ class Formloader_Actions extends Formloader_Bridge
 			 * @param array $f - current action array
 			 * @return string
 			 */
-			'action' => function ($f)
+			'action' => function (&$f)
 			{
-				return \Form::button(array_filter($f['attributes']));
+				if ($f['attributes']['type'] === 'a')
+				{
+					return html_tag(
+						'a',
+						\Arr::filter_keys(Formloader_Bridge::filter_attributes($f), array('type', 'value', 'name'), true),
+						$f['attributes']['value']
+					);
+				}
+				else
+				{
+					return \Form::button(\Arr::filter_keys(Formloader_Bridge::filter_attributes($f), array('html'), true));
+				}
 			},
 			
 			/**
