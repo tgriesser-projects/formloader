@@ -194,9 +194,16 @@ class Formloader_Fields extends Formloader_Bridge
 			 */
 			'_name' => function(&$f)
 			{
-				$exp = explode('.', $f['name_with_dots']);
-				$field = array_shift($exp);
-				$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
+				if ( ! $f['hide_name'])
+				{
+					$exp = explode('.', $f['name_with_dots']);
+					$field = array_shift($exp);
+					$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
+				}
+				else
+				{
+					$f['attributes']['name'] = '';
+				}
 			},
 
 			/**
@@ -370,14 +377,14 @@ class Formloader_Fields extends Formloader_Bridge
 				return \Form::file(Formloader_Bridge::filter_attributes($f));
 			break;
 			case "hidden":
-				return \Form::hidden($f['attributes']['name'], $f['value']) . PHP_EOL;
+				return \Form::hidden($f['attributes']['name'], $f['attributes']['value']) . PHP_EOL;
 			break;
 			case "checkboxes":
 			case "radios":
 				return self::multi($f);
 			break;
 			case "uneditable":
-				return \Form::hidden($f['attributes']['name'], $f['value']) . PHP_EOL;
+				return "";
 			break;
 		}
 	}

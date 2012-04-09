@@ -58,6 +58,11 @@ return array(
 	'builder' => array(
 
 		/**
+		 * Class used in the form tag for previewing non-form items
+		 */
+		'preview_class' => 'form-horizontal',
+
+		/**
 		 * If this module is enabled at all, even in development
 		 * @var bool
 		 */
