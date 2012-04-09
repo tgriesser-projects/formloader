@@ -132,6 +132,10 @@ class Controller_Base extends \Controller_Template
 	{
 		if (\Input::method() === 'POST')
 		{
+			// Updated so the demo cannot call the migration
+			$this->template->content = 'Update does not function in the demo...';
+			return;
+
 			$content = <<<HTML
 <style type="text/css" media="screen">
 	li.green{
