@@ -194,9 +194,16 @@ class Formloader_Fields extends Formloader_Bridge
 			 */
 			'_name' => function(&$f)
 			{
-				$exp = explode('.', $f['name_with_dots']);
-				$field = array_shift($exp);
-				$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
+				if ( ! $f['hide_name'])
+				{
+					$exp = explode('.', $f['name_with_dots']);
+					$field = array_shift($exp);
+					$f['attributes']['name'] = $field . ( ! empty($exp) ? '['.implode('][', $exp) . ']' : '');
+				}
+				else
+				{
+					$f['attributes']['name'] = '';
+				}
 			},
 
 			/**
