@@ -7,6 +7,7 @@
 				<b class="caret"></b>
 			</a>
 			<ul class="dropdown-menu">
+				<li><a href="<?=Uri::create('formloader/update')?>">Update</a></li>
 				<li><a href="<?=Uri::create('formloader/settings')?>">Settings</a></li>
 			</ul>
 		</li>

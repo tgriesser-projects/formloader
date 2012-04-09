@@ -123,7 +123,43 @@ class Controller_Base extends \Controller_Template
 		$ignored_groups->values(\Config::get('formbuilder.ignored_groups'));
 		$this->template->content = \View::forge('settings', array('ignored_groups' => $ignored_groups));
 	}
-	
+
+	/**
+	 * Updates the formloader with changes to the git repo
+	 * 
+	 */
+	public function action_update()
+	{
+		if (\Input::method() === 'POST')
+		{
+			$content = <<<HTML
+<style type="text/css" media="screen">
+	li.green{
+		color: green;
+	}
+	li.yellow{
+		color:orange;
+	}
+	li.red{
+		color:red;
+	}
+</style>
+HTML;
+			$content .= '<ul>';
+			foreach (Formloader_Migration::migrate_app() as $item)
+			{
+				$content .= '<li class="'. \Arr::get($item, '1', '') .'">' . $item[0] . '</li>';
+			}
+			$content .= '</ul>';
+
+			$this->template->set('content', $content, false);
+		}
+		else
+		{
+			$this->template->content = \View::forge('update');
+		}
+	}
+
 	/**
 	 * Edits a specific item (forms/fieldsets/fields/actions)
 	 * @param array|null

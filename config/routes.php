@@ -18,8 +18,8 @@ return array(
 
 	'formloader/(forms|fields|fieldsets|actions)/((.*?)-(.*?)-(.*?))' => 'formloader/base/edit/$1/$2',
 	'formloader/(forms|fields|fieldsets|actions)/(list|create)'       => 'formloader/base/$2/$1',
-	'formloader/(forms|fields|fieldsets|actions)'					  => 'formloader/base/list/$1',
-	'formloader/settings'                                             => 'formloader/base/settings',
+	'formloader/(forms|fields|fieldsets|actions)'                     => 'formloader/base/list/$1',
+	'formloader/(update|settings)'                                    => 'formloader/base/$1',
 	'formloader'                                                      => function()
 	{
 		\Response::redirect('formloader/forms');
