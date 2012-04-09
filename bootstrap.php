@@ -27,7 +27,8 @@ Autoloader::add_classes(array(
 	'Formloader\\Formloader_Fs'       => __DIR__.'/classes/formloader/fs.php',
 	'Formloader\\Formloader_Bridge'   => __DIR__.'/classes/formloader/bridge.php',
 	'Formloader\\Formloader_Mustache' => __DIR__.'/classes/formloader/mustache.php',
-	
+	'Formloader\\Formloader_Migration'   => __DIR__.'/classes/formloader/migration.php',
+
 	// Standard exception thrown by the class
 	'Formloader\\FormloaderException' => __DIR__.'/classes/formloader.php',
 ));
