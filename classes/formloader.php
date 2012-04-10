@@ -50,6 +50,13 @@ class Formloader
 	 */
 	public $render_calls = true;
 
+	/**
+	 * Determine whether to use CSRF on a particular form
+	 * by default, this is determined by the formloader config
+	 * @var bool
+	 */
+	public $use_csrf;
+
 	protected $_id;
 	protected $name;
 	protected $group;  
@@ -391,7 +398,9 @@ class Formloader
 			return $this->rendered;
 		}
 		
-		if (\Config::get('formloader.csrf'))
+		$use_csrf = is_bool($this->use_csrf) ? $this->use_csrf : \Config::get('formloader.csrf');
+
+		if ($use_csrf)
 		{
 			$this->hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token());
 		}
