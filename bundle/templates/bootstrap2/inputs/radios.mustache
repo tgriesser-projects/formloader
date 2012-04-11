@@ -1,0 +1,15 @@
+{{#options}}
+	<label class="{{attributes.class}}">
+		<input type="{{attributes.type}}" name="{{parent}}" value="{{attributes.value}}" 
+		{%#__checked.{{name_with_dots}}%}checked="checked"{%/__checked.{{name_with_dots}}%}>
+		{{label}}
+	</label>
+{{/options}}
+{{^options}}
+	{%#{{name_with_dots}}%}
+	<label class="{{attributes.class}}">
+		<input type="{{attributes.type}}" name="{{attributes.name}}[{%name%}]" value="{%name%}" {%#checked%}checked="checked"{%/checked%}>
+		{%label%}
+	</label>
+	{%/{{name_with_dots}}%}
+{{/options}}

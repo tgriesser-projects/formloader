@@ -67,20 +67,6 @@ class Controller_Base extends \Controller_Template
 	}
 
 	/**
-	 * Centralize all flash data...
-	 * @param object|null $response
-	 */
-	public function after($response)
-	{
-		$flash = \Session::get_flash('formloader_alert');	
-		if ( ! is_null($flash))
-		{
-			$this->template->set('formloader_alert', $flash, false);
-		}
-		return parent::after($response);
-	}
-
-	/**
 	 * Alias the index to the list
 	 */
 	public function action_index()
@@ -109,6 +95,7 @@ class Controller_Base extends \Controller_Template
 		// Create the appropriate form depending on the page we're on...
 		$this->template->content = Formloader::forge('formloader', $type, false)
 			->set('route_success', 'HMVC::formloader/api/save/' . $type)
+			->set('use_csrf', false)
 			->hidden('hidden_vars[get][]', \Input::get('ref'))
 			->listen();
 	}
@@ -119,8 +106,10 @@ class Controller_Base extends \Controller_Template
 	 */
 	public function action_settings()
 	{
-		$ignored_groups = Formloader::forge('formloader', 'ignored_groups');
-		$ignored_groups->values(\Config::get('formbuilder.ignored_groups'));
+		$ignored_groups = Formloader::forge('formloader', 'ignored_groups', false)
+			->values(\Config::get('formbuilder.ignored_groups'))
+			->set('use_csrf', false)
+			->listen();
 		$this->template->content = \View::forge('settings', array('ignored_groups' => $ignored_groups));
 	}
 
@@ -192,6 +181,7 @@ HTML;
 			$this->template->content = Formloader::forge('formloader', $type, false)
 				->values($item)
 				->set('route_success', 'HMVC::formloader/api/save/' . $type)
+				->set('use_csrf', false)
 				->hidden('hidden_vars[get][]', \Input::get('ref')) // The hidden variable determines whether this is a popup
 				->listen();
 		}

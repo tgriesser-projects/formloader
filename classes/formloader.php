@@ -20,12 +20,43 @@ class FormloaderException extends \FuelException {}
 class Formloader
 {
 	/**
-	 * Set these directly when creating the Formloader object
+	 * Action, sets the URL for where the form will
+	 * @var string
 	 */
 	public $action;
+	
+	/**
+	 * Static method or HMVC call for when a form is successfully submitted
+	 * @var string
+	 */
 	public $route_success;
+	
+	/**
+	 * Static method or HMVC call for when a form is unsuccessfully submitted
+	 * @var string
+	 */
 	public $route_error;
 	
+	/**
+	 * Whether to show the alerts for a form at the top of a form
+	 * @var bool
+	 */
+	public $alert = true;
+	
+	/**
+	 * When set to true, the return value for the static method
+	 * or HMVC request is output in place of the form
+	 * @var bool
+	 */
+	public $render_calls = true;
+
+	/**
+	 * Determine whether to use CSRF on a particular form
+	 * by default, this is determined by the formloader config
+	 * @var bool
+	 */
+	public $use_csrf;
+
 	protected $_id;
 	protected $name;
 	protected $group;  
@@ -57,7 +88,12 @@ class Formloader
 	 */
 	public function __toString()
 	{
-		return $this->render();
+		$return = '';
+		if ($this->alert)
+		{
+			$return .= $this->get_alert() . PHP_EOL;
+		}
+		return $return . $this->render();
 	}
 	
 	/**
@@ -148,12 +184,12 @@ class Formloader
 		{
 			foreach ($item as $key => $val)
 			{
-				$this->values[$key] = $val;
+				\Arr::set($this->values, $key, $val);
 			}
 		}
 		else
 		{
-			$this->values[$item] = $value;
+			\Arr::set($this->values, $item, $value);
 		}
 		return $this;
 	}
@@ -193,7 +229,16 @@ class Formloader
 		{
 			if ($this->validate() !== false and $this->route_success)
 			{
-				$this->routing($this->route_success, 'success');
+				$use_csrf = is_bool($this->use_csrf) ? $this->use_csrf : \Config::get('formloader.csrf');
+
+				if ($use_csrf and ! \Security::check_token())
+			    {
+			    	$this->set_alert('Invalid form submission, please try again.', 'error', $this->_id);
+			    }
+			    else
+			    {
+					$this->routing($this->route_success, 'success');
+			    }
 			}
 			elseif ( ! empty($this->errors) and $this->route_error)
 			{
@@ -234,27 +279,111 @@ class Formloader
 					}
 				break;
 			}
-			
-			if (is_array($response) or ! is_null($response = json_decode($response)))
+
+			// Json Decoded response
+			$json_decoded = json_decode($response);
+
+			// Check whether there was a json response or an array from the call 
+			if (is_array($response) or ! is_null($json_decoded))
 			{
-				\Session::set_flash('formloader_alert', $response);
+				if ( ! is_array($response))
+				{
+					$response = $json_decoded;
+				}
+
+				$this->set_alert($response, null, $this->_id);
+			}
+			elseif ( ! empty($response) and $this->render_calls)
+			{
+				$this->rendered = $response;
 			}
 		}
 		catch (\HttpNotFoundException $e)
 		{
-			\Session::set_flash('formloader_alert', array(
-				'type' => 'error',
-				'message' => '404 Form Target Not found...'
-			));
+			$this->set_alert('404 Form Target Not found...', 'error');
 		}
 		catch (FormloaderException $e)
 		{
-			\Session::set_flash('formloader_alert', array(
-				'type' => 'error',
-				'message' => $e->getMessage(),
-				'code' => '400'
-			));
+			$this->set_alert($e->getMessage(), 'error');
 		}
+	}
+
+	/**
+	 * Sets the alert on the current form object
+	 * @param string  - message for the alert
+	 * @param string  - type {success|error|warning|info}
+	 * @return $this - for method chaining
+	 */
+	public function set_alert($message, $type = 'success')
+	{
+		static::alert_set($message, $type, $this->_id);
+		return $this;
+	}
+
+	/**
+	 * Sets the alerts for this block
+	 * @param string  - message for the alert
+	 * @param string  - type {success|error|warning|info}
+	 * @param string  - name of the form (for calling individual form alerts)
+	 */
+	public static function alert_set($message, $type = 'success', $id = 'default')
+	{
+		if (is_array($message))
+		{
+			$type = $message['type'] ? : 'success';
+			$message = $message['message'] ? : 'Unknown Message';
+		}
+
+		$flashes = \Session::get_flash('formloader_alert', array());
+		$flashes[$id][] = array(
+			'message' => $message,
+			'type' => $type
+		);
+		\Session::set_flash('formloader_alert', $flashes);
+	}
+
+	/**
+	 * Renders the alert block for all of the alerts queued for
+	 * the current request...
+	 * @return string
+	 */
+	public function get_alert()
+	{
+		return static::alert_get($this->_id);
+	}
+
+	/**
+	 * Renders the alerts based on their ID
+	 */
+	public static function alert_get($id = 'default')
+	{
+		$html = '';
+		$flash = \Session::get_flash('formloader_alert');
+
+		$alert_stack = function($id) use(&$html, $flash)
+		{
+			if ( ! empty($flash) and isset($flash[$id]) and ! empty($flash[$id]))
+	   		{
+	   			foreach ($flash[$id] as $alert)
+	   			{
+	   				$html .= \View::forge('flash', $alert) . PHP_EOL;
+	   			}
+	   		}
+		};
+
+		if (is_array($id))
+		{
+			foreach ($id as $type)
+			{
+				$alert_stack($type);
+			}
+		}
+		else
+		{
+			$alert_stack($id);
+		}
+
+   		return $html;
 	}
 
 	/**
@@ -270,11 +399,18 @@ class Formloader
 			return $this->rendered;
 		}
 		
+		$use_csrf = is_bool($this->use_csrf) ? $this->use_csrf : \Config::get('formloader.csrf');
+
+		if ($use_csrf)
+		{
+			$this->hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token());
+		}
+
 		$values = \Arr::merge($this->values, $values);
 
 		// Used in case that there isn't a specific post URI tied to the form at compile time
 		// TODO: (check that URI main is what we want)
-		$values['uri:://action'] = $this->action ? : \Arr::get($values, 'uri:://action', \Uri::main());
+		$values['uri:://action'] = ! is_null($this->action) ? $this->action : \Arr::get($values, 'uri:://action', \Uri::main());
 
 		if ( ! empty($this->errors))
 		{
@@ -299,7 +435,7 @@ class Formloader
 		{
 			foreach ($this->option_calls as $field => $func)
 			{
-				$values[$field] = is_callable($func) ? call_user_func($func) : array();
+				\Arr::set($values, $field, is_callable($func) ? call_user_func($func) : array());
 			}
 		}
 

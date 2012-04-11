@@ -135,10 +135,7 @@ ROW;
 	{
 		if (\Input::method() === "POST" and \Input::post('api_action', 'formloader.ignored_groups'))
 		{
-			\Session::set_flash('formloader_alert', array(
-				'message' => 'Form items cannot be changed in this demo...',
-				'type' => 'warning'
-			));
+			\Formloader::alert_set('Form items cannot be changed in this demo...', 'warning', 'formloader.ignored_groups');
 			return \Response::redirect(\Uri::main());
 		}
 		else

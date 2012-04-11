@@ -17,6 +17,8 @@
 						<?= $formloader_alert['message'] ?>
 					</div>
 				<? } ?>
+			<?= $navbar ?>
+			<?= Formloader::alert_get() ?>
 			<br>
 			<?php if ( ! empty($title)) { ?>
 				<h3><?= $title ?></h3>
