@@ -177,7 +177,7 @@ class Controller_Api extends \Controller_Rest
 	{
 		if ( ! \Input::is_ajax())
 		{
-			\Session::set_flash('formloader_alert', $message);
+			\Formloader::alert_set($message);
 			
 			if ($kill)
 			{

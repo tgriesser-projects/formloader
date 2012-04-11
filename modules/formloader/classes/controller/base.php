@@ -67,20 +67,6 @@ class Controller_Base extends \Controller_Template
 	}
 
 	/**
-	 * Centralize all flash data...
-	 * @param object|null $response
-	 */
-	public function after($response)
-	{
-		$flash = \Session::get_flash('formloader_alert');	
-		if ( ! is_null($flash))
-		{
-			$this->template->set('formloader_alert', $flash, false);
-		}
-		return parent::after($response);
-	}
-
-	/**
 	 * Alias the index to the list
 	 */
 	public function action_index()

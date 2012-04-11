@@ -11,13 +11,8 @@
 			<?php } ?>
 			<h1>Formloader Module</h1>
 			<hr>
-				<?= $navbar ?>
-				<?php if ( ! empty($formloader_alert)) { ?>
-					<div class="alert alert-<?=$formloader_alert['type']?>">
-					  <a class="close" data-dismiss="alert">×</a>
-						<?= $formloader_alert['message'] ?>
-					</div>
-				<? } ?>
+			<?= $navbar ?>
+			<?= Formloader::alert_get() ?>
 			<br>
 			<?php if ( ! empty($title)) { ?>
 				<h3><?= $title ?></h3>

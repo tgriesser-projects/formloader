@@ -229,7 +229,9 @@ class Formloader
 		{
 			if ($this->validate() !== false and $this->route_success)
 			{
-				if ( ! \Config::get('formloader.csrf') or ! \Security::check_token())
+				$use_csrf = is_bool($this->use_csrf) ? $this->use_csrf : \Config::get('formloader.csrf');
+
+				if ($use_csrf and ! \Security::check_token())
 			    {
 			    	$this->set_alert('Invalid form submission, please try again.', 'error', $this->_id);
 			    }
@@ -314,14 +316,7 @@ class Formloader
 	 */
 	public function set_alert($message, $type = 'success')
 	{
-		if (is_array($message))
-		{
-			$type = $message['type'] ? : 'success';
-			$message = $message['message'] ? : 'Unknown Message';
-		}
-
-		static::set_alerts($message, $type, $this->_id);
-		
+		static::alert_set($message, $type, $this->_id);
 		return $this;
 	}
 
@@ -331,8 +326,14 @@ class Formloader
 	 * @param string  - type {success|error|warning|info}
 	 * @param string  - name of the form (for calling individual form alerts)
 	 */
-	public static function set_alerts($message, $type = 'success', $id = 'default')
+	public static function alert_set($message, $type = 'success', $id = 'default')
 	{
+		if (is_array($message))
+		{
+			$type = $message['type'] ? : 'success';
+			$message = $message['message'] ? : 'Unknown Message';
+		}
+
 		$flashes = \Session::get_flash('formloader_alert', array());
 		$flashes[$id][] = array(
 			'message' => $message,
@@ -348,13 +349,13 @@ class Formloader
 	 */
 	public function get_alert()
 	{
-		return static::get_alerts($this->_id);
+		return static::alert_get($this->_id);
 	}
 
 	/**
 	 * Renders the alerts based on their ID
 	 */
-	public static function get_alerts($id = 'default')
+	public static function alert_get($id = 'default')
 	{
 		$html = '';
 		$flash = \Session::get_flash('formloader_alert');
