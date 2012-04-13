@@ -164,6 +164,7 @@ class Formloader_Migration
 						// Create the directories with the appropriate permissions as we go through
 						if ( ! is_dir($dest_path))
 						{
+							Formloader_Migration::write("\t".'Creating: ' . $dest_path, 'green');
 							mkdir($dest_path, 0777);
 						}
 						

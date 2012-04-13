@@ -92,6 +92,7 @@
 				<li><a data-formloader-showfield="attributes.placeholder" href="#">placeholder</a></li>
 				<li><a data-formloader-showfield="attributes.style" href="#">style</a></li>
 				<li><a data-formloader-showfield="attributes.data" href="#">data</a></li>
+				<li><a data-formloader-showfield="attributes.autocomplete" href="#">autocomplete</a></li>
 				<li class="divider"></li>
 				<li><a data-formloader-showfieldtrigger="show" href="#">Show All Fields</a></li>
 			</ul>
@@ -219,6 +220,20 @@ var Formloader = Formloader || {};
 		 {{^error.attributes.data}}
 	   <span class="help-block">Each of the Key=>Val pairs will be added as data attribues to this item</span>
 		 {{/error.attributes.data}}
+	</div>
+</div>
+    <div class="control-group{{wrapper_class.attributes.autocomplete}}" data-formloader-wrapper="attributes.autocomplete">
+	<label for="fields_autocomplete" class="control-label">Autocomplete:</label>
+	<div class="controls">
+		 <input type="text" id="fields_autocomplete" name="attributes[autocomplete]" class="span2" value="{{attributes.autocomplete}}" />
+	   {{#error.attributes.autocomplete}}
+	   <p class="help-block">
+		   {{{error.attributes.autocomplete.message}}}
+	   </p>
+	   {{/error.attributes.autocomplete}}
+		 {{^error.attributes.autocomplete}}
+	   <span class="help-block">Set as "off" to turn autocompletion off</span>
+		 {{/error.attributes.autocomplete}}
 	</div>
 </div>
 </fieldset>

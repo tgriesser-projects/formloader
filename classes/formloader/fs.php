@@ -166,7 +166,7 @@ HEAD;
 		}
 		catch (\InvalidPathException $e)
 		{
-			throw new FormloaderException("Invalid path, cannot update at... $output_dir");
+			throw new FormloaderException("Invalid path, cannot update $filename at... $output_dir");
 		}
 		catch (\FileAccessException $e)
 		{

@@ -15,6 +15,11 @@ namespace Formloader;
 class Formloader_Bridge extends \Loopforge
 {
 	/**
+	 * Ensures that each item is only filtered once
+	 */
+	protected static $filtered = array();
+
+	/**
 	 * Ensures that each item is given a unique ID... at least within the current form
 	 */
 	protected static $id_stack = array();
@@ -147,25 +152,35 @@ class Formloader_Bridge extends \Loopforge
 			$f['attributes']['data'] = '';
 		}
 
-		switch ($f['object_type'])
+		if ( ! in_array($f['_id'], static::$filtered))
 		{
-			case "fields":
-				if ($f['attributes']['type'] !== 'radios' and $f['attributes']['type'] !== 'dropdown')
-				{
-					$f['attributes']['value'] = ( ! empty($f['attributes']['value'])
-						? '{%^'.($f['name_with_dots']).'%}'.$f['attributes']['value'].'{%/'.$f['name_with_dots'].'%}'
-							: '') . '{%' . $f['name_with_dots'] . '%}';
-				}
-			break;
-			case "actions":
-				// Puts an attribute value in the action item
-				if (empty($f['attributes']['value']))
-				{
-					$f['attributes']['value'] = ucwords(str_replace('_', ' ', $f['name']));
-				}
-				// Ensures that every button has a "btn" class
-				$f['attributes']['class'] .= ( ! empty($f['attributes']['class']) ? ' btn' : 'btn');
-			break;
+			array_push(static::$filtered, $f['_id']);
+			
+			switch ($f['object_type'])
+			{
+				case "fields":
+					if ($f['attributes']['type'] !== 'radios' and $f['attributes']['type'] !== 'dropdown')
+					{
+						if ( ! empty($f['attributes']['value']))
+						{
+							$f['attributes']['value'] = '{%^'.($f['name_with_dots']).'%}'
+								. $f['attributes']['value']
+								. '{%/'.$f['name_with_dots'].'%}';
+						}
+						
+						$f['attributes']['value'] .= '{%' . $f['name_with_dots'] . '%}';
+					}
+				break;
+				case "actions":
+					// Puts an attribute value in the action item
+					if (empty($f['attributes']['value']))
+					{
+						$f['attributes']['value'] = ucwords(str_replace('_', ' ', $f['name']));
+					}
+					// Ensures that every button has a "btn" class
+					$f['attributes']['class'] .= ( ! empty($f['attributes']['class']) ? ' btn' : 'btn');
+				break;
+			}
 		}
 
 		// Ensures we still have the data- attributes we need for the form

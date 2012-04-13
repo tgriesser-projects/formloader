@@ -76,15 +76,37 @@ class Formloader_Forms extends Formloader_Bridge
 
 			'attributes' => array(
 
+				/**
+				 * Sets the id attribute for the form tag
+				 * @var string
+				 */
 				'id'    => function($f)
 				{
 					return Formloader_Bridge::unique_id($f);
 				},
 
+				/**
+				 * Set to "off" to turn off the autocomplete
+				 * @var string
+				 */
+				'autocomplete' => '',
+
+				/**
+				 * Method for the form (default POST)
+				 * @var string
+				 */
 				'method' => 'POST',
 
+				/**
+				 * Action for the form, defaults to the current URI
+				 * @var string
+				 */
 				'action' => '{%%uri:://action%%}',
 
+				/**
+				 * Any HTML5 data- attributes
+				 * @var array
+				 */
 				'data'  => array()
 			),
 			

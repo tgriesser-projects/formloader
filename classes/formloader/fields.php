@@ -163,6 +163,12 @@ class Formloader_Fields extends Formloader_Bridge
 				'value' => '',
 
 				/**
+				 * Set to "off" to turn off the autocomplete
+				 * @var string
+				 */
+				'autocomplete' => '',
+
+				/**
 				 * Array of key => value pairs, each key will be filtered below,
 				 * prefixed with 'data-' and added to the attributes...
 				 * @var array
