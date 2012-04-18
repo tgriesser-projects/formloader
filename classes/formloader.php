@@ -237,7 +237,8 @@ class Formloader
 			    }
 			    else
 			    {
-					$this->routing($this->route_success, 'success');
+			    	unset($_POST[\Config::get('security.csrf_token_key')]);
+			    	$this->routing($this->route_success, 'success');
 			    }
 			}
 			elseif ( ! empty($this->errors) and $this->route_error)
@@ -280,22 +281,24 @@ class Formloader
 				break;
 			}
 
-			// Json Decoded response
-			$json_decoded = json_decode($response);
-
 			// Check whether there was a json response or an array from the call 
-			if (is_array($response) or ! is_null($json_decoded))
+			if (is_array($response))
 			{
-				if ( ! is_array($response))
-				{
-					$response = $json_decoded;
-				}
-
 				$this->set_alert($response, null, $this->_id);
 			}
-			elseif ( ! empty($response) and $this->render_calls)
+			else
 			{
-				$this->rendered = $response;
+				// Json Decoded response
+				$json_decoded = json_decode($response);
+
+				if (is_array($json_decoded))
+				{
+					$this->set_alert($json_decoded, null, $this->_id);
+				}
+				elseif ( ! empty($response) and $this->render_calls)
+				{
+					$this->rendered = $response;
+				}
 			}
 		}
 		catch (\HttpNotFoundException $e)
