@@ -119,7 +119,7 @@ return array(
 				$module_paths = Config::get('module_paths');
 				array_unshift($module_paths, __DIR__ . '/../modules/');
 				Config::set('module_paths', $module_paths);
-				Fuel::add_module('formloader');
+				Module::load('formloader');
 
 				/**								
 				 * Adds the scaffolding and whitelists the scaffolding
