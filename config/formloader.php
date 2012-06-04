@@ -43,7 +43,7 @@ return array(
 	 * whether to add csrf protection to every form generated
 	 * @var bool
 	 */
-	'csrf' => true,
+	'csrf' => false,
 
 	/**
 	 * Whether we're redirecting the request on error (with form values persisted)
